@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import br.ages.crud.command.AddUserCommand;
 import br.ages.crud.command.Command;
+import br.ages.crud.command.CreateScreenCommand;
 import br.ages.crud.command.CreateScreenUserCommand;
 import br.ages.crud.command.EditUserCommand;
 import br.ages.crud.command.ListUserCommand;
@@ -46,6 +47,9 @@ public class MainServlet extends HttpServlet {
 		comandos.put("editUser", new EditUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		
+	//Paginas Novas
+			comandos.put("tela", new CreateScreenCommand());
+		
 	}
 
 	@Override
@@ -60,6 +64,7 @@ public class MainServlet extends HttpServlet {
 			Usuario usuario = (Usuario) request.getSession().getAttribute("usuarioSessao");
 			logger.debug("User: " +usuario.getUsuario() + " - comando " + comando.toString() + " acao: " +acao );
 		} catch (Exception e) {
+			e.printStackTrace();
 			request.setAttribute("msgErro", e.getMessage());
 		}
 	

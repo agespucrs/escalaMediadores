@@ -27,21 +27,21 @@
     		
     		<br>
     		<div class="text-center">
-    			<img class="logo" src="img/logo-ages.png" alt="AGES">
+    			<img class="logo" src="img/logo-mct_.png" alt="AGES">
     		</div>
     		<br>
    		
    		<!-- MODAL / POPUP -->
    		<jsp:include page="./template/modalSenha.jsp"></jsp:include>
     	
-    		<div class="panel panel-primary panel-login">
+    		<div class="panel panel-default panel-login">
     		
-    			<div class="panel-heading text-center">
-    				Sistema de Controle de Fluxo de Projetos
+    			<div class="panel-heading panel-heading-custom text-center">
+    				<h3>Escala de Mediadores</h3>
     			</div>
                 <div class="panel-body">
     
-    				<h1 class="welcome">Bem <span class="ages">v</span>indo!</h1>
+    				<h1 class="welcome">Bem <span class="ages">V</span>indo!</h1>
     				<jsp:include page="/template/msg.jsp"></jsp:include>
  			         <form method="post" action="main?acao=login">
 			         	<div class="form-group">
@@ -54,7 +54,6 @@
 		            	</div>
 		            	<i class="glyphicon glyphicon-lock"></i>
 		            	<a href="" data-toggle="modal" data-id="login" data-usuario="#login" data-target="#modalSenha" title="Click para recuperar a senha senha"> Recuperar Senha</a>
-		             	<hr>
 			            <div class="text-center">
 			             	<input class="btn btn-primary login pull-center" type="submit" value="Entrar">
 			         	</div>

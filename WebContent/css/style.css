@@ -4,7 +4,7 @@ body{
 
 .logo {
 	width: 30%;
-	min-width: 200px;
+	min-width: 180px;
 }
 
 .logoNavBar {
@@ -25,18 +25,6 @@ body{
 	margin-right: auto;
 }
 
-.panel-addPonto{
-	max-width: 600px;
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
-}
-.panel-addStakeholder{
-	max-width: 400px;
-	float: none;
-	margin-left: auto;
-	margin-right: auto;
-}
 .login {
 	width: 100%;
 }
@@ -57,7 +45,29 @@ body{
 }
 
 .ages{
-	color: #F89406;
+	color: #00ABA4; /* #FBB337 #5d4c70 #F89406 */
+}
+
+.panel-default > .panel-heading-custom{
+  background-image: none;
+  background-color: #00ABA4;
+  color: #ffffff;
+}
+
+.panel-primary > .panel-heading {
+  background-color: red!important;
+
+	/* background-image:none;
+	background-color: #00ABA4; !important;  */
+	
+}
+.btn-primary{
+	background: #00ABA4; 
+	border-color:  #00ABA4;
+}
+.btn-primary:HOVER{
+	background: #00e6da; 
+	border-color:  #00e6da;
 }
 
 .red{

@@ -28,7 +28,7 @@ public class LoginCommand implements Command {
 			if (user != null) {
 				
 				request.getSession().setAttribute("usuarioSessao", user);
-				proxima = "main?acao=listaProjetos";
+				proxima = "main?acao=tela&tela=t";
 			
 			}
 		} catch (Exception e) {

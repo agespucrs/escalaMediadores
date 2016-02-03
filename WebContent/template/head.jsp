@@ -7,17 +7,18 @@
         <meta charset="utf-8">
         <title>AGES - Agência Experimental de Engenharia de Software</title>
         <link rel="icon" href="img/favicon.ico">
-        
+
 		<!-- BOOTSTRAP -->
 		<link rel="stylesheet" href="./css/bootstrap.min.css">
 	 	<link rel="stylesheet" href="./css/bootstrap-theme.min.css"> 
 
+		<!-- STYLE -->
+		<link rel="stylesheet" href="./css/style.css">
+        
 		<!-- Include the plugin's CSS and JS: Cassio DataTable -->
 	<!-- 	<link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/jquery.dataTables.min.css"> -->
 		<link rel="stylesheet" href="https://cdn.datatables.net/1.10.10/css/dataTables.bootstrap.min.css">
 
-		<!-- STYLE -->
-		<link rel="stylesheet" href="./css/style.css">
 
         <!-- JQUERY -->
         <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
@@ -54,13 +55,48 @@
 				<div class="container-fluid">
 				
 		    		<div class="navbar-header">
-			      		<a class="navbar-brand" href="main?acao=listaProjetos">
-			        		<img class="logoNavBar" src="./img/logo-ages.png" alt="AGES">
+			      		<a class="navbar-brand" href="main?acao=tela&tela=listaMediador">
+			        		<img class="logoNavBar" src="./img/logo-mct.png" alt="AGES">
 			      		</a>
 			    	</div>
 
 					<ul class="nav navbar-nav">
 						
+
+			        	<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Mediadores
+				          		<span class="caret"></span>
+			          		</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=tela&tela=listaMediador">Listar</a></li>
+				            	<li><a href="main?acao=tela&tela=criaMediador">Cadastrar</a></li> 
+				          	</ul>
+        				</li>
+        				
+        				<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Áreas Museu
+				          		<span class="caret"></span>
+			          		</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=tela&tela=">Listar</a></li>
+				            	<li><a href="main?acao=tela&tela=">Cadastrar</a></li> 
+				          	</ul>
+        				</li>
+
+        				<li class="dropdown">
+			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Escala Mediadores
+				          		<span class="caret"></span>
+			          		</a>
+				          	<ul class="dropdown-menu">
+				            	<li><a href="main?acao=tela&tela=">Diária</a></li>
+				            	<li><a href="main?acao=tela&tela=">Mensal</a></li>
+				            	
+				          	</ul>
+        				</li>
+
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
 						<li class="dropdown">
 			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Usuários
 				          		<span class="caret"></span>
@@ -71,40 +107,6 @@
 				          	</ul>
         				</li>
 
-			        	<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Projetos
-				          		<span class="caret"></span>
-			          		</a>
-				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=listaProjetos">Listar</a></li>
-				            	<li><a href="main?acao=telaProjeto">Cadastrar</a></li> 
-				          	</ul>
-        				</li>
-        				
-        				<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Stakeholders
-				          		<span class="caret"></span>
-			          		</a>
-				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=listaStakeholders">Listar</a></li>
-				            	<li><a href="main?acao=telaStakeholder">Cadastrar</a></li> 
-				          	</ul>
-        				</li>
-
-        				<li class="dropdown">
-			          		<a class="dropdown-toggle" data-toggle="dropdown" href="#">Alunos
-				          		<span class="caret"></span>
-			          		</a>
-				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=registrarPonto">Registrar Ponto</a></li>
-				            	<li><a href="main?acao=listaPontoHora&id_usuario=0">Lista Horas Ponto</a></li>
-				            	
-				          	</ul>
-        				</li>
-
-					</ul>
-
-					<ul class="nav navbar-nav navbar-right">
         				<li class="dropdown">
         					<a class="dropdown-toggle" data-toggle="dropdown" href="#">
         						<span class="glyphicon glyphicon-user"></span>
