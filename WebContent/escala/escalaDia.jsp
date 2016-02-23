@@ -18,7 +18,7 @@
 				<input class="btn" type="button" id="pavimento3" value="Terceiro" />
 			</div>
 			<div class="col-sm-4">
-				<label>Data Escala: 01/07/2016</label> 
+				<label>Data Escala: 01/07/2016</label><br> <label>Turno MANHÃ</label>
 				<form action="" method="post">
 		        <button id="btnGera" name="btnGera" class="btn " data-toggle="modal" data-id="1" data-escala="01/07/2015" 
 		            data-target="#modalGerarEscala">Gerar Nova Escala</button>
