@@ -4,7 +4,7 @@
 
     <head>
         <meta charset="utf-8">
-        <title>AGES - Agência Experimental de Engenharia de Software</title><!-- Título da página -->
+        <title>Museu de Ciência e Tecnologia - PUCRS<</title><!-- Título da página -->
         <link rel="icon" href="img/favicon.ico">
 
         <!-- JQUERY -->

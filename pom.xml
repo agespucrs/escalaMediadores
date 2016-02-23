@@ -2,10 +2,10 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>EscalaMEdiadores</groupId>
-	<artifactId>FluxoAGES</artifactId>
+	<artifactId>EscalaMediadores</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>FluxoAGES</name>
+	<name>EscalaMediadores</name>
 	<description>Projeto Escala Mediadores - Museu PUCRS</description>
 	<profiles>
 		<!-- Profile de desenvolvimento (padrao) -->
@@ -52,16 +52,16 @@
 			<id>producao</id>
 			<properties>
 				<sgbd.user>
-					ages_e
+					escala_e
 				</sgbd.user>
 				<sgbd.password>
 					oissac1906#ages_e
 				</sgbd.password>
 				<upload.path>
-					/home/ages/uploadProjetos
+					/home/escala/uploadProjetos
 				</upload.path>
 				<log.path>
-					/home/ages/
+					/home/escala/
 				</log.path>
 			</properties>
 		</profile>
@@ -101,7 +101,7 @@
 				<configuration>
 					<url>http://localhost:8080/manager/text</url>
 					<server>TomcatServer</server>
-					<path>/FluxoAGES</path>
+					<path>/escala</path>
 					<username>admin</username>
                 	<password>admin</password>
 				</configuration>
@@ -135,4 +135,5 @@
 			<version>1.2.17</version>
 		</dependency>
 	</dependencies>
+	<url>escala</url>
 </project>

@@ -1,11 +1,11 @@
-<%@page import="br.ages.crud.model.Usuario"%>
+<%@page import="br.ages.model.Usuario"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="pt-br">
 
     <head>
         <meta charset="utf-8">
-        <title>AGES - Agência Experimental de Engenharia de Software</title>
+        <title>Museu de Ciência e Tecnologia - PUCRS</title>
         <link rel="icon" href="img/favicon.ico">
 
 		<!-- BOOTSTRAP -->
@@ -49,13 +49,13 @@
     
     <body>
      <% Usuario usuarioSessao = (Usuario) session.getAttribute("usuarioSessao"); %>
-    	<div class="container">
+    	<div class="container fundo">
     	
     			<nav class="navbar navbar-default">
 				<div class="container-fluid">
 				
 		    		<div class="navbar-header">
-			      		<a class="navbar-brand" href="main?acao=tela&tela=listaMediador">
+			      		<a class="navbar-brand" href="index.jsp">
 			        		<img class="logoNavBar" src="./img/logo-mct.png" alt="AGES">
 			      		</a>
 			    	</div>
@@ -78,8 +78,8 @@
 				          		<span class="caret"></span>
 			          		</a>
 				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=tela&tela=">Listar</a></li>
-				            	<li><a href="main?acao=tela&tela=">Cadastrar</a></li> 
+				            	<li><a href="main?acao=tela&tela=listaArea">Listar</a></li>
+				            	<li><a href="main?acao=tela&tela=criaArea">Cadastrar</a></li> 
 				          	</ul>
         				</li>
 
@@ -88,7 +88,7 @@
 				          		<span class="caret"></span>
 			          		</a>
 				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=tela&tela=">Diária</a></li>
+				            	<li><a href="main?acao=tela&tela=escalaDia">Diária</a></li>
 				            	<li><a href="main?acao=tela&tela=">Mensal</a></li>
 				            	
 				          	</ul>

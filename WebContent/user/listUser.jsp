@@ -1,13 +1,13 @@
-<%@page import="br.ages.crud.model.Usuario"%>
+<%@page import="br.ages.model.Usuario"%>
 <%@page import="java.util.List"%>
 <jsp:include page="../template/head.jsp"></jsp:include>
 
 <!-- MODAL / POPUP -->
 <jsp:include page="../template/modal.jsp"></jsp:include>
  		
-<div class="panel panel-primary">
+<div class="panel panel-default">
    		
-	<div class="panel-heading text-center">Lista de Usuários</div>
+	<div class="panel-heading panel-heading-custom text-center">Lista de Usuários</div>
                
        <div class="panel-body">
        

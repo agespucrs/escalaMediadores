@@ -1,15 +1,15 @@
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
-<%@page import="br.ages.crud.model.Usuario"%>
+<%@page import="br.ages.model.Usuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
 
 <jsp:include page="../template/head.jsp"></jsp:include>
 	
-	<div class="panel panel-primary panel-addUser">
+	<div class="panel panel-default panel-addUser">
     		
-		<div class="panel-heading text-center">
+		<div class="panel-heading panel-heading-custom text-center">
 			Editar Usuário
 		</div>
 		
