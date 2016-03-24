@@ -104,5 +104,13 @@ public class MensagemContantes {
 	public static final String MSG_SUC_CADASTRO_PONTO = "Cadastrado com SUCESSO o Ponto do Aluno ?";
 
 	public static final String MSG_ERR_PONTO_JA_EXISTENTE = "Ponto ja existente para o Aluno ? na data";
+	
+	//msgs de Mediadores
+	
+	public static final String MSG_SUC_CADASTRO_MEDIADOR = "Cadastro de Mediador efetuado com sucesso!";
+	
+	public static final String MSG_ERR_CADASTRO_MEDIADOR = "Erro ao cadastrar Mediador!";
+	
+	
 
 }

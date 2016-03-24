@@ -405,9 +405,13 @@ public class UsuarioDAO {
 			StringBuilder sql = new StringBuilder();
 			int id = usuario.getIdUsuario();
 
-			sql.append("update ages_e.tb_usuario set senha = ?, perfil_acesso = ?," + "status_usuario = ?, id_tipo_usuario = ?, nome = ?, email = ?, matricula = ?" + "  where id_usuario = " + id + ";");
+			sql.append("update tb_usuario set senha = ?, "
+					+ "perfil_acesso = ?," + "status_usuario = ?, "
+					+ "id_tipo_usuario = ?, nome = ?, email = ?, "
+					+ "matricula = ?" + "  where id_usuario = " + id + ";");
 
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = 
+					conexao.prepareStatement(sql.toString());
 
 			statement.setString(1, usuario.getSenha());
 			statement.setString(2, usuario.getPerfilAcesso().name());
