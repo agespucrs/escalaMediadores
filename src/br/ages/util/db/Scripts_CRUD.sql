@@ -56,3 +56,47 @@ VALUES
 ('10', 'admin', 'admin', 'ADMINISTRADOR', 'ATIVO', '1', '00000', 'Cassio Trindade', 'cassio.trindade@pucrs.br', '2015-10-01 00:00:00');
 
 select * from tb_usuario;
+
+/*Table tb_mediador*/
+CREATE TABLE `tb_mediador` (
+  `id_mediador` int(11) NOT NULL AUTO_INCREMENT,
+  `cpf` varchar(11) DEFAULT NULL,
+  `matricula` varchar(9) DEFAULT NULL,
+  `nome` varchar(120) DEFAULT NULL,
+  `tipo_mediador` varchar(10) DEFAULT NULL,
+  `status_mediador` varchar(45) DEFAULT NULL,
+  `data_cadastro` datetime DEFAULT NULL,
+  PRIMARY KEY (`id_mediador`),
+  UNIQUE KEY `cpf_UNIQUE` (`cpf`),
+  UNIQUE KEY `matricula_UNIQUE` (`matricula`)
+);
+
+/*Table tb_escala_mes`*/
+
+CREATE TABLE `escala_e`.`tb_escala_mes` (
+  `id_escala_mes` INT(11) NOT NULL AUTO_INCREMENT,
+  `id_mediador` INT(11) NOT NULL,
+  `dia` VARCHAR(2) NOT NULL ,
+  `mes` VARCHAR(2) NOT NULL  ,
+  `ano` VARCHAR(4) NOT NULL  ,
+  `tipo_folga` VARCHAR(45) NOT NULL  ,
+  PRIMARY KEY (`id_escala_mes`)   ,
+  FOREIGN KEY (id_mediador) REFERENCES tb_mediador(id_mediador), 
+  UNIQUE INDEX `id_escala_mes_UNIQUE` (`id_escala_mes` ASC));
+  
+/*Table tb_area_conhecimento*/
+CREATE TABLE `escala_e`.`tb_area_conhecimento` (
+  `id_area_conecimento` INT(11) NOT NULL AUTO_INCREMENT  ,
+  `numero` INT(5) NOT NULL,
+  `nome` VARCHAR(120) NOT NULL,
+  `pavimento` VARCHAR(20) NOT NULL,
+  `tipo_area` VARCHAR(20) NOT NULL,
+  `status_area` VARCHAR(20) NOT NULL,
+  `numero_mediadores` INT(5) NOT NULL,
+  `observacao` VARCHAR(255) NOT NULL,
+  `data_cadastro` DATETIME NOT NULL,
+  PRIMARY KEY (`id_area_conecimento`),
+  UNIQUE INDEX `id_escala_dia_UNIQUE` (`id_area_conecimento` ASC),
+  UNIQUE INDEX `numero_UNIQUE` (`numero` ASC),
+  UNIQUE INDEX `nome_UNIQUE` (`nome` ASC));
+
