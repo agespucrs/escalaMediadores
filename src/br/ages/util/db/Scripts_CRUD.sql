@@ -101,7 +101,7 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC));
 
 /*Table tb_escala_dia*/
-  CREATE TABLE `escala_e`.`new_table` (
+  CREATE TABLE `escala_e`.`tb_escala_dia` (
   `id_escala_dia` INT NOT NULL AUTO_INCREMENT COMMENT '',
   `id_mediador` INT NOT NULL COMMENT '',
   `id_area_conhecimento` INT NOT NULL COMMENT '',
