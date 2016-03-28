@@ -100,3 +100,27 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
   UNIQUE INDEX `numero_UNIQUE` (`numero` ASC),
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC));
 
+/*Table tb_escala_dia*/
+  CREATE TABLE `escala_e`.`new_table` (
+  `id_escala_dia` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `id_mediador` INT NOT NULL COMMENT '',
+  `id_area_conhecimento` INT NOT NULL COMMENT '',
+  `data_escala_dia` DATE NOT NULL COMMENT '',
+  `turno` VARCHAR(1) NULL COMMENT '',
+  PRIMARY KEY (`id_escala_dia`)  COMMENT '',
+  UNIQUE INDEX `id_escala_dia_UNIQUE` (`id_escala_dia` ASC)  COMMENT '',
+  UNIQUE INDEX `id_mediador_UNIQUE` (`id_mediador` ASC)  COMMENT '',
+  UNIQUE INDEX `id_area_conhecimento_UNIQUE` (`id_area_conhecimento` ASC)  COMMENT '',
+  CONSTRAINT `id_mediador`
+    FOREIGN KEY (`id_mediador`)
+    REFERENCES `escala_e`.`tb_mediador` (`id_mediador`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `id_area_conhecimento`
+    FOREIGN KEY (`id_area_conhecimento`)
+    REFERENCES `escala_e`.`tb_area_conhecimento` (`id_area_conecimento`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
+
+  
+  
