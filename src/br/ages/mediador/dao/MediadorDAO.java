@@ -3,7 +3,9 @@ package br.ages.mediador.dao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.ages.exception.PersistenciaException;
 import br.ages.model.Mediador;
@@ -12,7 +14,14 @@ import br.ages.util.MensagemContantes;
 
 public class MediadorDAO {
 	
+	private ArrayList<Mediador> listaResultado;
 	
+	
+	
+	public MediadorDAO() {
+		listaResultado = new ArrayList<Mediador>();
+	}
+
 	public void cadastrarMediador(Mediador mediador) throws ClassNotFoundException, PersistenciaException, SQLException{
 		Connection conexao = null;
 		
@@ -69,5 +78,32 @@ public class MediadorDAO {
 		}finally {
 			conexao.close();
 		}
+	}
+	
+	public ArrayList<Mediador> listaMediadores() throws PersistenciaException, SQLException {
+		Connection conexao = null;
+		try{
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from tb_mediador;");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultSet = statement.executeQuery();
+			while(resultSet.next());{
+				Mediador med = new Mediador();
+				med.setIdMediador(resultSet.getInt("id_mediador"));
+				med.setCpf(resultSet.getString("cpf"));
+				med.setMatricula(resultSet.getString("matricula"));
+				med.setNome(resultSet.getString("nome"));
+				med.setTipoMediador(resultSet.getString("tipo_mediador"));
+				med.setStatusMediador(resultSet.getString("status_mediador"));
+				med.setDataCadastro(resultSet.getDate("data_cadastro"));
+				
+				listaResultado.add(med);
+			}
+		} catch(ClassNotFoundException | SQLException se){
+			throw new PersistenciaException(se);
+		}
+		return listaResultado;
 	}
 }
