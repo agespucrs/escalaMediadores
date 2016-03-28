@@ -13,7 +13,7 @@
 
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
-		<form method="post" action="main?acao=">
+		<form method="post" action="main?acao=addMediador">
 
 			<div class="form-group">
 				<div class="row">

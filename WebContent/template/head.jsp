@@ -64,7 +64,7 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=tela&tela=listaMediador">Listar</a></li>
-				            	<li><a href="main?acao=tela&tela=criaMediador">Cadastrar</a></li> 
+				            	<li><a href="main?acao=addMediador">Cadastrar</a></li> 
 				          	</ul>
         				</li>
         				
