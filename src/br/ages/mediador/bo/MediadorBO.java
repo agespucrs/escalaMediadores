@@ -1,6 +1,7 @@
 package br.ages.mediador.bo;
 
 import java.sql.SQLException;
+import java.util.List;
 
 import br.ages.exception.NegocioException;
 import br.ages.exception.PersistenciaException;
@@ -31,6 +32,18 @@ public class MediadorBO {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
+	}
+	
+	public List<Mediador> listarMediadores() throws NegocioException{
+		List<Mediador> listaMed = null;
+		
+		try{
+			listaMed = mediadorDAO.listaMediadores();
+		} catch(PersistenciaException | SQLException se){
+			se.printStackTrace();
+			throw new NegocioException(se);
+		}
+		return listaMed;
 	}
 	
 }

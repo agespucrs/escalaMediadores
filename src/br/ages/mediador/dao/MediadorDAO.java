@@ -89,7 +89,7 @@ public class MediadorDAO {
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultSet = statement.executeQuery();
-			while(resultSet.next());{
+			while(resultSet.next()){
 				Mediador med = new Mediador();
 				med.setIdMediador(resultSet.getInt("id_mediador"));
 				med.setCpf(resultSet.getString("cpf"));
@@ -103,7 +103,32 @@ public class MediadorDAO {
 			}
 		} catch(ClassNotFoundException | SQLException se){
 			throw new PersistenciaException(se);
+		} finally{
+			conexao.close();
 		}
+		
 		return listaResultado;
+	}
+	
+	public Mediador pesquisarMediadorPorNome(String nome) throws PersistenciaException, SQLException{
+		Connection conexao = null;
+		Mediador med = new Mediador();
+		
+		try{
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from tb_mediador where lower(nome) like lower('?');");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, nome);
+			ResultSet resultSet = statement.executeQuery();
+			
+			
+		} catch (ClassNotFoundException | SQLException se){
+			
+		} finally {
+			conexao.close();
+		}
+		return med;
 	}
 }
