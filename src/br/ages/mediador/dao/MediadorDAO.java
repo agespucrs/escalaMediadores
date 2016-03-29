@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import com.mysql.jdbc.Statement;
 
 import java.util.ArrayList;
-
+import java.util.List;
 
 import br.ages.exception.PersistenciaException;
 import br.ages.model.Mediador;
@@ -96,7 +96,7 @@ public class MediadorDAO {
 		return ok;
 	}
 	
-	public ArrayList<Mediador> listaMediadores() throws PersistenciaException, SQLException {
+	public List<Mediador> listaMediadores() throws PersistenciaException, SQLException {
 		Connection conexao = null;
 		try{
 			conexao = ConexaoUtil.getConexao();
@@ -139,9 +139,99 @@ public class MediadorDAO {
 			statement.setString(1, nome);
 			ResultSet resultSet = statement.executeQuery();
 			
-			
+			med.setCpf(resultSet.getString("cpf"));
+			med.setIdMediador(resultSet.getInt("id_mediador"));
+			med.setMatricula(resultSet.getString("matricula"));
+			med.setNome(resultSet.getString("nome"));
+			med.setTipoMediador(resultSet.getString("tipo_mediador"));
+			med.setStatusMediador(resultSet.getString("status_mediador"));
+			med.setDataCadastro(resultSet.getDate("data_cadastro"));
 		} catch (ClassNotFoundException | SQLException se){
+			throw new PersistenciaException(se);
+		} finally {
+			conexao.close();
+		}
+		return med;
+	}
+	
+	public Mediador pesquisarMediadorPorId(int id) throws PersistenciaException, SQLException{
+		Connection conexao = null;
+		Mediador med = new Mediador();
+		
+		try{
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from tb_mediador where id_mediador=?;");
 			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, id);
+			ResultSet resultSet = statement.executeQuery();
+			
+			med.setCpf(resultSet.getString("cpf"));
+			med.setIdMediador(resultSet.getInt("id_mediador"));
+			med.setMatricula(resultSet.getString("matricula"));
+			med.setNome(resultSet.getString("nome"));
+			med.setTipoMediador(resultSet.getString("tipo_mediador"));
+			med.setStatusMediador(resultSet.getString("status_mediador"));
+			med.setDataCadastro(resultSet.getDate("data_cadastro"));
+		} catch (ClassNotFoundException | SQLException se){
+			throw new PersistenciaException(se);
+		} finally {
+			conexao.close();
+		}
+		return med;
+	}
+	
+	public Mediador pesquisarMediadorPorCpf(String cpf) throws PersistenciaException, SQLException{
+		Connection conexao = null;
+		Mediador med = new Mediador();
+		
+		try{
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from tb_mediador where cpf='?';");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, cpf);
+			ResultSet resultSet = statement.executeQuery();
+			
+			med.setCpf(resultSet.getString("cpf"));
+			med.setIdMediador(resultSet.getInt("id_mediador"));
+			med.setMatricula(resultSet.getString("matricula"));
+			med.setNome(resultSet.getString("nome"));
+			med.setTipoMediador(resultSet.getString("tipo_mediador"));
+			med.setStatusMediador(resultSet.getString("status_mediador"));
+			med.setDataCadastro(resultSet.getDate("data_cadastro"));
+		} catch (ClassNotFoundException | SQLException se){
+			throw new PersistenciaException(se);
+		} finally {
+			conexao.close();
+		}
+		return med;
+	}
+	
+	public Mediador pesquisarMediadorPorMatricula(String matricula) throws PersistenciaException, SQLException{
+		Connection conexao = null;
+		Mediador med = new Mediador();
+		
+		try{
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from tb_mediador where matricula='?';");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, matricula);
+			ResultSet resultSet = statement.executeQuery();
+			
+			med.setCpf(resultSet.getString("cpf"));
+			med.setIdMediador(resultSet.getInt("id_mediador"));
+			med.setMatricula(resultSet.getString("matricula"));
+			med.setNome(resultSet.getString("nome"));
+			med.setTipoMediador(resultSet.getString("tipo_mediador"));
+			med.setStatusMediador(resultSet.getString("status_mediador"));
+			med.setDataCadastro(resultSet.getDate("data_cadastro"));
+		} catch (ClassNotFoundException | SQLException se){
+			throw new PersistenciaException(se);
 		} finally {
 			conexao.close();
 		}
