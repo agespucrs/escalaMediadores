@@ -374,7 +374,7 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from ages_e.tb_tipo_usuario where id_tipo_usuario = ?;");
+			sql.append("select * from escala_e.tb_tipo_usuario where id_tipo_usuario = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, idTipoUsuario);
@@ -489,7 +489,7 @@ public class UsuarioDAO {
 	}
 
 	/**
-	 * Busca nos banco os usuários responsáveis
+	 * Busca nos banco os usuï¿½rios responsï¿½veis
 	 * 
 	 * @return
 	 * @throws PersistenciaException
@@ -518,7 +518,7 @@ public class UsuarioDAO {
 			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
 			sql.append(" where t.nome in ('professor', 'secretaria');");
 			
-			//XXX Alterar a tabela TB_TIPO_USUARIO para ter um flag marcando se o tipo é responsável
+			//XXX Alterar a tabela TB_TIPO_USUARIO para ter um flag marcando se o tipo ï¿½ responsï¿½vel
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultset = statement.executeQuery();

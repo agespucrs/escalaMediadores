@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import br.ages.mediador.command.AddMediadorCommand;
 import br.ages.mediador.command.CreateScreenCommand;
 import br.ages.model.Usuario;
 import br.ages.usuario.command.AddUserCommand;
@@ -47,8 +48,11 @@ public class MainServlet extends HttpServlet {
 		comandos.put("editUser", new EditUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		
-	//Paginas Novas
-			comandos.put("tela", new CreateScreenCommand());
+		//Paginas Novas
+		comandos.put("tela", new CreateScreenCommand());
+		
+		//COMANDOS DE MEDIADOR
+		comandos.put("addMediador", new AddMediadorCommand());
 		
 	}
 

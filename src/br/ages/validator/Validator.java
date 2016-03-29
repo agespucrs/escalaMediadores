@@ -6,7 +6,7 @@ import java.util.Map;
 import br.ages.exception.ValidationException;
 
 /**
- * Responsável por validar todo os tipos de valores do sistema
+ * Responsï¿½vel por validar todo os tipos de valores do sistema
  * 
  * @author Devmedia
  * 
@@ -14,7 +14,7 @@ import br.ages.exception.ValidationException;
 public interface Validator {
 	
 	/**
-	 * Método efetivo de validação que recebe o mapa com os valores e os nomes
+	 * Mï¿½todo efetivo de validaï¿½ï¿½o que recebe o mapa com os valores e os nomes
 	 * 
 	 * @param valores
 	 * @return

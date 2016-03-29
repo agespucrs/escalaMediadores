@@ -18,9 +18,9 @@ public class CreateScreenCommand implements Command {
 		try {
 
 			switch (tela) {
-			case "criaMediador":
+			/*case "criaMediador":
 				this.proxima = "mediador/addMediador.jsp";
-				break;
+				break;*/
 			case "criaArea":
 				this.proxima = "area/addArea.jsp";
 				break;

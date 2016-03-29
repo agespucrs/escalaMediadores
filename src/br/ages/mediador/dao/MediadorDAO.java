@@ -5,7 +5,11 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+
+import com.mysql.jdbc.Statement;
+
 import java.util.ArrayList;
+
 
 import br.ages.exception.PersistenciaException;
 import br.ages.model.Mediador;
@@ -16,34 +20,43 @@ public class MediadorDAO {
 	
 	private ArrayList<Mediador> listaResultado;
 	
-	
-	
 	public MediadorDAO() {
 		listaResultado = new ArrayList<Mediador>();
 	}
 
-	public void cadastrarMediador(Mediador mediador) throws ClassNotFoundException, PersistenciaException, SQLException{
+	public int cadastrarMediador(Mediador mediador) throws ClassNotFoundException, PersistenciaException, SQLException{
+
 		Connection conexao = null;
 		
 		try {
+			Integer idMediador = null;
+			
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into tb_mediador(id_mediador, cpf, matricula, nome, tipo_mediador, status_mediador, data_cadastro)");
+			sql.append("insert into tb_mediador(id_mediador, cpf, matricula, nome, email, tipo_mediador, status_mediador, data_cadastro)");
 			sql.append("values(?, ?, ?, ?, ?, ?, ?)");
 			
 			java.util.Date utilDate = new java.util.Date();
 			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
 			
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, mediador.getIdMediador());
 			statement.setString(2, mediador.getCpf());
 			statement.setString(3, mediador.getMatricula());
 			statement.setString(4, mediador.getNome());
-			statement.setString(5, mediador.getTipoMediador());
-			statement.setString(6, mediador.getStatusMediador());
+			//statement.setString(5, mediador.getEmail());
+			statement.setString(6, mediador.getTipoMediador());
+			statement.setString(7, mediador.getStatusMediador());
 			statement.setDate(7, dataCadastro);
 			
-			statement.execute();
+			statement.executeUpdate();
+			
+			ResultSet resultset = statement.getGeneratedKeys();
+			if (resultset.first()) {
+				idMediador = resultset.getInt(1);
+
+			}
+			return idMediador;
 			
 		} catch (ClassNotFoundException| SQLException se) {
 			throw new PersistenciaException(MensagemContantes.MSG_ERR_CADASTRO_MEDIADOR);			
@@ -52,7 +65,8 @@ public class MediadorDAO {
 		}
 	}
 	
-	public void editaMediador(Mediador mediador) throws PersistenciaException, SQLException{
+	public boolean editaMediador(Mediador mediador) throws PersistenciaException, SQLException{
+		boolean ok = false;
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
@@ -60,24 +74,26 @@ public class MediadorDAO {
 			int id = mediador.getIdMediador();
 			
 			sql.append("update tb_mediador set cpf = ?, matricula = ?,"
-					+ "nome = ?, tipo_mediador = ?, status_mediador = ?,"
+					+ "nome = ?, email = ?, tipo_mediador = ?, status_mediador = ?,"
 					+ "data_cadastro = ? where id_mediador = "+id+";");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 		
 			statement.setString(1, mediador.getCpf());
 			statement.setString(2, mediador.getMatricula());
 			statement.setString(3, mediador.getNome());
-			statement.setString(4, mediador.getTipoMediador());
-			statement.setString(5, mediador.getStatusMediador());
+			//statement.setString(4, mediador.getEmail());
+			statement.setString(5, mediador.getTipoMediador());
+			statement.setString(6, mediador.getStatusMediador());
 			statement.setDate(6, (Date) mediador.getDataCadastro());
 			
-			statement.executeUpdate();
+			ok = statement.execute();
 			
 		} catch (ClassNotFoundException | SQLException se) {
 			throw new PersistenciaException(se);
 		}finally {
 			conexao.close();
 		}
+		return ok;
 	}
 	
 	public ArrayList<Mediador> listaMediadores() throws PersistenciaException, SQLException {
