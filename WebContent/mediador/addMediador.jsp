@@ -23,7 +23,7 @@
 					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">CPF <span class="red">*</span></label> 
-						<input class="form-control" id="cpf" name="senha" value="${param.cpf}" type="text" maxlength="11" required>
+						<input class="form-control" id="cpf" name="cpf" value="${param.cpf}" type="text" maxlength="11" required>
 					</div>
 				</div>
 	
@@ -36,10 +36,10 @@
 
 				<div class="row">
 					<div class="col-sm-6">
-						<label class="form-label ages">Tipo: <span class="red">*</span></label> <select class="form-control" id="tipo" name="perfilAcesso"
+						<label class="form-label ages">Tipo: <span class="red">*</span></label> <select class="form-control" id="tipoMediador" name="tipoMediador"
 							required>
-							<option value="UM" <%="UM".equals(request.getParameter("tipo")) ? "selected" : ""%>>UM</option>
-							<option value="DOIS" <%="DOIS".equals(request.getParameter("tipo")) ? "selected" : ""%>>DOIS</option>
+							<option value="UM" <%="UM".equals(request.getParameter("tipoMediador")) ? "selected" : ""%>>UM</option>
+							<option value="DOIS" <%="DOIS".equals(request.getParameter("tipoMediador")) ? "selected" : ""%>>DOIS</option>
 						</select>
 					</div>
 					<div class="col-sm-6">
@@ -59,8 +59,8 @@
 			<p>Campos que contém <span class="red">*</span> são obrigatórios</p>
 
 			<div class="text-center">
-				<input class="btn btn-danger limparUser pull-left" type="reset"  value="Limpar"> 
-				<input class="btn btn-primary addUser pull-right"   type="submit" value="Cadastrar">
+				<input class="btn btn-danger limparMediador pull-left" type="reset"  value="Limpar"> 
+				<input class="btn btn-primary addMediador pull-right"   type="submit" value="Cadastrar">
 			</div>
 
 		</form>

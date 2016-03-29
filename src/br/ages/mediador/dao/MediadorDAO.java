@@ -133,7 +133,7 @@ public class MediadorDAO {
 		try{
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from tb_mediador where lower(nome) like lower('?');");
+			sql.append("select * from tb_mediador where upper(nome) like upper('?');");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, nome);

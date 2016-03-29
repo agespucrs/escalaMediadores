@@ -27,6 +27,8 @@ public class MediadorBO {
 		StringBuilder msg = new StringBuilder();
 		msg.append(MensagemContantes.MSG_ERR_MEDIADOR_DADOS_INVALIDOS.concat("<br>"));
 		
+		String EMAIL_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
+		
 		Map<String, Object> cpf = new HashMap<>();
 		cpf.put("CPF", mediador.getCpf());		
 		
@@ -45,6 +47,11 @@ public class MediadorBO {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Mediador").concat("<br/>"));
 			}
+			
+			/*if(!mediador.getEmail().matches(EMAIL_PATTERN)){
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Mediador").concat("<br/>"));
+			}*/
 			
 			String nome = Normalizer.normalize(mediador.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 			

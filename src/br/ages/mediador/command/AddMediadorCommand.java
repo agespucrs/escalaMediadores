@@ -33,6 +33,7 @@ public class AddMediadorCommand implements Command{
 			mediador.setCpf(cpf);
 			mediador.setMatricula(matricula);
 			mediador.setNome(nome);
+			//mediador.setEmail(email);
 			mediador.setTipoMediador(tipoMediador);
 			mediador.setStatusMediador(statusMediador);
 			

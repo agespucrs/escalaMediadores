@@ -116,12 +116,12 @@ public class UsuarioBO {
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Email ").concat("<br/>"));
 			}
 
-			String nome = Normalizer.normalize(usuario.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+			/*String nome = Normalizer.normalize(usuario.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 
-			if (!nome.matches("(([A-Z][a-z]*)\\s{0,1})+")) {
+			if (!usuario.getNome().matches("(([A-Z][a-z])\\s{0,1})+")) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_NOME_INVALIDO.replace("?", "Nome ").concat("<br/>"));
-			}
+			}*/
 			// Senha
 			Map<String, Object> valores = new HashMap<>();
 			valores.put("Senha", usuario.getSenha());
