@@ -8,6 +8,7 @@ public class Mediador
 	private String cpf;
 	private String matricula;
 	private String nome;
+	private String email;
 	private String tipoMediador;
 	private String statusMediador;
 	private Date dataCadastro;
@@ -40,6 +41,15 @@ public class Mediador
 	public void  setNome( String value){
 		 nome = value;
 	}
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public String getTipoMediador(){
 		 return tipoMediador;
 	}

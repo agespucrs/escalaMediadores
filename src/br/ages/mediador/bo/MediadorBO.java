@@ -48,10 +48,10 @@ public class MediadorBO {
 				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Mediador").concat("<br/>"));
 			}
 			
-			/*if(!mediador.getEmail().matches(EMAIL_PATTERN)){
+			if(!mediador.getEmail().matches(EMAIL_PATTERN)){
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Mediador").concat("<br/>"));
-			}*/
+			}
 			
 			String nome = Normalizer.normalize(mediador.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 			

@@ -44,7 +44,7 @@ public class MediadorDAO {
 			statement.setString(2, mediador.getCpf());
 			statement.setString(3, mediador.getMatricula());
 			statement.setString(4, mediador.getNome());
-			//statement.setString(5, mediador.getEmail());
+			statement.setString(5, mediador.getEmail());
 			statement.setString(6, mediador.getTipoMediador());
 			statement.setString(7, mediador.getStatusMediador());
 			statement.setDate(7, dataCadastro);
@@ -81,7 +81,7 @@ public class MediadorDAO {
 			statement.setString(1, mediador.getCpf());
 			statement.setString(2, mediador.getMatricula());
 			statement.setString(3, mediador.getNome());
-			//statement.setString(4, mediador.getEmail());
+			statement.setString(4, mediador.getEmail());
 			statement.setString(5, mediador.getTipoMediador());
 			statement.setString(6, mediador.getStatusMediador());
 			statement.setDate(6, (Date) mediador.getDataCadastro());
