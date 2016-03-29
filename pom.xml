@@ -7,6 +7,9 @@
 	<packaging>war</packaging>
 	<name>EscalaMediadores</name>
 	<description>Projeto Escala Mediadores - Museu PUCRS</description>
+	<properties>
+		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
+	</properties>
 	<profiles>
 		<!-- Profile de desenvolvimento (padrao) -->
 		<profile>
@@ -15,54 +18,34 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<sgbd.user>
-					root
-				</sgbd.user>
-				<sgbd.password>
-					senha
-				</sgbd.password>
-				<upload.path>
-					c:\\uploadProjetos
-				</upload.path>
-				<log.path>
-					c:\\cawt\\
-				</log.path>
+				<sgbd.url>jdbc:mysql://localhost:3306/ages_e</sgbd.url>
+				<sgbd.user>root</sgbd.user>
+				<sgbd.password>senha</sgbd.password>
+				<upload.path>c:\\uploadProjetos</upload.path>
+				<log.path>c:\\cawt\\</log.path>
 			</properties>
 		</profile>
 		<!-- Profile de homologacao -->
 		<profile>
 			<id>homologacao</id>
 			<properties>
-				<sgbd.user>
-					root
-				</sgbd.user>
-				<sgbd.password>
-					senha
-				</sgbd.password>
-				<upload.path>
-					c:\\uploadProjetos
-				</upload.path>
-				<log.path>
-					c:\\cawt\\
-				</log.path>
+				<build.number>SNAPSHOT</build.number>
+				<sgbd.url>jdbc:mysql://10.32.223.4:3306/ages_e</sgbd.url>
+				<sgbd.user>root</sgbd.user>
+				<sgbd.password>Ages123$$</sgbd.password>
+				<upload.path>/home/ages/uploadProjetos</upload.path>
+				<log.path>/home/ages/</log.path>
 			</properties>
 		</profile>
 		<!-- Profile de producao -->
 		<profile>
 			<id>producao</id>
 			<properties>
-				<sgbd.user>
-					escala_e
-				</sgbd.user>
-				<sgbd.password>
-					oissac1906#ages_e
-				</sgbd.password>
-				<upload.path>
-					/home/escala/uploadProjetos
-				</upload.path>
-				<log.path>
-					/home/escala/
-				</log.path>
+				<sgbd.url>jdbc:mysql://localhost:3306/ages_e</sgbd.url>
+				<sgbd.user>ages_e</sgbd.user>
+				<sgbd.password>oissac1906#ages_e</sgbd.password>
+				<upload.path>/home/ages/uploadProjetos</upload.path>
+				<log.path>/home/ages/</log.path>
 			</properties>
 		</profile>
 	</profiles>
@@ -84,6 +67,8 @@
 				<configuration>
 					<source>1.7</source>
 					<target>1.7</target>
+					<encoding>${project.build.sourceEncoding}</encoding>
+					<sourceEncoding>${project.build.sourceEncoding}</sourceEncoding>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -133,6 +118,11 @@
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
 			<version>1.2.17</version>
+		</dependency>
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>javax.servlet-api</artifactId>
+			<version>3.1.0</version>
 		</dependency>
 	</dependencies>
 	<url>escala</url>

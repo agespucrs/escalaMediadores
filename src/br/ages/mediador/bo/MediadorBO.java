@@ -95,4 +95,51 @@ public class MediadorBO {
 		return listaMed;
 	}
 	
+	public Mediador pesquisarMediadorPorNome(String nome) throws NegocioException{
+		Mediador med = new Mediador();
+				
+		try{
+			med = mediadorDAO.pesquisarMediadorPorNome(nome);
+		} catch(PersistenciaException | SQLException se){
+			se.printStackTrace();
+			throw new NegocioException(se);
+		}	
+		return med;
+	}
+	
+	public Mediador pesquisarMediadorPorId(int id) throws NegocioException{
+		Mediador med = new Mediador();
+				
+		try{
+			med = mediadorDAO.pesquisarMediadorPorId(id);
+		} catch(PersistenciaException | SQLException se){
+			se.printStackTrace();
+			throw new NegocioException(se);
+		}	
+		return med;
+	}
+	
+	public Mediador pesquisarMediadorPorCpf(String cpf) throws NegocioException{
+		Mediador med = new Mediador();
+				
+		try{
+			med = mediadorDAO.pesquisarMediadorPorCpf(cpf);
+		} catch(PersistenciaException | SQLException se){
+			se.printStackTrace();
+			throw new NegocioException(se);
+		}	
+		return med;
+	}
+	
+	public Mediador pesquisarMediadorPorMatricula(String matricula) throws NegocioException{
+		Mediador med = new Mediador();
+				
+		try{
+			med = mediadorDAO.pesquisarMediadorPorCpf(matricula);
+		} catch(PersistenciaException | SQLException se){
+			se.printStackTrace();
+			throw new NegocioException(se);
+		}	
+		return med;
+	}
 }
