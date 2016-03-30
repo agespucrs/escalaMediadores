@@ -113,4 +113,6 @@ public class MensagemContantes {
 	public static final String MSG_ERR_CADASTRO_MEDIADOR = "Erro ao cadastrar Mediador!";
 
 	public static final String MSG_ERR_MEDIADOR_DADOS_INVALIDOS = "Dados do Mediador inválidos ou inconsistentes!";
+	
+	public static final String MSG_SUC_EDICAO_MEDIADOR = "Mediador ? editado com sucesso!";
 }

@@ -15,6 +15,7 @@ import org.apache.log4j.Logger;
 import br.ages.mediador.command.AddMediadorCommand;
 import br.ages.mediador.command.CreateScreenCommand;
 import br.ages.mediador.command.CreateScreenMediadorCommand;
+import br.ages.mediador.command.EditMediadorCommand;
 import br.ages.mediador.command.ListMediadorCommand;
 import br.ages.model.Usuario;
 import br.ages.usuario.command.AddUserCommand;
@@ -56,7 +57,8 @@ public class MainServlet extends HttpServlet {
 		//COMANDOS DE MEDIADOR
 		comandos.put("telaMediador", new CreateScreenMediadorCommand());
 		comandos.put("addMediador", new AddMediadorCommand());
-		comandos.put("listaMediador", new ListMediadorCommand());		
+		comandos.put("listaMediador", new ListMediadorCommand());	
+		comandos.put("editMediador", new EditMediadorCommand());
 	}
 
 	@Override

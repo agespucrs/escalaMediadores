@@ -63,6 +63,7 @@ CREATE TABLE `tb_mediador` (
   `cpf` varchar(11) DEFAULT NULL,
   `matricula` varchar(9) DEFAULT NULL,
   `nome` varchar(120) DEFAULT NULL,
+  `email` varchar(120) DEFAULT NULL,
   `tipo_mediador` varchar(10) DEFAULT NULL,
   `status_mediador` varchar(45) DEFAULT NULL,
   `data_cadastro` datetime DEFAULT NULL,
