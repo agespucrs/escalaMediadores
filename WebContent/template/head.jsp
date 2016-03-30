@@ -63,7 +63,7 @@
 				          		<span class="caret"></span>
 			          		</a>
 				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=tela&tela=listaMediador">Listar</a></li>
+				            	<li><a href="main?acao=listaMediador">Listar</a></li>
 				            	<li><a href="main?acao=telaMediador">Cadastrar</a></li> 
 				          	</ul>
         				</li>

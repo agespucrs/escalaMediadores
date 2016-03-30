@@ -1,4 +1,4 @@
-<%@page import="br.ages.model.Usuario"%>
+<%@page import="br.ages.model.Mediador"%>
 <%@page import="java.util.List"%>
 <jsp:include page="../template/head.jsp"></jsp:include>
 
@@ -29,65 +29,34 @@
             </thead>
 
             <tbody> 
-      		          
+            	<%
+					List<Mediador> listaMediadores = (List<Mediador>) request.getAttribute("listMediador");
+					for (Mediador med : listaMediadores) {
+				%>
+				          
             	<tr>
-	            	<td align="center">1</td>
-	            	<td align="center">10085751</td>
-	            	<td align="center">Amadeus Mozart</td>
-	            	<td align="center">DOIS</td>
-	            	<td align="center">Ativo</td>
-	              	<td align="center">
+	            	<td align="center"><%=med.getIdMediador()%></td>
+	            	<td align="center"><%=med.getMatricula()%></td>
+	            	<td align="center"><%=med.getNome()%></td>
+	         		<td align="center"><%=med.getTipoMediador()%></td>
+	            	<td align="center"><%=med.getStatusMediador()%></td>
+	            	<td align="center">
 						<form action="" method="post">
-            				<a href="" data-toggle="modal" data-id="1" data-usuario="Cássio Trindade" 
-            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+            				<a href="#" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-usuario="<%=med.getNome()%>" 
+            				data-target="#" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
             			</form>
             		</td>
+            		
             		<td align="center">
             			<form action="" method="post">
-            				<a href="" data-toggle="modal" data-id="1" data-usuario="Amadeus Mozart" 
-            				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
+            				<a href="#" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-usuario="<%=med.getNome()%>" 
+            				data-target="#" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
             			</form>
             		</td>
             	</tr>
-            	<tr>
-	            	<td align="center">1</td>
-	            	<td align="center">200866</td>
-	            	<td align="center">Eliz REgina</td>
-	            	<td align="center">UM</td>
-	            	<td align="center">Ativo</td>
-	              	<td align="center">
-						<form action="" method="post">
-            				<a href="" data-toggle="modal" data-id="1" data-usuario="Cássio Trindade" 
-            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-            			</form>
-            		</td>
-            		<td align="center">
-            			<form action="" method="post">
-            				<a href="" data-toggle="modal" data-id="1" data-usuario="Cássio" 
-            				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
-            			</form>
-            		</td>
-            	</tr>
-            	<tr>
-	            	<td align="center">1</td>
-	            	<td align="center">10085657</td>
-	            	<td align="center">Tim Maia</td>
-	            	<td align="center">DOIS</td>
-	            	<td align="center">Inativo</td>
-	              	<td align="center">
-						<form action="" method="post">
-            				<a href="" data-toggle="modal" data-id="1" data-usuario="Cássio Trindade" 
-            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
-            			</form>
-            		</td>
-            		<td align="center">
-            			<form action="" method="post">
-            				<a href="" data-toggle="modal" data-id="1" data-usuario="Cássio" 
-            				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
-            			</form>
-            		</td>
-            	</tr>
-
+				<% 
+					} 
+				%>
 			</tbody>
             
         </table> 
