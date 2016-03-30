@@ -1,7 +1,5 @@
 package br.ages.usuario.command;
 
-import java.util.Date;
-
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.model.PerfilAcesso;

@@ -34,7 +34,7 @@ public class MediadorDAO {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			sql.append("insert into tb_mediador(id_mediador, cpf, matricula, nome, email, tipo_mediador, status_mediador, data_cadastro)");
-			sql.append("values(?, ?, ?, ?, ?, ?, ?)");
+			sql.append("values(?, ?, ?, ?, ?, ?, ?, ?)");
 			
 			java.util.Date utilDate = new java.util.Date();
 			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
@@ -47,7 +47,7 @@ public class MediadorDAO {
 			statement.setString(5, mediador.getEmail());
 			statement.setString(6, mediador.getTipoMediador());
 			statement.setString(7, mediador.getStatusMediador());
-			statement.setDate(7, dataCadastro);
+			statement.setDate(8, dataCadastro);
 			
 			statement.executeUpdate();
 			

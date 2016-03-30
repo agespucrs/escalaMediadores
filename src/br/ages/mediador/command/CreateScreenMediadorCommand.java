@@ -19,7 +19,7 @@ public class CreateScreenMediadorCommand implements Command{
 
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
-		proxima = "main?acao=listMediador";
+		proxima = "main?acao=listaMediador";
 		Usuario currentUser = (Usuario)request.getSession().getAttribute("usuarioSessao");
 				
 		

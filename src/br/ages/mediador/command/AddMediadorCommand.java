@@ -33,7 +33,7 @@ public class AddMediadorCommand implements Command{
 			mediador.setCpf(cpf);
 			mediador.setMatricula(matricula);
 			mediador.setNome(nome);
-			//mediador.setEmail(email);
+			mediador.setEmail(email);
 			mediador.setTipoMediador(tipoMediador);
 			mediador.setStatusMediador(statusMediador);
 			
@@ -43,7 +43,7 @@ public class AddMediadorCommand implements Command{
 				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_MEDIADOR_DADOS_INVALIDOS);
 			} else {
 				mediadorBO.cadastraMediador(mediador);
-				proxima = "main?acao=listMediador";
+				proxima = "main?acao=listaMediador";
 				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_MEDIADOR.replace("?", mediador.getNome()));
 			}
 			

@@ -40,7 +40,7 @@ public class MediadorBO {
 			
 			if(!mediador.getMatricula().matches("\\d{5,9}")){
 				isValido = false;
-				msg.append(MensagemContantes.MSG_ERR_MATRICULA_INVALIDA.replace("?", "MatrÃ­cula").concat("<br/>"));
+				msg.append(MensagemContantes.MSG_ERR_MATRICULA_INVALIDA.replace("?", "Matrí­cula").concat("<br/>"));
 			}
 			
 			if(mediador.getNome() == null || "".equals(mediador.getNome())){
@@ -72,13 +72,15 @@ public class MediadorBO {
 		return isValido;
 	}
 	
-	public void cadastraMediador(Mediador mediador) throws ClassNotFoundException, SQLException, NegocioException{
+	public int cadastraMediador(Mediador mediador) throws ClassNotFoundException, SQLException, NegocioException{
+		int id;
 		try {
-			mediadorDAO.cadastrarMediador(mediador);
+			id = mediadorDAO.cadastrarMediador(mediador);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
 		}
+		return id;
 	}
 	
 	public void editaMediador(Mediador mediador) throws NegocioException{
