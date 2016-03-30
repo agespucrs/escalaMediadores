@@ -235,7 +235,7 @@ public class UsuarioDAO {
 			sql.append("t.`nome` tnome,");
 			sql.append("t.`descricao`,");
 			sql.append("t.`data_inclusao`");
-			sql.append("from ages_e.tb_usuario u inner join ages_e.tb_tipo_usuario t ");
+			sql.append("from tb_usuario u inner join tb_tipo_usuario t ");
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario ");
 			sql.append("where u.nome = ?;");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -297,7 +297,7 @@ public class UsuarioDAO {
 			sql.append("t.`nome` tnome,");
 			sql.append("t.`descricao`,");
 			sql.append("t.`data_inclusao`");
-			sql.append("from ages_e.tb_usuario u inner join ages_e.tb_tipo_usuario t ");
+			sql.append("from tb_usuario u inner join tb_tipo_usuario t ");
 			sql.append("on t.id_tipo_usuario = u.id_tipo_usuario ");
 			sql.append("where id_usuario = ?;");
 
@@ -342,7 +342,7 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select id_usuario from ages_e.tb_projeto_usuario where id_usuario = ?;");
+			sql.append("select id_usuario from tb_projeto_usuario where id_usuario = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idUsuario);
@@ -374,7 +374,7 @@ public class UsuarioDAO {
 			conexao = ConexaoUtil.getConexao();
 
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from escala_e.tb_tipo_usuario where id_tipo_usuario = ?;");
+			sql.append("select * from tb_tipo_usuario where id_tipo_usuario = ?;");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, idTipoUsuario);
@@ -514,7 +514,7 @@ public class UsuarioDAO {
 			sql.append("u.`nome`,");
 			sql.append("u.`email` ");
 
-			sql.append("from ages_e.tb_usuario u inner join ages_e.tb_tipo_usuario t ");
+			sql.append("from tb_usuario u inner join tb_tipo_usuario t ");
 			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
 			sql.append(" where t.nome in ('professor', 'secretaria');");
 			
@@ -569,7 +569,7 @@ public class UsuarioDAO {
 			sql.append("u.`nome`,");
 			sql.append("u.`email` ");
 
-			sql.append("from ages_e.tb_usuario u inner join ages_e.tb_tipo_usuario t ");
+			sql.append("from tb_usuario u inner join tb_tipo_usuario t ");
 			sql.append(" on t.id_tipo_usuario = u.id_tipo_usuario");
 			sql.append(" where t.nome = 'aluno';");
 

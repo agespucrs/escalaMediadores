@@ -42,15 +42,15 @@
 	            	<td align="center"><%=med.getStatusMediador()%></td>
 	            	<td align="center">
 						<form action="" method="post">
-            				<a href="#" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-usuario="<%=med.getNome()%>" 
-            				data-target="#" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+            				<a href="" data-toggle="modalMediador" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 
+            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
             			</form>
             		</td>
             		
             		<td align="center">
             			<form action="" method="post">
-            				<a href="#" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-usuario="<%=med.getNome()%>" 
-            				data-target="#" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
+            				<a href="" data-toggle="modalMediador" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 
+            				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
             			</form>
             		</td>
             	</tr>
