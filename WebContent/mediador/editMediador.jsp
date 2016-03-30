@@ -1,7 +1,6 @@
 <%@page import="br.ages.model.Mediador"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
-<%@page import="br.ages.model.Usuario"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
 <%Mediador mediador = (Mediador) request.getAttribute("mediador"); %>
@@ -45,12 +44,18 @@
                     
                     <div class="form-group">
 			           	<label class="form-label ages">Tipo: <span class="red">*</span></label>
-			           	<input class="form-control" id="tipoMediador" name="tipoMediador" value="<%=mediador.getTipoMediador() %>" type="text" maxlength="4" required>
+			           	<select class="form-control" id="tipoMediador" name="tipoMediador" required>
+                            <option value="UM" <%= "UM".equals(mediador.getTipoMediador().toString()) ? "selected" : "" %>>UM</option>
+			           		<option value="DOIS" <%= "DOIS".equals(mediador.getTipoMediador().toString()) ? "selected" : "" %>>DOIS</option>
+		           		</select>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Status: <span class="red">*</span></label>
-			           	<input class="form-control" id="statusMediador" name="statusMediador" value="<%=mediador.getStatusMediador() %>" type="text" maxlength="10" required>
+			           	<select class="form-control" id="statusMediador" name="statusMediador" required>
+			           		<option value="ATIVO" <%= "ATIVO".equals(mediador.getStatusMediador().toString()) ? "selected" : "" %>>ATIVO</option>
+			           		<option value="INATIVO" <%= "INATIVO".equals(mediador.getStatusMediador().toString()) ? "selected" : "" %>>INATIVO</option>
+			           	</select>
 		            </div>
 		            
 		            <div class="form-group">

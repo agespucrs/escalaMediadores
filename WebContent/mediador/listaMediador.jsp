@@ -3,10 +3,10 @@
 <jsp:include page="../template/head.jsp"></jsp:include>
 
 <!-- MODAL / POPUP -->
-<jsp:include page="../template/modal.jsp"></jsp:include>
+<jsp:include page="../template/modalMediador.jsp"></jsp:include>
  		
 <div class="panel panel-default">
-   		
+   			
 	<div class="panel-heading panel-heading-custom text-center">Lista de Mediadores</div>
                
        <div class="panel-body">
@@ -42,14 +42,14 @@
 	            	<td align="center"><%=med.getStatusMediador()%></td>
 	            	<td align="center">
 						<form action="" method="post">
-            				<a href="" data-toggle="modalMediador" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 
+            				<a href="" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 
             				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
             			</form>
             		</td>
             		
             		<td align="center">
             			<form action="" method="post">
-            				<a href="" data-toggle="modalMediador" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 
+            				<a href="" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 
             				data-target="#modalExcluir" title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
             			</form>
             		</td>

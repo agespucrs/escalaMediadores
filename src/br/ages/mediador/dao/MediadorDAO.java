@@ -84,14 +84,18 @@ public class MediadorDAO {
 			statement.setString(4, mediador.getEmail());
 			statement.setString(5, mediador.getTipoMediador());
 			statement.setString(6, mediador.getStatusMediador());
-			statement.setDate(6, (Date) mediador.getDataCadastro());
+			statement.setDate(7, (Date) mediador.getDataCadastro());
 			
 			ok = statement.execute();
 			
 		} catch (ClassNotFoundException | SQLException se) {
 			throw new PersistenciaException(se);
 		}finally {
-			conexao.close();
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 		}
 		return ok;
 	}
