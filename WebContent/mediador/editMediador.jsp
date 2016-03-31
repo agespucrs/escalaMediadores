@@ -60,7 +60,7 @@
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Data de cadastro: <span class="red">*</span></label>
-			           	<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%=mediador.getDataCadastro() %>" type="text" maxlength="12" required>
+			           	<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%=mediador.getDataCadastro() %>" type="text" maxlength="12" readonly>
 		            </div>		        
                     
                     <hr>

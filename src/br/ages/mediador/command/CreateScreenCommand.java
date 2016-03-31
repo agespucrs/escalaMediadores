@@ -32,7 +32,7 @@ public class CreateScreenCommand implements Command {
 				break;
 			
 			default:
-				this.proxima = "mediador/listaMediador.jsp";
+				this.proxima = "mediador/index.jsp";
 				break;
 			}
 

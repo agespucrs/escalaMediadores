@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.ParseException;
 
 import com.mysql.jdbc.Statement;
 
@@ -15,6 +16,7 @@ import br.ages.exception.PersistenciaException;
 import br.ages.model.Mediador;
 import br.ages.util.ConexaoUtil;
 import br.ages.util.MensagemContantes;
+import br.ages.util.Util;
 
 public class MediadorDAO {
 	
@@ -118,6 +120,7 @@ public class MediadorDAO {
                 med.setCpf(resultSet.getString("cpf"));
                 med.setMatricula(resultSet.getString("matricula"));
                 med.setNome(resultSet.getString("nome"));
+                med.setEmail(resultSet.getString("email"));
                 med.setTipoMediador(resultSet.getString("tipo_mediador"));
                 med.setStatusMediador(resultSet.getString("status_mediador"));
                 med.setDataCadastro(dataCadastro);
@@ -161,7 +164,7 @@ public class MediadorDAO {
 		return med;
 	}
 	
-	public Mediador pesquisarMediadorPorId(int id) throws PersistenciaException, SQLException{
+	public Mediador pesquisarMediadorPorId(int id) throws PersistenciaException, SQLException, ParseException{
 		Connection conexao = null;
 		Mediador med = new Mediador();
 		
@@ -172,15 +175,24 @@ public class MediadorDAO {
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, id);
-			ResultSet resultSet = statement.executeQuery();
 			
-			med.setCpf(resultSet.getString("cpf"));
-			med.setIdMediador(resultSet.getInt("id_mediador"));
-			med.setMatricula(resultSet.getString("matricula"));
-			med.setNome(resultSet.getString("nome"));
-			med.setTipoMediador(resultSet.getString("tipo_mediador"));
-			med.setStatusMediador(resultSet.getString("status_mediador"));
-			med.setDataCadastro(resultSet.getDate("data_cadastro"));
+			ResultSet resultSet = statement.executeQuery();							
+			
+			while(resultSet.next()){
+				med.setCpf(resultSet.getString("cpf"));
+				med.setIdMediador(resultSet.getInt("id_mediador"));
+				med.setMatricula(resultSet.getString("matricula"));
+				med.setNome(resultSet.getString("nome"));
+				med.setEmail(resultSet.getString("email"));
+				med.setTipoMediador(resultSet.getString("tipo_mediador"));
+				med.setStatusMediador(resultSet.getString("status_mediador"));
+				
+				//Gambiarra hard
+				//String dataS = Util.dateToString(resultSet.getDate("data_cadastro"));
+				//med.setDataCadastro(resultSet.getDate(dataS));
+				med.setDataCadastro(resultSet.getDate("data_cadastro"));
+			}
+			
 		} catch (ClassNotFoundException | SQLException se){
 			throw new PersistenciaException(se);
 		} finally {

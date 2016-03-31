@@ -21,6 +21,7 @@
                     <th style="text-align: center;">ID</th>
                     <th style="text-align: center;">Matricula</th>
 					<th style="text-align: center;">Nome</th>
+					<th style="text-align: center;">Email</th>
 					<th style="text-align: center;">Tipo</th>
 					<th style="text-align: center;">Status</th>
 					<th data-sortable="false" style="text-align: center; width:10px"></th>
@@ -38,6 +39,7 @@
 	            	<td align="center"><%=med.getIdMediador()%></td>
 	            	<td align="center"><%=med.getMatricula()%></td>
 	            	<td align="center"><%=med.getNome()%></td>
+	            	<td align="center"><%=med.getEmail()%></td>
 	         		<td align="center"><%=med.getTipoMediador()%></td>
 	            	<td align="center"><%=med.getStatusMediador()%></td>
 	            	<td align="center">

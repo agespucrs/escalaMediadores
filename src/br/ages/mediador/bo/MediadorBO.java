@@ -3,6 +3,7 @@ package br.ages.mediador.bo;
 import java.sql.SQLException;
 import java.util.List;
 import java.text.Normalizer;
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -116,7 +117,7 @@ public class MediadorBO {
 		return med;
 	}
 	
-	public Mediador pesquisarMediadorPorId(int id) throws NegocioException{
+	public Mediador pesquisarMediadorPorId(int id) throws NegocioException, ParseException{
 		Mediador med = new Mediador();
 				
 		try{
