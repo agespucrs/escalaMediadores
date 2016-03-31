@@ -102,6 +102,32 @@ public class MediadorDAO {
 		return ok;
 	}
 	
+	public boolean removeMediador(int idMediador) throws PersistenciaException, SQLException{
+		boolean ok = false;
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			
+			//int id = mediador.getIdMediador();
+			sql.append("update tb_mediador set status_mediador = 'EXCLUÍDO' where id_mediador = "+idMediador+";");
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+
+			ok = statement.execute();
+			
+		} catch (ClassNotFoundException | SQLException se) {
+			throw new PersistenciaException(se);
+		}finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		return ok;
+	}
+	
     public List<Mediador> listaMediadores() throws PersistenciaException, SQLException {
         Connection conexao = null;
         try{

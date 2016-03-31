@@ -17,6 +17,7 @@ import br.ages.mediador.command.CreateScreenCommand;
 import br.ages.mediador.command.CreateScreenMediadorCommand;
 import br.ages.mediador.command.EditMediadorCommand;
 import br.ages.mediador.command.ListMediadorCommand;
+import br.ages.mediador.command.RemoveMediadorCommand;
 import br.ages.model.Usuario;
 import br.ages.usuario.command.AddUserCommand;
 import br.ages.usuario.command.Command;
@@ -59,6 +60,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("addMediador", new AddMediadorCommand());
 		comandos.put("listaMediador", new ListMediadorCommand());	
 		comandos.put("editMediador", new EditMediadorCommand());
+		comandos.put("removeMediador", new RemoveMediadorCommand());
 	}
 
 	@Override

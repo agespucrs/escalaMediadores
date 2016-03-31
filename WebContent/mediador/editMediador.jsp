@@ -56,7 +56,6 @@
 			           	<select class="form-control" id="statusMediador" name="statusMediador" required>
 			           		<option value="ATIVO" <%= "ATIVO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>ATIVO</option>
 			           		<option value="INATIVO" <%= "INATIVO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>INATIVO</option>
-			           		<option value="EXCLUÍDO" <%= "EXCLUÍDO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>EXCLUÍDO</option>
 			           	</select>
 		            </div>
 		            

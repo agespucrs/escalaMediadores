@@ -93,6 +93,16 @@ public class MediadorBO {
 		}
 	}
 	
+	
+	public void removeMediador(int idMediador) throws NegocioException{
+		try {
+			mediadorDAO.removeMediador(idMediador);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
+	
 	public List<Mediador> listarMediadores() throws NegocioException{
 		List<Mediador> listaMed = null;
 		
