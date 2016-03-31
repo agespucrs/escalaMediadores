@@ -38,7 +38,7 @@
 			           	<input class="form-control" id="cpf" name="cpf" value="<%=mediador.getCpf() %>" type="text" maxlength="120" readonly>
 		            </div>
 				
-					<div class="form-group">
+					<div class="form-group">		
 			           	<label class="form-label ages">E-mail: <span class="red">*</span></label>
 			           	<input class="form-control" id="email" name="email" value="<%=mediador.getEmail() %>" type="text" maxlength="120" required>
 		            </div>
@@ -56,6 +56,7 @@
 			           	<select class="form-control" id="statusMediador" name="statusMediador" required>
 			           		<option value="ATIVO" <%= "ATIVO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>ATIVO</option>
 			           		<option value="INATIVO" <%= "INATIVO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>INATIVO</option>
+			           		<option value="EXCLUÍDO" <%= "EXCLUÍDO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>EXCLUÍDO</option>
 			           	</select>
 		            </div>
 		            

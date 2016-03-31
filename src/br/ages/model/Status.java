@@ -7,5 +7,5 @@ package br.ages.model;
 public enum Status{
 	ATIVO,
 	INATIVO,
-	EXCLUIDO;
+	EXCLUÍDO;
 }
