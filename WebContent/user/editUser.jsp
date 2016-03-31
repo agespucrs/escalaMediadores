@@ -58,8 +58,8 @@
 		            <div class="form-group">
 			           	<label class="form-label ages">Status: <span class="red">*</span></label>
 			           	<select class="form-control" id="statusUsuario" name="statusUsuario" required>
-			           		<option value="ATIVO" <%= "ATIVO".equals(usuario.getStatusUsuario().toString()) ? "selected" : "" %>>Ativo</option>
-                            <option value="INATIVO" <%= "INATIVO".equals(usuario.getStatusUsuario().toString()) ? "selected" : "" %>>Inativo</option>
+			           		<option value="ATIVO" <%= "ATIVO".equals(usuario.getStatusUsuario().name()) ? "selected" : "" %>>Ativo</option>
+                            <option value="INATIVO" <%= "INATIVO".equals(usuario.getStatusUsuario().name()) ? "selected" : "" %>>Inativo</option>
 		           		</select>
 		            </div>
 		            

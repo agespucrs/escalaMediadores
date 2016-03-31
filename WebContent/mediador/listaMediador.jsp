@@ -40,8 +40,8 @@
 	            	<td align="center"><%=med.getMatricula()%></td>
 	            	<td align="center"><%=med.getNome()%></td>
 	            	<td align="center"><%=med.getEmail()%></td>
-	         		<td align="center"><%=med.getTipoMediador()%></td>
-	            	<td align="center"><%=med.getStatusMediador()%></td>
+	         		<td align="center"><%=med.getTipoMediador().name()%></td>
+	            	<td align="center"><%=med.getStatusMediador().name()%></td>
 	            	<td align="center">
 						<form action="" method="post">
             				<a href="" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 

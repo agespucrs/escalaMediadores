@@ -234,7 +234,6 @@ public class UsuarioBO {
 	public void removerUsuario(Integer idUsuario) throws NegocioException, SQLException {
 		try {
 
-			if (validaUsuarioProjeto(idUsuario))
 				usuarioDAO.removerUsuario(idUsuario);
 		} catch (PersistenciaException e) {
 			e.printStackTrace();

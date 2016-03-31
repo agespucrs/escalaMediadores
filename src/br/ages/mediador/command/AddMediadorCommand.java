@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import br.ages.exception.NegocioException;
 import br.ages.mediador.bo.MediadorBO;
 import br.ages.model.Mediador;
+import br.ages.model.Status;
+import br.ages.model.TipoMediador;
 import br.ages.usuario.command.Command;
 import br.ages.util.MensagemContantes;
 
@@ -34,8 +36,8 @@ public class AddMediadorCommand implements Command{
 			mediador.setMatricula(matricula);
 			mediador.setNome(nome);
 			mediador.setEmail(email);
-			mediador.setTipoMediador(tipoMediador);
-			mediador.setStatusMediador(statusMediador);
+			mediador.setTipoMediador(TipoMediador.valueOf(tipoMediador));
+			mediador.setStatusMediador(Status.valueOf(statusMediador));
 			
 			boolean isValido = mediadorBO.validaMediador(mediador);
 			

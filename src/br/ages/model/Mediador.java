@@ -9,8 +9,8 @@ public class Mediador
 	private String matricula;
 	private String nome;
 	private String email;
-	private String tipoMediador;
-	private String statusMediador;
+	private TipoMediador tipoMediador;
+	private Status statusMediador;
 	private Date dataCadastro;
 							
 	public int getIdMediador(){
@@ -50,18 +50,18 @@ public class Mediador
 		this.email = email;
 	}
 
-	public String getTipoMediador(){
+	public TipoMediador getTipoMediador(){
 		 return tipoMediador;
 	}
  
-	public void  setTipoMediador( String value){
+	public void  setTipoMediador(TipoMediador value){
 		 tipoMediador = value;
 	}
-	public String getStatusMediador(){
+	public Status getStatusMediador(){
 		 return statusMediador;
 	}
  
-	public void  setStatusMediador( String value){
+	public void  setStatusMediador(Status value){
 		 statusMediador = value;
 	}
 	public Date getDataCadastro(){

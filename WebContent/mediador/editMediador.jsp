@@ -1,3 +1,4 @@
+<%@page import="br.ages.util.Util"%>
 <%@page import="br.ages.model.Mediador"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
@@ -24,7 +25,7 @@
                 	<input class="form-control" type="hidden" id="idMediador" name="idMediador" value="<%=mediador.getIdMediador()%>">
                		<div class="form-group">
 			           	<label class="form-label ages">Matrícula:</label>
-			           	<input class="form-control" id="matricula" name="matricula" value="<%=mediador.getMatricula() %>" type="text" maxlength="9" readonly>
+			           	<input class="form-control" id="matricula" name="matricula" value="<%=mediador.getMatricula() %>" type="text" maxlength="11" readonly>
 		            </div>
 		            
 		            <div class="form-group">
@@ -38,29 +39,30 @@
 		            </div>
 				
 					<div class="form-group">
-			           	<label class="form-label ages">E-Mail: <span class="red">*</span></label>
+			           	<label class="form-label ages">E-mail: <span class="red">*</span></label>
 			           	<input class="form-control" id="email" name="email" value="<%=mediador.getEmail() %>" type="text" maxlength="120" required>
 		            </div>
                     
                     <div class="form-group">
 			           	<label class="form-label ages">Tipo: <span class="red">*</span></label>
 			           	<select class="form-control" id="tipoMediador" name="tipoMediador" required>
-                            <option value="UM" <%= "UM".equals(mediador.getTipoMediador().toString()) ? "selected" : "" %>>UM</option>
-			           		<option value="DOIS" <%= "DOIS".equals(mediador.getTipoMediador().toString()) ? "selected" : "" %>>DOIS</option>
+                            <option value="UM" <%= "UM".equals(mediador.getTipoMediador().name()) ? "selected" : "" %>>UM</option>
+			           		<option value="DOIS" <%= "DOIS".equals(mediador.getTipoMediador().name()) ? "selected" : "" %>>DOIS</option>
 		           		</select>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Status: <span class="red">*</span></label>
 			           	<select class="form-control" id="statusMediador" name="statusMediador" required>
-			           		<option value="ATIVO" <%= "ATIVO".equals(mediador.getStatusMediador().toString()) ? "selected" : "" %>>ATIVO</option>
-			           		<option value="INATIVO" <%= "INATIVO".equals(mediador.getStatusMediador().toString()) ? "selected" : "" %>>INATIVO</option>
+			           		<option value="ATIVO" <%= "ATIVO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>ATIVO</option>
+			           		<option value="INATIVO" <%= "INATIVO".equals(mediador.getStatusMediador().name()) ? "selected" : "" %>>INATIVO</option>
 			           	</select>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Data de cadastro: <span class="red">*</span></label>
-			           	<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%=mediador.getDataCadastro() %>" type="text" maxlength="12" readonly>
+			           	<input class="form-control" value="<%=Util.dateToString(mediador.getDataCadastro()) %>" type="text" readonly>
+			           	<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%=mediador.getDataCadastro() %>" type="hidden" maxlength="12" readonly>
 		            </div>		        
                     
                     <hr>

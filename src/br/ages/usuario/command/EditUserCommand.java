@@ -6,7 +6,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.exception.NegocioException;
 import br.ages.model.PerfilAcesso;
-import br.ages.model.StatusUsuario;
+import br.ages.model.Status;
 import br.ages.model.TipoUsuario;
 import br.ages.model.Usuario;
 import br.ages.usuario.bo.UsuarioBO;
@@ -46,7 +46,7 @@ public class EditUserCommand implements Command{
 			
 			PerfilAcesso perfilAcesso = PerfilAcesso.valueOf(perfilAcessoString);
 			
-			StatusUsuario statusUsuario = StatusUsuario.valueOf(statusUsuarioString);
+			Status statusUsuario = Status.valueOf(statusUsuarioString);
 						
 			usuario = new Usuario();
 			

@@ -1,3 +1,5 @@
+<%@page import="br.ages.util.Util"%>
+<%@page import="java.util.Date"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
@@ -52,7 +54,7 @@
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="form-label ages">Data Cadastro <span class="red">*</span></label> 
-						<input class="form-control" id="cpf" name="dataCadastro" value="01/02/2016" type="text" readonly="readonly" maxlength="10" style="text-align: center;">
+						<input class="form-control" id="cpf" name="dataCadastro" value="<%= Util.dateToString(new Date())%>" type="text" readonly="readonly" maxlength="10" style="text-align: center;">
 					</div>
 				</div>
 			</div>

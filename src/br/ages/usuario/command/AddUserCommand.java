@@ -3,7 +3,7 @@ package br.ages.usuario.command;
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.model.PerfilAcesso;
-import br.ages.model.StatusUsuario;
+import br.ages.model.Status;
 import br.ages.model.TipoUsuario;
 import br.ages.model.Usuario;
 import br.ages.usuario.bo.UsuarioBO;
@@ -36,7 +36,7 @@ public class AddUserCommand implements Command {
 			user.setMatricula(matricula);
 			user.setUsuario(usuario);
 			user.setSenha(senha);
-			user.setStatusUsuario(StatusUsuario.valueOf(statusUsuario));
+			user.setStatusUsuario(Status.valueOf(statusUsuario));
 			user.setPerfilAcesso(PerfilAcesso.valueOf(perfilAcesso));
 			TipoUsuario tUser = new TipoUsuario();
 			

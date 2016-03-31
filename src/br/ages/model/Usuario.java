@@ -17,7 +17,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 	private String senha;
 	private TipoUsuario tipoUsuario;
 	private PerfilAcesso perfilAcesso;
-	private StatusUsuario statusUsuario;
+	private Status statusUsuario;
 	private String matricula;
 	private String nome;
 	private String email;
@@ -33,7 +33,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		this.dataInclusao = new Date();
 	}
 
-	public Usuario(String usuario, String senha, String matricula, String nome, String email, StatusUsuario statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso perfilAcesso) {
+	public Usuario(String usuario, String senha, String matricula, String nome, String email, Status statusUsuario, TipoUsuario tipoUsuario, PerfilAcesso perfilAcesso) {
 		super();
 		this.usuario = usuario;
 		this.senha = senha;
@@ -83,11 +83,11 @@ public class Usuario implements Serializable, Comparable<Usuario> {
 		this.tipoUsuario = tipoUsuario;
 	}
 
-	public StatusUsuario getStatusUsuario() {
+	public Status getStatusUsuario() {
 		return statusUsuario;
 	}
 
-	public void setStatusUsuario(StatusUsuario statusUsuario) {
+	public void setStatusUsuario(Status statusUsuario) {
 		this.statusUsuario = statusUsuario;
 	}
 
