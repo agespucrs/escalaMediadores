@@ -7,8 +7,9 @@ public class AreaConhecimento
 	private int idAreaConhecimento;
 	private int numero;
 	private String nome;
-	private String pavimento;
-	private String tipoArea;
+	private Pavimento pavimento;
+	//private Turno turno;
+	private Tipo tipoArea;
 	private String statusArea;
 	private int numeroMediadores;
 	private String observacao;
@@ -35,18 +36,18 @@ public class AreaConhecimento
 	public void  setNome( String value){
 		 nome = value;
 	}
-	public String getPavimento(){
+	public Pavimento getPavimento(){
 		 return pavimento;
 	}
  
-	public void  setPavimento( String value){
+	public void  setPavimento(Pavimento value){
 		 pavimento = value;
 	}
-	public String getTipoArea(){
+	public Tipo getTipoArea(){
 		 return tipoArea;
 	}
  
-	public void  setTipoArea( String value){
+	public void  setTipoArea(Tipo value){
 		 tipoArea = value;
 	}
 	public String getStatusArea(){

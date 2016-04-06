@@ -4,7 +4,7 @@ package br.ages.model;
  * @author Alan Quadros
  */
 
-public enum TipoMediador {
+public enum Tipo {
 	UM,
 	DOIS;
 }

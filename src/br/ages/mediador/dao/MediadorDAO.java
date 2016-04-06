@@ -14,7 +14,7 @@ import com.mysql.jdbc.Statement;
 import br.ages.exception.PersistenciaException;
 import br.ages.model.Mediador;
 import br.ages.model.Status;
-import br.ages.model.TipoMediador;
+import br.ages.model.Tipo;
 import br.ages.util.ConexaoUtil;
 import br.ages.util.MensagemContantes;
 
@@ -133,11 +133,10 @@ public class MediadorDAO {
         try{
             conexao = ConexaoUtil.getConexao();
             StringBuilder sql = new StringBuilder();
-            sql.append("select * from tb_mediador where status_mediador != '?';");
+            sql.append("select * from tb_mediador where status_mediador <> 'EXCLUÍDO';");
              
              
             PreparedStatement statement = conexao.prepareStatement(sql.toString());
-            statement.setString(1, "EXCLUÍDO");
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
                 Mediador med = new Mediador();
@@ -148,7 +147,7 @@ public class MediadorDAO {
                 med.setMatricula(resultSet.getString("matricula"));
                 med.setNome(resultSet.getString("nome"));
                 med.setEmail(resultSet.getString("email"));
-                med.setTipoMediador(TipoMediador.valueOf(resultSet.getString("tipo_mediador")));
+                med.setTipoMediador(Tipo.valueOf(resultSet.getString("tipo_mediador")));
                 med.setStatusMediador(Status.valueOf(resultSet.getString("status_mediador")));
                 med.setDataCadastro(dataCadastro);
                  
@@ -180,7 +179,7 @@ public class MediadorDAO {
 			med.setIdMediador(resultSet.getInt("id_mediador"));
 			med.setMatricula(resultSet.getString("matricula"));
 			med.setNome(resultSet.getString("nome"));
-			med.setTipoMediador(TipoMediador.valueOf(resultSet.getString("tipo_mediador")));
+			med.setTipoMediador(Tipo.valueOf(resultSet.getString("tipo_mediador")));
 			med.setStatusMediador(Status.valueOf(resultSet.getString("status_mediador")));
 			med.setDataCadastro(resultSet.getDate("data_cadastro"));
 		} catch (ClassNotFoundException | SQLException se){
@@ -211,7 +210,7 @@ public class MediadorDAO {
 				med.setMatricula(resultSet.getString("matricula"));
 				med.setNome(resultSet.getString("nome"));
 				med.setEmail(resultSet.getString("email"));
-				med.setTipoMediador(TipoMediador.valueOf(resultSet.getString("tipo_mediador")));
+				med.setTipoMediador(Tipo.valueOf(resultSet.getString("tipo_mediador")));
 				med.setStatusMediador(Status.valueOf(resultSet.getString("status_mediador")));				
 				med.setDataCadastro(resultSet.getDate("data_cadastro"));
 			}
@@ -241,7 +240,7 @@ public class MediadorDAO {
 			med.setIdMediador(resultSet.getInt("id_mediador"));
 			med.setMatricula(resultSet.getString("matricula"));
 			med.setNome(resultSet.getString("nome"));
-			med.setTipoMediador(TipoMediador.valueOf(resultSet.getString("tipo_mediador")));
+			med.setTipoMediador(Tipo.valueOf(resultSet.getString("tipo_mediador")));
 			med.setStatusMediador(Status.valueOf(resultSet.getString("status_mediador")));
 			med.setDataCadastro(resultSet.getDate("data_cadastro"));
 		} catch (ClassNotFoundException | SQLException se){
@@ -269,7 +268,7 @@ public class MediadorDAO {
 			med.setIdMediador(resultSet.getInt("id_mediador"));
 			med.setMatricula(resultSet.getString("matricula"));
 			med.setNome(resultSet.getString("nome"));
-			med.setTipoMediador(TipoMediador.valueOf(resultSet.getString("tipo_mediador")));
+			med.setTipoMediador(Tipo.valueOf(resultSet.getString("tipo_mediador")));
 			med.setStatusMediador(Status.valueOf(resultSet.getString("status_mediador")));
 			med.setDataCadastro(resultSet.getDate("data_cadastro"));
 		} catch (ClassNotFoundException | SQLException se){
