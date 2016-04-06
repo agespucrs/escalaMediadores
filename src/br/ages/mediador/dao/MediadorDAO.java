@@ -133,11 +133,10 @@ public class MediadorDAO {
         try{
             conexao = ConexaoUtil.getConexao();
             StringBuilder sql = new StringBuilder();
-            sql.append("select * from tb_mediador where status_mediador != '?';");
+            sql.append("select * from tb_mediador where status_mediador != 'EXCLUÍDO';");
              
              
             PreparedStatement statement = conexao.prepareStatement(sql.toString());
-            statement.setString(1, "EXCLUÍDO");
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
                 Mediador med = new Mediador();
