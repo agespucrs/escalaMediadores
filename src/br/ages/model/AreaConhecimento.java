@@ -8,7 +8,7 @@ public class AreaConhecimento
 	private int numero;
 	private String nome;
 	private Pavimento pavimento;
-	//private Turno turno;
+	private Turno turno;
 	private Tipo tipoArea;
 	private String statusArea;
 	private int numeroMediadores;
@@ -43,6 +43,15 @@ public class AreaConhecimento
 	public void  setPavimento(Pavimento value){
 		 pavimento = value;
 	}
+	
+	public Turno getTurno() {
+		return turno;
+	}
+
+	public void setTurno(Turno turno) {
+		this.turno = turno;
+	}
+
 	public Tipo getTipoArea(){
 		 return tipoArea;
 	}

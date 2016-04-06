@@ -1,5 +1,8 @@
 package br.ages.model;
 
-public class Pavimento {
-
+public enum Pavimento {
+	PRIMEIRO,
+	SEGUNDO,
+	TERCEIRO,
+	MEZANINO;
 }

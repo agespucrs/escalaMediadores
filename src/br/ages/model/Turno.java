@@ -1,5 +1,7 @@
 package br.ages.model;
 
-public class Turno {
-
+public enum Turno {
+	MANHÃ,
+	TARDE,
+	NOITE;
 }
