@@ -73,6 +73,7 @@ public class AreaConhecimento
 	public void  setNumeroMediadores( int value){
 		 numeroMediadores = value;
 	}
+	
 	public String getObservacao(){
 		 return observacao;
 	}

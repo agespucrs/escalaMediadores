@@ -40,7 +40,7 @@
 	            	<td align="center"><%=med.getMatricula()%></td>
 	            	<td align="center"><%=med.getNome()%></td>
 	            	<td align="center"><%=med.getEmail()%></td>
-	         		<td align="center"><%=med.getTipoMediador().toString()%></td>
+	         		<td align="center"><%=med.getTipoMediador().name()%></td>
 	            	<td align="center"><%=med.getStatusMediador().toString()%></td>
 	            	<td align="center">
 						<form action="" method="post">
