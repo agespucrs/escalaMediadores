@@ -73,7 +73,7 @@
 				          		<span class="caret"></span>
 			          		</a>
 				          	<ul class="dropdown-menu">
-				            	<li><a href="main?acao=tela&tela=listaArea">Listar</a></li>
+				            	<li><a href="main?acao=listaArea">Listar</a></li>
 				            	<li><a href="main?acao=tela&tela=criaArea">Cadastrar</a></li> 
 				          	</ul>
         				</li>

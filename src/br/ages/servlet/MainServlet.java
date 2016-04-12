@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import br.ages.area.command.ListAreaConhecimentoCommand;
 import br.ages.mediador.command.AddMediadorCommand;
 import br.ages.mediador.command.CreateScreenCommand;
 import br.ages.mediador.command.CreateScreenMediadorCommand;
@@ -61,6 +62,9 @@ public class MainServlet extends HttpServlet {
 		comandos.put("listaMediador", new ListMediadorCommand());	
 		comandos.put("editMediador", new EditMediadorCommand());
 		comandos.put("removeMediador", new RemoveMediadorCommand());
+		
+		// COMANDOS DE AREACONHECIMENTO
+		comandos.put("listaArea", new ListAreaConhecimentoCommand());
 	}
 
 	@Override
