@@ -292,3 +292,8 @@ body {
 	top: 240px;
 	padding-left: 10px;
 }
+
+.erroCampos {
+	border: 1px solid #F00; 
+	padding: 2px;
+}
