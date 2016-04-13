@@ -12,9 +12,22 @@
 
 <script>
 
+var errors = {matriculaError: false, emailError: false, cpfError: false, nomeError: false};
+
 $(document).ready(function(){
 	
 	$("#cpf").mask("999.999.999-99");
+	
+	function mostraMensagem(){
+		for(var s in errors){
+			if(errors[s] == true){
+				$('.erro-msg').show();
+				return true;
+			};
+		};
+		
+		$('.erro-msg').hide();
+	};
 	
 	function TestaCPF(strCPF) {		
 		var Soma; 
@@ -35,42 +48,62 @@ $(document).ready(function(){
 	}
 	
 	$("#matricula").focusout(function(){
-		if(!($(this).length >= 5 && $(this).length <= 9) || $(this).value() == ""){
+		if(!($(this).val().length >= 5 && $(this).val().length <= 9)){
+			errors['matriculaError'] = true;
 			$(this).addClass("erroCampos");
-			$(".erro-msg").show();
+			mostraMensagem();
 		}
 	});
 	
 	$("#matricula").focus(function(){
+		errors['matriculaError'] = false;
 		$(this).removeClass("erroCampos");
-		$(".erro-msg").hide();
+		mostraMensagem();
 	});
 	
 	$("#cpf").focusout(function(){
 		var strCPF = $("#cpf").val().replace(/\./g,'').replace('-','');
 		if(!TestaCPF(strCPF)){
+			errors['cpfError'] = true;
 			$(this).addClass("erroCampos");
-			$(".erro-msg").show();
+			mostraMensagem();
 		}
 	});
 	
 	$("#cpf").focus(function(){
+		errors['cpfError'] = false;
 		$(this).removeClass("erroCampos");
-		$(".erro-msg").hide();
+		mostraMensagem();
+	});
+	
+	$('#nome').focusout(function(){
+		if($(this).val().length <= 2){	
+			errors['nomeError'] = true;
+			$(this).addClass("erroCampos");
+			mostraMensagem();
+		}
+	});
+	
+	$('#nome').focus(function(){
+		errors['nomeError'] = false;
+		$(this).removeClass("errorCampos");
+		mostraMensagem();''
 	});
 	
 	$("#email").focusout(function(){
 		var filtro = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		var email = $("#email").val();
 		if(!filtro.test(email)){
+			errors['emailError'] = true;
 			$(this).addClass("erroCampos");
-			$(".erro-msg").show();
+			mostraMensagem();
 		}
 	});
 	
 	$("#email").focus(function(){
+		errors['emailError'] = false;
 		$(this).removeClass("erroCampos");
-		$(".erro-msg").hide();
+		mostraMensagem();
 	});
 	
 });
