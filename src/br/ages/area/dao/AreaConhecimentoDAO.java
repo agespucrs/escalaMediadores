@@ -123,4 +123,40 @@ public class AreaConhecimentoDAO {
 
 		return area;
 	}
+	
+	public AreaConhecimento buscarPorPavimento(Pavimento pavimento) throws PersistenciaException, SQLException {
+		AreaConhecimento area = new AreaConhecimento();
+
+		Connection conexao = null;
+
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			String pav = String.valueOf(pavimento);
+			sql.append("select * from tb_area_conhecimento where upper(pavimento) like upper('?') ");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, pav);
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				java.util.Date data = new java.util.Date();
+				data = resultSet.getDate("data_cadastro");
+				area.setDataCadastro(data);
+				area.setIdAreaConhecimento(resultSet.getInt("id_area_conhecimento"));
+				area.setNome(resultSet.getString("nome"));
+				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
+				area.setObservacao(resultSet.getString("observacao"));
+				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
+				area.setStatusArea(resultSet.getString("status_area"));
+				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));
+				area.setTurno(Turno.valueOf(resultSet.getString("turno")));
+				area.setNumero(resultSet.getInt("numero"));
+			}
+		} catch (ClassNotFoundException | SQLException se) {
+			se.printStackTrace();
+		}
+
+		return area;
+	}
 }
