@@ -83,12 +83,13 @@ public class AreaConhecimentoDAO {
 				area.setDataCadastro(dataCadastro);
 				area.setIdAreaConhecimento(resultSet.getInt("id_area_conhecimento"));
 				area.setNome(resultSet.getString("nome"));
+				area.setNumero(resultSet.getInt("numero"));
 				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
+				area.setTurno(Turno.valueOf(resultSet.getString("turno")));
 				area.setObservacao(resultSet.getString("observacao"));
 				area.setStatusArea(resultSet.getString("status_area"));
 				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
-				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));
-				// area.setTurno(Turno.valueOf(resultSet.getString("turno")));
+				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));				
 
 				areas.add(area);
 			}

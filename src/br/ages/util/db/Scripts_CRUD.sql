@@ -87,7 +87,7 @@ CREATE TABLE `escala_e`.`tb_escala_mes` (
   
 /*Table tb_area_conhecimento*/
 CREATE TABLE `escala_e`.`tb_area_conhecimento` (
-  `id_area_conecimento` INT(11) NOT NULL AUTO_INCREMENT  ,
+  `id_area_conhecimento` INT(11) NOT NULL AUTO_INCREMENT  ,
   `numero` INT(5) NOT NULL,
   `nome` VARCHAR(120) NOT NULL,
   `pavimento` VARCHAR(20) NOT NULL,
@@ -97,8 +97,8 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
   `numero_mediadores` INT(5) NOT NULL,
   `observacao` VARCHAR(255) NOT NULL,
   `data_cadastro` DATETIME NOT NULL,
-  PRIMARY KEY (`id_area_conecimento`),
-  UNIQUE INDEX `id_escala_dia_UNIQUE` (`id_area_conecimento` ASC),
+  PRIMARY KEY (`id_area_conhecimento`),
+  UNIQUE INDEX `id_escala_dia_UNIQUE` (`id_area_conhecimento` ASC),
   UNIQUE INDEX `numero_UNIQUE` (`numero` ASC),
   UNIQUE INDEX `nome_UNIQUE` (`nome` ASC));
 
@@ -120,7 +120,7 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
     ON UPDATE NO ACTION,
   CONSTRAINT `id_area_conhecimento`
     FOREIGN KEY (`id_area_conhecimento`)
-    REFERENCES `escala_e`.`tb_area_conhecimento` (`id_area_conecimento`)
+    REFERENCES `escala_e`.`tb_area_conhecimento` (`id_area_conhecimento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
