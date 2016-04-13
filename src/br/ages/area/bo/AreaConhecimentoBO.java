@@ -63,4 +63,16 @@ public class AreaConhecimentoBO {
 		
 		return area;
 	}
+	
+	public void removeArea(int idArea) throws NegocioException{
+		try {
+			areaDAO.removeArea(idArea);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
+	
+	
+	
 }
