@@ -91,6 +91,7 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
   `numero` INT(5) NOT NULL,
   `nome` VARCHAR(120) NOT NULL,
   `pavimento` VARCHAR(20) NOT NULL,
+  `turno` VARCHAR(60) NOT NULL,
   `tipo_area` VARCHAR(20) NOT NULL,
   `status_area` VARCHAR(20) NOT NULL,
   `numero_mediadores` INT(5) NOT NULL,
