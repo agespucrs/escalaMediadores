@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mysql.jdbc.Statement;
@@ -18,6 +19,10 @@ import br.ages.util.ConexaoUtil;
 public class AreaConhecimentoDAO {
 
 	List<AreaConhecimento> areas;
+	
+	public AreaConhecimentoDAO(){
+		areas = new ArrayList<AreaConhecimento>();
+	}
 
 	public List<AreaConhecimento> listarAreas() throws ClassNotFoundException, PersistenciaException, SQLException {
 		Connection conexao = null;
