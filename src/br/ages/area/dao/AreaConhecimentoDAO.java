@@ -4,10 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 import br.ages.exception.PersistenciaException;
 import br.ages.model.AreaConhecimento;
@@ -20,6 +18,10 @@ import br.ages.util.MensagemContantes;
 public class AreaConhecimentoDAO {
 
 	List<AreaConhecimento> areas;
+	
+	public AreaConhecimentoDAO(){
+		areas = new ArrayList<AreaConhecimento>();
+	}
 	
 	public int criarArea(AreaConhecimento area) throws PersistenciaException, SQLException{
 		
