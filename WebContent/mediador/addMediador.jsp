@@ -48,6 +48,7 @@ $(document).ready(function(){
 	}
 	
 	$("#matricula").focusout(function(){
+		$(this).popover('hide');
 		if(!($(this).val().length >= 5 && $(this).val().length <= 9)){
 			errors['matriculaError'] = true;
 			$(this).addClass("erroCampos");
@@ -56,6 +57,7 @@ $(document).ready(function(){
 	});
 	
 	$("#matricula").focus(function(){
+		$(this).popover('show');
 		errors['matriculaError'] = false;
 		$(this).removeClass("erroCampos");
 		mostraMensagem();
@@ -81,13 +83,13 @@ $(document).ready(function(){
 			errors['nomeError'] = true;
 			$(this).addClass("erroCampos");
 			mostraMensagem();
-		}
+		};
 	});
 	
 	$('#nome').focus(function(){
 		errors['nomeError'] = false;
-		$(this).removeClass("errorCampos");
-		mostraMensagem();''
+		$(this).removeClass("erroCampos");
+		mostraMensagem();
 	});
 	
 	$("#email").focusout(function(){
@@ -131,7 +133,7 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="col-sm-6">
 						<label class="form-label ages">Matrícula: <span class="red">*</span></label> 
-						<input class="form-control" id="matricula" name="matricula"	value="${param.matricula}" type="text" maxlength="9" required>
+						<input class="form-control" id="matricula" data-animation=true data-toggle="popover" data-placement="bottom" name="matricula" value="${param.matricula}" type="text" maxlength="9" required title="Matricula:" data-content="A matricula deve ter entre 5 e 9 caracteres">
 					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">CPF <span class="red">*</span></label> 
