@@ -207,15 +207,15 @@ public class AreaConhecimentoDAO {
 		return area;
 	}
 	
+	
 	public boolean removeArea(int idArea) throws PersistenciaException, SQLException{
 		boolean ok = false;
-		//AreaConhecimento area = new AreaConhecimento();
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			
-			//int id = area.getIdAreaConhecimento();
+			//int id = mediador.getIdMediador();
 			sql.append("update tb_area_conhecimento set status_area = 'EXCLUÍDO' where id_area_conhecimento = +idArea+;");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
@@ -233,5 +233,6 @@ public class AreaConhecimentoDAO {
 		}
 		return ok;
 	}
+	
 	
 }

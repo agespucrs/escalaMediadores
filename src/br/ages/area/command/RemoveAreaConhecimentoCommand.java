@@ -27,7 +27,7 @@ public class RemoveAreaConhecimentoCommand implements Command{
 			
 			Integer idArea = Integer.parseInt(request.getParameter("id_Area"));
 		
-			areaBO.removeArea(idArea);
+			areaBO.removeArea(idArea);			
 			//request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_USUARIO.replace("?", idUsuario.toString()).concat("<br/>"));
 			
 		} catch (Exception e) {

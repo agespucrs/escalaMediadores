@@ -55,7 +55,6 @@ public class MainServlet extends HttpServlet {
 		comandos.put("editUser", new EditUserCommand());
 		comandos.put("removerUsuario", new RemoveUserCommand());
 		
-		
 		//Paginas Novas
 		comandos.put("tela", new CreateScreenCommand());
 		
