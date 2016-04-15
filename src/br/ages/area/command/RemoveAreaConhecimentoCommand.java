@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.area.bo.AreaConhecimentoBO;
 import br.ages.exception.NegocioException;
-import br.ages.mediador.bo.MediadorBO;
 import br.ages.model.PerfilAcesso;
 import br.ages.model.Usuario;
 import br.ages.usuario.command.Command;
@@ -15,7 +14,6 @@ import br.ages.util.MensagemContantes;
 public class RemoveAreaConhecimentoCommand implements Command{
 
 	private String proxima;
-	//private MediadorBO mediadorBO;
 	private AreaConhecimentoBO areaBO;
 	
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {

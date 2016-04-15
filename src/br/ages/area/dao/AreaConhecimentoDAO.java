@@ -209,20 +209,21 @@ public class AreaConhecimentoDAO {
 	
 	public boolean removeArea(int idArea) throws PersistenciaException, SQLException{
 		boolean ok = false;
+		//AreaConhecimento area = new AreaConhecimento();
 		Connection conexao = null;
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			
-			//int id = mediador.getIdMediador();
-			sql.append("update tb_area_conhecimento set status_area = 'EXCLUÍDO' where id_area_conhecimento = "+idArea+";");
+			//int id = area.getIdAreaConhecimento();
+			sql.append("update tb_area_conhecimento set status_area = 'EXCLUÍDO' where id_area_conhecimento = +idArea+;");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 
 			ok = statement.execute();
 			
-		} catch (ClassNotFoundException | SQLException se) {
-			throw new PersistenciaException(se);
+		} catch (ClassNotFoundException  SQLException) {
+			throw new PersistenciaException(SQLException);
 		}finally {
 			try {
 				conexao.close();
@@ -232,6 +233,5 @@ public class AreaConhecimentoDAO {
 		}
 		return ok;
 	}
-	
 	
 }

@@ -64,6 +64,7 @@ public class AreaConhecimentoBO {
 		return area;
 	}
 	
+	
 	public void removeArea(int idArea) throws NegocioException{
 		try {
 			areaDAO.removeArea(idArea);
@@ -72,7 +73,6 @@ public class AreaConhecimentoBO {
 			throw new NegocioException(e);
 		}
 	}
-	
 	
 	
 }
