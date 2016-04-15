@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="br.ages.util.Util"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
@@ -51,8 +53,17 @@
 						<input class="form-control" id="numero" name="numero" value="1" type="number"  maxlength="2">
 					</div>
 					<div class="col-sm-6">
+						<label class="form-label ages">Turno(s): <span class="red">*</span></label> <div id="turno" name="turno" required>
+							<input type="checkbox" value="MANHÃ" <%="MANHÃ".equals(request.getParameter("turno")) ? "selected" : ""%>> Manhã
+							<input type="checkbox" value="TARDE" <%="TARDE".equals(request.getParameter("turno")) ? "selected" : ""%>> Tarde
+							<input type="checkbox" value="NOITE" <%="NOITE".equals(request.getParameter("turno")) ? "selected" : ""%>> Noite
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-6">
 						<label class="form-label ages">Data Cadastro <span class="red">*</span></label> 
-						<input class="form-control" id="cpf" name="dataCadastro" value="01/02/2016" type="text" readonly="readonly" maxlength="10" style="text-align: center;">
+						<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%= Util.dateToString(new Date())%>" type="text" readonly="readonly" maxlength="10" style="text-align: center;">
 					</div>
 				</div>
 			</div>

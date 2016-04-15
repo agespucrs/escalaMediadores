@@ -4,9 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 import br.ages.exception.PersistenciaException;
 import br.ages.model.AreaConhecimento;
@@ -14,10 +13,57 @@ import br.ages.model.Pavimento;
 import br.ages.model.Tipo;
 import br.ages.model.Turno;
 import br.ages.util.ConexaoUtil;
+import br.ages.util.MensagemContantes;
 
 public class AreaConhecimentoDAO {
 
 	List<AreaConhecimento> areas;
+	
+	public AreaConhecimentoDAO(){
+		areas = new ArrayList<AreaConhecimento>();
+	}
+	
+	public int criarArea(AreaConhecimento area) throws PersistenciaException, SQLException{
+		
+		Connection conexao = null;
+		
+		try {
+			Integer idArea = null;
+			
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("insert into tb_area_conhecimento (id_area_conhecimento,numero,nome,pavimento,turno,tipo_area,status_area,numero_mediadores,observacao,data_cadastro)");
+			sql.append("values(?,?,?,?,?,?,?,?,?,?");
+			
+			java.util.Date utilDate = new java.util.Date();
+			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, area.getIdAreaConhecimento());
+			statement.setInt(2, area.getNumero());
+			statement.setString(3, area.getNome());
+			statement.setString(4, String.valueOf(area.getPavimento()));
+			statement.setString(5, String.valueOf(area.getTurno()));
+			statement.setString(6, String.valueOf(area.getTipoArea()));
+			statement.setString(7, String.valueOf(area.getStatusArea()));
+			statement.setInt(8, area.getNumeroMediadores());
+			statement.setString(9, area.getObservacao());
+			statement.setDate(10, dataCadastro);
+			
+			statement.executeUpdate();
+			
+			ResultSet resultset = statement.getGeneratedKeys();
+			if (resultset.first()) {
+				idArea = resultset.getInt(1);
+			}
+			return idArea;
+			
+		} catch (Exception e) {
+			throw new PersistenciaException(MensagemContantes.MSG_ERR_CADASTRO_AREA);
+		}finally {
+			conexao.close();
+		}
+	}
 
 	public List<AreaConhecimento> listarAreas() throws ClassNotFoundException, PersistenciaException, SQLException {
 		Connection conexao = null;
@@ -37,12 +83,13 @@ public class AreaConhecimentoDAO {
 				area.setDataCadastro(dataCadastro);
 				area.setIdAreaConhecimento(resultSet.getInt("id_area_conhecimento"));
 				area.setNome(resultSet.getString("nome"));
+				area.setNumero(resultSet.getInt("numero"));
 				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
+				area.setTurno(Turno.valueOf(resultSet.getString("turno")));
 				area.setObservacao(resultSet.getString("observacao"));
 				area.setStatusArea(resultSet.getString("status_area"));
 				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
-				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));
-				// area.setTurno(Turno.valueOf(resultSet.getString("turno")));
+				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));				
 
 				areas.add(area);
 			}
