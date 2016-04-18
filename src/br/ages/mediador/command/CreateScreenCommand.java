@@ -20,13 +20,7 @@ public class CreateScreenCommand implements Command {
 			switch (tela) {
 			/*case "criaMediador":
 				this.proxima = "mediador/addMediador.jsp";
-				break;*/
-			case "criaArea":
-				this.proxima = "area/addArea.jsp";
-				break;
-			case "listaArea":
-				this.proxima = "area/listaArea.jsp";
-				break;
+				break;*/			
 			case "escalaDia":
 				this.proxima = "escala/escalaDia.jsp";
 				break;

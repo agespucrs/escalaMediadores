@@ -95,7 +95,7 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
   `tipo_area` VARCHAR(20) NOT NULL,
   `status_area` VARCHAR(20) NOT NULL,
   `numero_mediadores` INT(5) NOT NULL,
-  `observacao` VARCHAR(255) NOT NULL,
+  `observacao` VARCHAR(255),
   `data_cadastro` DATETIME NOT NULL,
   PRIMARY KEY (`id_area_conhecimento`),
   UNIQUE INDEX `id_escala_dia_UNIQUE` (`id_area_conhecimento` ASC),

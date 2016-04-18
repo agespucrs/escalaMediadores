@@ -15,13 +15,13 @@
 
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
-		<form method="post" action="main?acao=">
+		<form method="post" action="main?acao=addArea">
 
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-4">
 						<label class="form-label ages">Numero: <span class="red">*</span></label> 
-						<input class="form-control" id="numero" name="numero"	value="${param.matricula}" type="text" maxlength="9" required>
+						<input class="form-control" id="numero" name="numero"	value="${param.numero}" type="text" maxlength="9" required>
 					</div>
 					<div class="col-sm-8">
 						<label class="form-label ages">Nome: <span class="red">*</span></label> 
@@ -29,40 +29,48 @@
 					</div>
 				</div>
 				<label class="form-label ages">Observação:</label> 
-				<input class="form-control" id="obs" name="obs" value="${param.obs}" 	type="text" maxlength="120" required>
+				<input class="form-control" id="observacao" name="observacao" value="${param.observacao}" type="text" maxlength="120">
 
 				<div class="row">
 					<div class="col-sm-6">
-						<label class="form-label ages">Andar: <span class="red">*</span></label> <select class="form-control" id="tipo" name="perfilAcesso"
+						<label class="form-label ages">Pavimento: <span class="red">*</span></label> <select class="form-control" id="pavimento" name="pavimento"
 							required>
-							<option value="Primeiro" <%="Primeiro".equals(request.getParameter("tipo")) ? "selected" : ""%>>Primeiro</option>
-							<option value="Segundo" <%="Segundo".equals(request.getParameter("tipo")) ? "selected" : ""%>>Segundo</option>
-							<option value="Terceiro" <%="Terceiro".equals(request.getParameter("tipo")) ? "selected" : ""%>>Terceiro</option>
+							<option value="PRIMEIRO" <%="PRIMEIRO".equals(request.getParameter("pavimento")) ? "selected" : ""%>>Primeiro</option>
+							<option value="SEGUNDO" <%="SEGUNDO".equals(request.getParameter("pavimento")) ? "selected" : ""%>>Segundo</option>
+							<option value="TERCEIRO" <%="TERCEIRO".equals(request.getParameter("pavimento")) ? "selected" : ""%>>Terceiro</option>
 						</select>
 					</div>
 					<div class="col-sm-6">
-						<label class="form-label ages">Status: <span class="red">*</span></label> <select class="form-control" id="statusMediador" name="statusUsuario" required>
-							<option value="ATIVO" <%="ATIVO".equals(request.getParameter("statusMediador")) ? "selected" : ""%>>Ativo</option>
-							<option value="INATIVO" <%="INATIVO".equals(request.getParameter("statusMediador")) ? "selected" : ""%>>Inativo</option>
+						<label class="form-label ages">Status: <span class="red">*</span></label> <select class="form-control" id="status_area" name="status_area" required>
+							<option value="ATIVO" <%="ATIVO".equals(request.getParameter("status_area")) ? "selected" : ""%>>Ativo</option>
+							<option value="INATIVO" <%="INATIVO".equals(request.getParameter("status_area")) ? "selected" : ""%>>Inativo</option>
 						</select>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<label class="form-label ages">Numero de Mediadores <span class="red">*</span></label> 
-						<input class="form-control" id="numero" name="numero" value="1" type="number"  maxlength="2">
+						<label class="form-label ages">Tipo: <span class="red">*</span></label> 
+						<select class="form-control" id="tipo_area" name="tipo_area" required>
+							<option value="UM" <%="UM".equals(request.getParameter("tipo_area")) ? "selected" : ""%>>Um</option>
+							<option value="DOIS" <%="DOIS".equals(request.getParameter("tipo_area")) ? "selected" : ""%>>Dois</option>
+						</select>
 					</div>
 					<div class="col-sm-6">
-						<label class="form-label ages">Turno(s): <span class="red">*</span></label> <div id="turno" name="turno" required>
-							<input type="checkbox" value="MANHÃ" <%="MANHÃ".equals(request.getParameter("turno")) ? "selected" : ""%>> Manhã
-							<input type="checkbox" value="TARDE" <%="TARDE".equals(request.getParameter("turno")) ? "selected" : ""%>> Tarde
-							<input type="checkbox" value="NOITE" <%="NOITE".equals(request.getParameter("turno")) ? "selected" : ""%>> Noite
-						</div>
+						<label class="form-label ages">Turno(s): <span class="red">*</span></label> 
+						<select class="form-control" id="turno" name="turno" required>
+							<option value="MANHÃ" <%="MANHÃ".equals(request.getParameter("turno")) ? "selected" : ""%>> Manhã
+							<option value="TARDE" <%="TARDE".equals(request.getParameter("turno")) ? "selected" : ""%>> Tarde
+							<option value="NOITE" <%="NOITE".equals(request.getParameter("turno")) ? "selected" : ""%>> Noite
+						</select>
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-sm-6">
-						<label class="form-label ages">Data Cadastro <span class="red">*</span></label> 
+						<label class="form-label ages">Numero de Mediadores: <span class="red">*</span></label> 
+						<input class="form-control" id="numero_mediadores" name="numero_mediadores" value="1" type="number"  maxlength="2">
+					</div>
+					<div class="col-sm-6">
+						<label class="form-label ages">Data Cadastro: <span class="red">*</span></label> 
 						<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%= Util.dateToString(new Date())%>" type="text" readonly="readonly" maxlength="10" style="text-align: center;">
 					</div>
 				</div>

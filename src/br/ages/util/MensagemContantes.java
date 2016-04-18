@@ -121,4 +121,14 @@ public class MensagemContantes {
 	//msgs de Areas
 	
 	public static final String MSG_ERR_CADASTRO_AREA = "Erro ao cadastrar Area!";
+	
+	public static final String MSG_ERR_AREA_DADOS_INVALIDOS = "Dados da Área inválidos ou inconsistentes!";
+	
+	public static final String MSG_SUC_CADASTRO_AREA = "Cadastro da Área ? efetuado com sucesso!";
+	
+	public static final String MSG_ERR_NUMERO_INVALIDO = "Número inválido!";
+	
+	public static final String MSG_ERR_NUMERO_MEDIADORES_INVALIDO = "Número inválido de mediadores!";
+	
+	public static final String MSG_ERR_NUMERO_MIN_TURNO = "Selecionar ao menos um turno!";
 }

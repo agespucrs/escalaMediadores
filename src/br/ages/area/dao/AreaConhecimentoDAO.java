@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.mysql.jdbc.Statement;
+
 import br.ages.exception.PersistenciaException;
 import br.ages.model.AreaConhecimento;
 import br.ages.model.Pavimento;
@@ -34,12 +36,12 @@ public class AreaConhecimentoDAO {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			sql.append("insert into tb_area_conhecimento (id_area_conhecimento,numero,nome,pavimento,turno,tipo_area,status_area,numero_mediadores,observacao,data_cadastro)");
-			sql.append("values(?,?,?,?,?,?,?,?,?,?");
+			sql.append("values(?,?,?,?,?,?,?,?,?,?)");
 			
 			java.util.Date utilDate = new java.util.Date();
 			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
 			
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, area.getIdAreaConhecimento());
 			statement.setInt(2, area.getNumero());
 			statement.setString(3, area.getNome());
@@ -60,7 +62,7 @@ public class AreaConhecimentoDAO {
 			return idArea;
 			
 		} catch (Exception e) {
-			throw new PersistenciaException(MensagemContantes.MSG_ERR_CADASTRO_AREA);
+			throw new PersistenciaException(MensagemContantes.MSG_ERR_CADASTRO_AREA+"\n"+e.getMessage());
 		}finally {
 			conexao.close();
 		}

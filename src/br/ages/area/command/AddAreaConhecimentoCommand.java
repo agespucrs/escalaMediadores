@@ -12,6 +12,7 @@ import br.ages.model.Status;
 import br.ages.model.Tipo;
 import br.ages.model.Turno;
 import br.ages.usuario.command.Command;
+import br.ages.util.MensagemContantes;
 
 public class AddAreaConhecimentoCommand implements Command{
 
@@ -31,7 +32,6 @@ public class AddAreaConhecimentoCommand implements Command{
 		String statusArea = request.getParameter("status_area");
 		String numeroMediadores = request.getParameter("numero_mediadores");
 		String observacao = request.getParameter("observacao");
-		String dataCadastro = request.getParameter("data_cadastro");
 		
 		try {
 			AreaConhecimento area = new AreaConhecimento();
@@ -41,13 +41,22 @@ public class AddAreaConhecimentoCommand implements Command{
 			area.setTurno(Turno.valueOf(turno));
 			area.setTipoArea(Tipo.valueOf(tipoArea));
 			area.setStatusArea(Status.valueOf(statusArea));
+			area.setNumeroMediadores(Integer.parseInt(numeroMediadores));
+			area.setObservacao(observacao);
 			
+			boolean isValido = areaBO.validaArea(area);
+			
+			if(isValido == false){
+				request.setAttribute("msgErro", MensagemContantes.MSG_ERR_AREA_DADOS_INVALIDOS);
+			} else {
+				areaBO.cadastraAreaConhecimento(area);
+				proxima = "main?acao=listaArea";
+				request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_CADASTRO_AREA.replace("?", area.getNome()));
+			}			
 		} catch (Exception e) {
-			// TODO: handle exception
+			request.setAttribute("msgErro", e.getMessage());
 		}
-		
 		
 		return proxima;
 	}
-
 }

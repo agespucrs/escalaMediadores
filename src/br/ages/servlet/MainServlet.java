@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
 
+import br.ages.area.command.AddAreaConhecimentoCommand;
 import br.ages.area.command.CreateScreenAreaConhecimentoCommand;
 import br.ages.area.command.ListAreaConhecimentoCommand;
 import br.ages.area.command.RemoveAreaConhecimentoCommand;
@@ -67,6 +68,7 @@ public class MainServlet extends HttpServlet {
 		
 		// COMANDOS DE AREACONHECIMENTO
 		comandos.put("telaArea", new CreateScreenAreaConhecimentoCommand());
+		comandos.put("addArea", new AddAreaConhecimentoCommand());
 		comandos.put("listaArea", new ListAreaConhecimentoCommand());
 		comandos.put("removeArea", new RemoveAreaConhecimentoCommand());
 	}

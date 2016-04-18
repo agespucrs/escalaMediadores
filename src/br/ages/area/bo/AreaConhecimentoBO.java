@@ -8,12 +8,51 @@ import br.ages.exception.NegocioException;
 import br.ages.exception.PersistenciaException;
 import br.ages.model.AreaConhecimento;
 import br.ages.model.Pavimento;
+import br.ages.util.MensagemContantes;
 
 public class AreaConhecimentoBO {
 	AreaConhecimentoDAO areaDAO = null;
-
+	
 	public AreaConhecimentoBO() {
 		areaDAO = new AreaConhecimentoDAO();
+	}
+	
+	public boolean validaArea(AreaConhecimento area) throws NegocioException{
+		boolean isValido = true;
+		StringBuilder msg = new StringBuilder();
+		msg.append(MensagemContantes.MSG_ERR_AREA_DADOS_INVALIDOS.concat("<br>"));
+		
+		try {
+			if(area.getNumero() <= 0){
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_NUMERO_INVALIDO.concat("<br/>"));
+			}
+			
+			if(area.getNome() == null || "".equals(area.getNome())){
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_CAMPO_OBRIGATORIO.replace("?", "Área").concat("<br/>"));
+			}
+			
+			if(area.getNumeroMediadores() <= 0){
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_NUMERO_MEDIADORES_INVALIDO.concat("<br/>"));
+			}
+			
+			if(area.getTurno() == null || area.getTurno().equals("")){
+				isValido = false;
+				msg.append(MensagemContantes.MSG_ERR_NUMERO_MIN_TURNO.concat("<br>"));
+			}
+			
+			if(!isValido){
+				throw new NegocioException(msg.toString());
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		
+		return isValido;
 	}
 	
 	public int cadastraAreaConhecimento(AreaConhecimento area) throws NegocioException, SQLException{
