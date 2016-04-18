@@ -10,6 +10,7 @@ import java.util.List;
 import br.ages.exception.PersistenciaException;
 import br.ages.model.AreaConhecimento;
 import br.ages.model.Pavimento;
+import br.ages.model.Status;
 import br.ages.model.Tipo;
 import br.ages.model.Turno;
 import br.ages.util.ConexaoUtil;
@@ -87,7 +88,7 @@ public class AreaConhecimentoDAO {
 				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
 				area.setTurno(Turno.valueOf(resultSet.getString("turno")));
 				area.setObservacao(resultSet.getString("observacao"));
-				area.setStatusArea(resultSet.getString("status_area"));
+				area.setStatusArea(Status.valueOf(resultSet.getString("status_area")));
 				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
 				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));				
 
@@ -124,7 +125,7 @@ public class AreaConhecimentoDAO {
 				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
 				area.setObservacao(resultSet.getString("observacao"));
 				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
-				area.setStatusArea(resultSet.getString("status_area"));
+				area.setStatusArea(Status.valueOf(resultSet.getString("status_area")));
 				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));
 				area.setTurno(Turno.valueOf(resultSet.getString("turno")));
 				area.setNumero(resultSet.getInt("numero"));
@@ -159,7 +160,7 @@ public class AreaConhecimentoDAO {
 				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
 				area.setObservacao(resultSet.getString("observacao"));
 				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
-				area.setStatusArea(resultSet.getString("status_area"));
+				area.setStatusArea(Status.valueOf(resultSet.getString("status_area")));
 				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));
 				area.setTurno(Turno.valueOf(resultSet.getString("turno")));
 				area.setNumero(resultSet.getInt("numero"));
@@ -195,7 +196,7 @@ public class AreaConhecimentoDAO {
 				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
 				area.setObservacao(resultSet.getString("observacao"));
 				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
-				area.setStatusArea(resultSet.getString("status_area"));
+				area.setStatusArea(Status.valueOf(resultSet.getString("status_area")));
 				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));
 				area.setTurno(Turno.valueOf(resultSet.getString("turno")));
 				area.setNumero(resultSet.getInt("numero"));

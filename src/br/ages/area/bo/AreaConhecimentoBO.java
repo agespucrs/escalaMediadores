@@ -15,6 +15,18 @@ public class AreaConhecimentoBO {
 	public AreaConhecimentoBO() {
 		areaDAO = new AreaConhecimentoDAO();
 	}
+	
+	public int cadastraAreaConhecimento(AreaConhecimento area) throws NegocioException, SQLException{
+		int id;
+		try {
+			id = areaDAO.criarArea(area);
+		} catch (PersistenciaException e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+		
+		return id;
+	}
 
 	public List<AreaConhecimento> listarAreaConhecimento() throws NegocioException, ClassNotFoundException {
 		List<AreaConhecimento> listArea = null;

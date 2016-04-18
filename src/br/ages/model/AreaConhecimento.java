@@ -10,7 +10,7 @@ public class AreaConhecimento
 	private Pavimento pavimento;
 	private Turno turno;
 	private Tipo tipoArea;
-	private String statusArea;
+	private Status statusArea;
 	private int numeroMediadores;
 	private String observacao;
 	private Date dataCadastro;
@@ -59,11 +59,11 @@ public class AreaConhecimento
 	public void  setTipoArea(Tipo value){
 		 tipoArea = value;
 	}
-	public String getStatusArea(){
+	public Status getStatusArea(){
 		 return statusArea;
 	}
  
-	public void  setStatusArea( String value){
+	public void  setStatusArea( Status value){
 		 statusArea = value;
 	}
 	public int getNumeroMediadores(){
