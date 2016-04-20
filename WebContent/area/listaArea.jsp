@@ -3,7 +3,7 @@
 <jsp:include page="../template/head.jsp"></jsp:include>
 
 <!-- MODAL / POPUP -->
-<%-- <jsp:include page="../template/modal.jsp"></jsp:include> --%>
+<jsp:include page="../template/modalArea.jsp"></jsp:include>
 
 <div class="panel panel-default">
 
@@ -24,6 +24,7 @@
 						<th style="text-align: center;">Nome</th>
 						<th style="text-align: center;">Pavimento</th>
 						<th style="text-align: center;">Nº Mediadores</th>
+						<th style="text-align: center;">Status</th>
 						<th data-sortable="false" style="text-align: center; width: 10px"></th>
 						<th data-sortable="false" style="text-align: center; width: 10px"></th>
 					</tr>
@@ -39,11 +40,13 @@
 						<td align="center"><%=area.getNome()%></td>
 						<td align="center"><%=area.getPavimento().name()%></td>
 						<td align="center"><%=area.getNumeroMediadores()%></td>
+						<td align="center"><%=area.getStatusArea()%></td>
 						<td align="center">
 							<form action="" method="post">
 								<a href="" data-toggle="modal"
 									data-id="<%=area.getIdAreaConhecimento()%>"
-									data-usuario="<%=area.getNome()%>" data-target="#modalEditar"
+									data-area="<%=area.getNome()%>" 
+									data-target="#modalEditar"
 									title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 							</form>
 						</td>
@@ -51,7 +54,7 @@
 							<form action="" method="post">
 								<a href="" data-toggle="modal"
 									data-id="<%=area.getIdAreaConhecimento()%>"
-									data-usuario="<%=area.getNome()%>" data-target="#modalExcluir"
+									data-area="<%=area.getNome()%>" data-target="#modalExcluir"
 									title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
 							</form>
 						</td>

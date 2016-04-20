@@ -54,9 +54,9 @@ public class MediadorBO {
 				msg.append(MensagemContantes.MSG_ERR_EMAIL_INVALIDO.replace("?", "Mediador").concat("<br/>"));
 			}
 			
-			String nome = Normalizer.normalize(mediador.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
+			//String nome = Normalizer.normalize(mediador.getNome(), Normalizer.Form.NFD).replaceAll("\\p{InCombiningDiacriticalMarks}+", "");
 			
-			if (!nome.matches("(([A-Z][a-z]*)\\s{0,1})+")) {
+			if (mediador.getNome().equals("") || mediador.getNome() == null) {
 				isValido = false;
 				msg.append(MensagemContantes.MSG_ERR_NOME_INVALIDO.replace("?", "Nome ").concat("<br/>"));
 			}

@@ -44,8 +44,11 @@
 	            	<td align="center"><%=med.getStatusMediador().toString()%></td>
 	            	<td align="center">
 						<form action="" method="post">
-            				<a href="" data-toggle="modal" data-id="<%=med.getIdMediador() %>" data-mediador="<%=med.getNome()%>" 
-            				data-target="#modalEditar" title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+            				<a href="" data-toggle="modal" 
+            				data-id="<%=med.getIdMediador() %>" 
+            				data-mediador="<%=med.getNome()%>" 
+            				data-target="#modalEditar" 
+            				title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
             			</form>
             		</td>
             		

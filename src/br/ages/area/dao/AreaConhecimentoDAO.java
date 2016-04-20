@@ -14,7 +14,6 @@ import br.ages.model.AreaConhecimento;
 import br.ages.model.Pavimento;
 import br.ages.model.Status;
 import br.ages.model.Tipo;
-import br.ages.model.Turno;
 import br.ages.util.ConexaoUtil;
 import br.ages.util.MensagemContantes;
 
@@ -35,8 +34,8 @@ public class AreaConhecimentoDAO {
 			
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("insert into tb_area_conhecimento (id_area_conhecimento,numero,nome,pavimento,turno,tipo_area,status_area,numero_mediadores,observacao,data_cadastro)");
-			sql.append("values(?,?,?,?,?,?,?,?,?,?)");
+			sql.append("insert into tb_area_conhecimento (id_area_conhecimento,numero,nome,pavimento,tipo_area,status_area,numero_mediadores,observacao,data_cadastro)");
+			sql.append("values(?,?,?,?,?,?,?,?,?)");
 			
 			java.util.Date utilDate = new java.util.Date();
 			java.sql.Date dataCadastro = new java.sql.Date(utilDate.getTime());
@@ -46,12 +45,11 @@ public class AreaConhecimentoDAO {
 			statement.setInt(2, area.getNumero());
 			statement.setString(3, area.getNome());
 			statement.setString(4, String.valueOf(area.getPavimento()));
-			statement.setString(5, String.valueOf(area.getTurno()));
-			statement.setString(6, String.valueOf(area.getTipoArea()));
-			statement.setString(7, String.valueOf(area.getStatusArea()));
-			statement.setInt(8, area.getNumeroMediadores());
-			statement.setString(9, area.getObservacao());
-			statement.setDate(10, dataCadastro);
+			statement.setString(5, String.valueOf(area.getTipoArea()));
+			statement.setString(6, String.valueOf(area.getStatusArea()));
+			statement.setInt(7, area.getNumeroMediadores());
+			statement.setString(8, area.getObservacao());
+			statement.setDate(9, dataCadastro);
 			
 			statement.executeUpdate();
 			
@@ -249,7 +247,7 @@ public class AreaConhecimentoDAO {
 			StringBuilder sql = new StringBuilder();
 			
 			//int id = mediador.getIdMediador();
-			sql.append("update tb_area_conhecimento set status_area = 'EXCLUÍDO' where id_area_conhecimento = +idArea+;");
+			sql.append("update tb_area_conhecimento set status_area = 'EXCLUÍDO' where id_area_conhecimento = "+idArea+";");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 

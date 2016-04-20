@@ -6,7 +6,7 @@ $( document ).ready(function() {
 	  	var area = botao.data('area');
 		var id = botao.data('id');
 	  	
-	  	$(this).find('.modal-title').text('Excluir area');
+	  	$(this).find('.modal-title').text('Excluir área');
 	  	$(this).find('#modal-descricao').text('Você realmente deseja excluir a area (' + area + ')?');
 	  	
 	  	$('#formExcluir').attr('action', "main?acao=removeArea&id_area=" + id);
@@ -18,10 +18,10 @@ $( document ).ready(function() {
 	  	var area = botao.data('area');
 		var id = botao.data('id');
 	  	
-	  	$(this).find('.modal-title').text('Editar area');
+	  	$(this).find('.modal-title').text('Editar área');
 	  	$(this).find('#modal-descricao').text('Você realmente deseja editar a area (' + area + ')?');
 	  	
-	  	$('#formEditar').attr('action', "main?acao=telaarea&id_area=" + id + "&isEdit=true");
+	  	$('#formEditar').attr('action', "main?acao=telaArea&id_area=" + id + "&isEdit=true");
 	});
 });
 </script>

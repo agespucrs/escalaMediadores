@@ -20,7 +20,7 @@ public class CreateScreenAreaConhecimentoCommand implements Command {
 	
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
-		proxima = "main?acao=listaAreas";
+		proxima = "main?acao=listaArea";
 		Usuario currentUser = (Usuario)request.getSession().getAttribute("usuarioSessao");
 		
 		try {

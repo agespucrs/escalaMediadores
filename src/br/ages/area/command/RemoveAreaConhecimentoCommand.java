@@ -19,13 +19,13 @@ public class RemoveAreaConhecimentoCommand implements Command{
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 		
 		areaBO = new AreaConhecimentoBO();
-		proxima = "main?acao=listaAreaConhecimento";
+		proxima = "main?acao=listaArea";
 		
 		Usuario usuario = (Usuario)request.getSession().getAttribute("usuarioSessao");
 		try {
 			if( !usuario.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_SEM_PERMISSAO);
 			
-			Integer idArea = Integer.parseInt(request.getParameter("id_Area"));
+			Integer idArea = Integer.parseInt(request.getParameter("id_area"));
 		
 			areaBO.removeArea(idArea);			
 			//request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_USUARIO.replace("?", idUsuario.toString()).concat("<br/>"));
