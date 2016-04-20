@@ -23,7 +23,6 @@
 						<th style="text-align: center;">Numero</th>
 						<th style="text-align: center;">Nome</th>
 						<th style="text-align: center;">Pavimento</th>
-						<th style="text-align: center;">Turno</th>
 						<th style="text-align: center;">Nº Mediadores</th>
 						<th data-sortable="false" style="text-align: center; width: 10px"></th>
 						<th data-sortable="false" style="text-align: center; width: 10px"></th>
@@ -39,7 +38,6 @@
 						<td align="center"><%=area.getNumero()%></td>
 						<td align="center"><%=area.getNome()%></td>
 						<td align="center"><%=area.getPavimento().name()%></td>
-						<td align="center"><%=area.getTurno().name()%></td>
 						<td align="center"><%=area.getNumeroMediadores()%></td>
 						<td align="center">
 							<form action="" method="post">
