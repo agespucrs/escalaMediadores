@@ -56,19 +56,11 @@
 						</select>
 					</div>
 					<div class="col-sm-6">
-						<label class="form-label ages">Turno(s): <span class="red">*</span></label> 
-						<select class="form-control" id="turno" name="turno" required>
-							<option value="MANHÃ" <%="MANHÃ".equals(request.getParameter("turno")) ? "selected" : ""%>> Manhã
-							<option value="TARDE" <%="TARDE".equals(request.getParameter("turno")) ? "selected" : ""%>> Tarde
-							<option value="NOITE" <%="NOITE".equals(request.getParameter("turno")) ? "selected" : ""%>> Noite
-						</select>
-					</div>
-				</div>
-				<div class="row">
-					<div class="col-sm-6">
 						<label class="form-label ages">Numero de Mediadores: <span class="red">*</span></label> 
 						<input class="form-control" id="numero_mediadores" name="numero_mediadores" value="1" type="number"  maxlength="2">
 					</div>
+				</div>
+				<div class="row">					
 					<div class="col-sm-6">
 						<label class="form-label ages">Data Cadastro: <span class="red">*</span></label> 
 						<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%= Util.dateToString(new Date())%>" type="text" readonly="readonly" maxlength="10" style="text-align: center;">
