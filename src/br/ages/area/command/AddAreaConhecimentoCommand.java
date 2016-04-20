@@ -27,7 +27,6 @@ public class AddAreaConhecimentoCommand implements Command{
 		String numero = request.getParameter("numero");
 		String nome = request.getParameter("nome");
 		String pavimento = request.getParameter("pavimento");
-		String turno = request.getParameter("turno");
 		String tipoArea = request.getParameter("tipo_area");
 		String statusArea = request.getParameter("status_area");
 		String numeroMediadores = request.getParameter("numero_mediadores");
@@ -38,7 +37,6 @@ public class AddAreaConhecimentoCommand implements Command{
 			area.setNumero(Integer.parseInt(numero));
 			area.setNome(nome);
 			area.setPavimento(Pavimento.valueOf(pavimento));
-			area.setTurno(Turno.valueOf(turno));
 			area.setTipoArea(Tipo.valueOf(tipoArea));
 			area.setStatusArea(Status.valueOf(statusArea));
 			area.setNumeroMediadores(Integer.parseInt(numeroMediadores));

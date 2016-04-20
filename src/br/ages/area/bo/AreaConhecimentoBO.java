@@ -38,11 +38,6 @@ public class AreaConhecimentoBO {
 				msg.append(MensagemContantes.MSG_ERR_NUMERO_MEDIADORES_INVALIDO.concat("<br/>"));
 			}
 			
-			if(area.getTurno() == null || area.getTurno().equals("")){
-				isValido = false;
-				msg.append(MensagemContantes.MSG_ERR_NUMERO_MIN_TURNO.concat("<br>"));
-			}
-			
 			if(!isValido){
 				throw new NegocioException(msg.toString());
 			}
