@@ -115,6 +115,17 @@ public class AreaConhecimentoBO {
 		return area;
 	}
 	
+	public AreaConhecimento pesquisarAreaPorId(int id) throws NegocioException, ClassNotFoundException{
+		AreaConhecimento area = new AreaConhecimento();
+		
+		try{
+			area = areaDAO.pesquisarAreaPorId(id);
+		} catch(PersistenciaException | SQLException se){
+			se.printStackTrace();
+		}
+		
+		return area;
+	}
 	
 	public void removeArea(int idArea) throws NegocioException{
 		try {
