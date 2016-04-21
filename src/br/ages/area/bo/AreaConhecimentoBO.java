@@ -61,6 +61,15 @@ public class AreaConhecimentoBO {
 		
 		return id;
 	}
+	
+	public void editarAreaConhecimento(AreaConhecimento area) throws NegocioException{
+		try {
+			areaDAO.editaArea(area);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new NegocioException(e);
+		}
+	}
 
 	public List<AreaConhecimento> listarAreaConhecimento() throws NegocioException, ClassNotFoundException {
 		List<AreaConhecimento> listArea = null;

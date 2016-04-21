@@ -1,6 +1,7 @@
 package br.ages.area.dao;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -64,6 +65,44 @@ public class AreaConhecimentoDAO {
 		}finally {
 			conexao.close();
 		}
+	}
+	
+	public boolean editaArea(AreaConhecimento area) throws PersistenciaException{
+		boolean ok = false;
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			int id = area.getIdAreaConhecimento();
+			
+			sql.append("update tb_area_conhecimento set numero = ?, "
+					+ "nome = ?, pavimento = ?, tipo_area = ?, status_area = ?, "
+					+ "numero_mediadores = ?, observacao = ?, data_cadastro = ? "
+					+ "where id_area_conhecimento = "+id+";");
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			
+			statement.setInt(1, area.getNumero());
+			statement.setString(2, area.getNome());
+			statement.setString(3, String.valueOf(area.getPavimento()));
+			statement.setString(4, String.valueOf(area.getTipoArea()));
+			statement.setString(5, String.valueOf(area.getStatusArea()));
+			statement.setInt(6, area.getNumeroMediadores());
+			statement.setString(7, area.getObservacao());
+			statement.setDate(8, (Date) area.getDataCadastro());
+			
+			ok = statement.execute();
+			
+		} catch (ClassNotFoundException | SQLException e) {
+			throw new PersistenciaException(e);
+		} finally {
+			try {
+				conexao.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return ok;
 	}
 
 	public List<AreaConhecimento> listarAreas() throws ClassNotFoundException, PersistenciaException, SQLException {

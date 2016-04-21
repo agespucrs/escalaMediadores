@@ -131,4 +131,6 @@ public class MensagemContantes {
 	public static final String MSG_ERR_NUMERO_MEDIADORES_INVALIDO = "Número inválido de mediadores!";
 	
 	public static final String MSG_ERR_NUMERO_MIN_TURNO = "Selecionar ao menos um turno!";
+	
+	public static final String MSG_SUC_EDICAO_AREA = "Area ? editado com sucesso!";
 }

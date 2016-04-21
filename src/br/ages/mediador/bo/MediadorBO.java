@@ -1,10 +1,9 @@
 package br.ages.mediador.bo;
 
 import java.sql.SQLException;
-import java.util.List;
-import java.text.Normalizer;
 import java.text.ParseException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import br.ages.exception.NegocioException;

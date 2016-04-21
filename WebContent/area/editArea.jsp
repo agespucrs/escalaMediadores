@@ -20,7 +20,7 @@
         	
         	<div class="table-responsive">
                 
-                <form method="post" action="main?acao=editUser">
+                <form method="post" action="main?acao=editaArea">
                 	<input class="form-control" type="hidden" id="idUsuario" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
                		<div class="form-group">
 			           	<label class="form-label ages">Matrícula:</label>

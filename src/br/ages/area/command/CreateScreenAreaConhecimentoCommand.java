@@ -32,9 +32,9 @@ public class CreateScreenAreaConhecimentoCommand implements Command {
 				areaConhecimentoBO = new AreaConhecimentoBO();
 				
 				int id = Integer.parseInt(request.getParameter("id_area"));
-				//AreaConhecimento area = areaConhecimentoBO.pesquisarAreaPorId(id);
+				AreaConhecimento area = areaConhecimentoBO.pesquisarAreaPorId(id);
 				
-				//request.setAttribute("area", area);
+				request.setAttribute("area", area);
 				proxima = "area/editArea.jsp";
 			} else {
 				areaConhecimentoBO = new AreaConhecimentoBO();

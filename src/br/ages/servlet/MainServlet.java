@@ -14,6 +14,7 @@ import org.apache.log4j.Logger;
 
 import br.ages.area.command.AddAreaConhecimentoCommand;
 import br.ages.area.command.CreateScreenAreaConhecimentoCommand;
+import br.ages.area.command.EditAreaConhecimentoCommand;
 import br.ages.area.command.ListAreaConhecimentoCommand;
 import br.ages.area.command.RemoveAreaConhecimentoCommand;
 import br.ages.mediador.command.AddMediadorCommand;
@@ -69,6 +70,7 @@ public class MainServlet extends HttpServlet {
 		// COMANDOS DE AREACONHECIMENTO
 		comandos.put("telaArea", new CreateScreenAreaConhecimentoCommand());
 		comandos.put("addArea", new AddAreaConhecimentoCommand());
+		comandos.put("editaArea", new EditAreaConhecimentoCommand());
 		comandos.put("listaArea", new ListAreaConhecimentoCommand());
 		comandos.put("removeArea", new RemoveAreaConhecimentoCommand());
 	}
