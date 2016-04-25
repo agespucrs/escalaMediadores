@@ -175,6 +175,18 @@
 			};
 		};
 		
+		function startDatePicker(startDate, endDate){
+			$('.datepicker').datepicker({
+				multidate: true,
+				language: "pt-BR",
+				format: "dd/mm/YY",
+				daysOfWeekDisabled : "1",
+				maxViewMode: "days",
+				startDate: startDate,
+				endDate: endDate
+			});
+		};
+		
 		// EventHandler do Botao
 			$('.gerarEscalaMensal').click(function(){
 				$('.userData').show();
@@ -183,15 +195,7 @@
 				endDate = new Date(date.getFullYear(), parseInt($('#mesSelecionado').val())+1, 0);
 				console.log(startDate);
 				console.log(endDate);
-				$('.datepicker').datepicker({
-					multidate: true,
-					language: "pt-BR",
-					format: "dd/mm/YY",
-					daysOfWeekDisabled : "1",
-					maxViewMode: "days",
-					startDate: startDate,
-					endDate: endDate
-				});
+				startDatePicker(startDate, endDate);
 			});
 
 		
@@ -213,7 +217,8 @@
 				};
 				$('.datepicker').data('datepicker').setDates(arrayDates);
 			} else {
-				$('.datepicker').data('datepicker').clearDates();
+				$('.datepicker').data('datepicker').destroy();
+				startDatePicker(startDate, endDate);
 			};
 		});
 	});
