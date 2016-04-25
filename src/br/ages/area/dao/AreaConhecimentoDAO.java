@@ -111,7 +111,7 @@ public class AreaConhecimentoDAO {
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from tb_area_conhecimento");
+			sql.append("select * from tb_area_conhecimento where status_area <> 'EXCLUÍDO';");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultSet = statement.executeQuery();
