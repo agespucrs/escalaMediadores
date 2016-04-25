@@ -7,6 +7,9 @@
 <%Mediador mediador = (Mediador) request.getAttribute("mediador"); %>
 
 <jsp:include page="../template/head.jsp"></jsp:include>
+
+<script src="js/masked.js" type="text/javascript"></script>
+<script src="js/mediador.js" type="text/javascript"></script>
 	
 	<div class="panel panel-primary panel-addUser">
     		
@@ -16,6 +19,14 @@
 		
 		
 		<div class="panel-body">
+		
+			<div class="form-group erro-msg" style="width: 100%; display: none;">
+				<div class="alert alert-danger fade in text-center" role="alert">
+					<span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+			    	<span class="sr-only">Erro:</span>
+			    	<span>Verifique o campo em vermelho</span>                
+				</div>
+			</div>
 		
         	<jsp:include page="/template/msg.jsp"></jsp:include>
         	
@@ -35,7 +46,7 @@
 
 					<div class="form-group">
 			           	<label class="form-label ages">CPF:</label>
-			           	<input class="form-control" id="cpf" name="cpf" value="<%=mediador.getCpf() %>" type="text" maxlength="120" readonly>
+			           	<input class="form-control" id="cpf" name="cpf" value="<%=mediador.getCpf() %>" type="text" maxlength="14" readonly>
 		            </div>
 				
 					<div class="form-group">		
