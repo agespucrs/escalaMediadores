@@ -297,3 +297,9 @@ body {
 	border: 1px solid #F00; 
 	padding: 2px;
 }
+
+.campoNoFinalDireita {
+	position: relative;
+	margin-left: -50px;
+	bottom: -280px;
+}
