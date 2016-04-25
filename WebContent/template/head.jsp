@@ -32,12 +32,11 @@
 		<link rel="stylesheet" type="text/css" href="./css/bootstrap-duallistbox.min.css">
 		
 		<!-- Include the plugin's CSS and JS: Cassio DateTime Picker -->
-		<script type="text/javascript" src="./js/moment.js"></script>
-		<script type="text/javascript" src="./js/pt-br.js"></script>
-		<script type="text/javascript" src="./js/transition.js"></script>
-		<script type="text/javascript" src="./js/collapse.js"></script>
-		<script type="text/javascript" src="./js/bootstrap-datetimepicker.min.js"></script>
-		<link rel="stylesheet" type="text/css" href="./css/bootstrap-datetimepicker.min.css">
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css">
+		
+		
 		
 	
 	</head>

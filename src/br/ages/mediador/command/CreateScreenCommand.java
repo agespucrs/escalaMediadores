@@ -26,7 +26,7 @@ public class CreateScreenCommand implements Command {
 				break;
 			
 			default:
-				this.proxima = "mediador/index.jsp";
+				this.proxima = "escala/escalaMes.jsp";
 				break;
 			}
 
