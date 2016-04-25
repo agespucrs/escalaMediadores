@@ -1,9 +1,10 @@
+<%@page import="br.ages.util.Util"%>
 <%@page import="java.util.Arrays"%>
 <%@page import="java.util.List"%>
-<%@page import="br.ages.model.Usuario"%>
+<%@page import="br.ages.model.AreaConhecimento"%>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 
-<%Usuario usuario = (Usuario) request.getAttribute("usuario"); %>
+<%AreaConhecimento area = (AreaConhecimento) request.getAttribute("area"); %>
 
 <jsp:include page="../template/head.jsp"></jsp:include>
 	
@@ -21,54 +22,56 @@
         	<div class="table-responsive">
                 
                 <form method="post" action="main?acao=editaArea">
-                	<input class="form-control" type="hidden" id="idUsuario" name="idUsuario" value="<%=usuario.getIdUsuario()%>">
+                	<input class="form-control" type="hidden" id="idArea" name="idArea" value="<%=area.getIdAreaConhecimento()%>">
                		<div class="form-group">
-			           	<label class="form-label ages">Matrícula:</label>
-			           	<input class="form-control" id="matricula" name="matricula" value="<%=usuario.getMatricula() %>" type="text" maxlength="9" readonly>
+			           	<label class="form-label ages">Número:</label>
+			           	<input class="form-control" id="numero" name="numero" value="<%=area.getNumero() %>" type="text" maxlength="6" readonly>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Nome: <span class="red">*</span></label>
-			           	<input class="form-control" id="nome" name="nome" value="<%=usuario.getNome() %>" type="text" maxlength="120" required>
+			           	<input class="form-control" id="nome" name="nome" value="<%=area.getNome() %>" type="text" maxlength="120" required>
 		            </div>
 
 					<div class="form-group">
-			           	<label class="form-label ages">Usuário:</label>
-			           	<input class="form-control" id="usuario" name="usuario" value="<%=usuario.getUsuario() %>" type="text" maxlength="120" readonly>
+			           	<label class="form-label ages">Pavimento: <span class="red">*</span></label>
+			           	<select class="form-control" id="pavimento" name="pavimento" required>
+                            <option value="PRIMEIRO" <%= "PRIMEIRO".equals(area.getPavimento().name()) ? "selected" : "" %>>Primeiro</option>
+			           		<option value="SEGUNDO" <%= "SEGUNDO".equals(area.getPavimento().name()) ? "selected" : "" %>>Segundo</option>
+			           		<option value="TERCEIRO" <%= "TERCEIRO".equals(area.getPavimento().name()) ? "selected" : "" %>>Terceiro</option>
+		           		</select>
 		            </div>
                     
 					<div class="form-group">
-			           	<label class="form-label ages">Senha: <span class="red">*</span></label>
-			           	<input class="form-control" id="senha" name="senha" value="<%=usuario.getSenha() %>" type="text" maxlength="8" required>
-		            </div>
-				
-					<div class="form-group">
-			           	<label class="form-label ages">E-Mail: <span class="red">*</span></label>
-			           	<input class="form-control" id="email" name="email" value="<%=usuario.getEmail() %>" type="text" maxlength="120" required>
-		            </div>
-                    
-                    <div class="form-group">
-			           	<label class="form-label ages">Perfil de Acesso: <span class="red">*</span></label>
-			           	<select class="form-control" id="perfilAcesso" name="perfilAcesso" required>
-                            <option value="NAVEGADOR" <%= "NAVEGADOR".equals(usuario.getPerfilAcesso().toString()) ? "selected" : "" %>>Navegador</option>
-			           		<option value="ADMINISTRADOR" <%= "ADMINISTRADOR".equals(usuario.getPerfilAcesso().toString()) ? "selected" : "" %>>Administrador</option>
+			           	<label class="form-label ages">Status: <span class="red">*</span></label>
+			           	<select class="form-control" id="statusArea" name="statusArea" required>
+                            <option value="ATIVO" <%= "ATIVO".equals(area.getPavimento().name()) ? "selected" : "" %>>Ativo</option>
+			           		<option value="INATIVO" <%= "INATIVO".equals(area.getPavimento().name()) ? "selected" : "" %>>Inativo</option>			           		
 		           		</select>
 		            </div>
 		            
 		            <div class="form-group">
 			           	<label class="form-label ages">Status: <span class="red">*</span></label>
-			           	<select class="form-control" id="statusUsuario" name="statusUsuario" required>
-			           		<option value="ATIVO" <%= "ATIVO".equals(usuario.getStatusUsuario().toString()) ? "selected" : "" %>>Ativo</option>
-                            <option value="INATIVO" <%= "INATIVO".equals(usuario.getStatusUsuario().toString()) ? "selected" : "" %>>Inativo</option>
+			           	<select class="form-control" id="tipoArea" name="tipoArea" required>
+                            <option value="UM" <%= "UM".equals(area.getTipoArea().name()) ? "selected" : "" %>>Um</option>
+			           		<option value="DOIS" <%= "DOIS".equals(area.getTipoArea().name()) ? "selected" : "" %>>Dois</option>			           		
 		           		</select>
+		            </div>
+				
+					<div class="form-group">
+			           	<label class="form-label ages">Número de Mediadores: <span class="red">*</span></label>
+			           	<input class="form-control" id="numeroMediadores" name="numeroMediadores" value="<%=area.getNumeroMediadores() %>" type="text" maxlength="25" required>
+		            </div>
+                    
+                    <div class="form-group">
+			           	<label class="form-label ages">Observação: <span class="red">*</span></label>			           	
+			           	<input class="form-control" id="observacao" name="observacao" value="<%=area.getObservacao() %>" type="text" maxlength="255">
 		            </div>
 		            
 		            <div class="form-group">
-			           	<label class="form-label ages">Tipo de Usuário: <span class="red">*</span></label>
-			           	<select class="form-control" id="tipoUsuario" name="tipoUsuario" required>
-                            <option value="2" <%= usuario.getTipoUsuario().getIdTipoUsuario() == 2 ? "selected" : "" %>>Aluno</option>
-			           		<option value="1" <%= usuario.getTipoUsuario().getIdTipoUsuario() == 1 ? "selected" : "" %>>Arquiteto</option>
-		           		</select>
+			           	<label class="form-label ages">Data de cadastro: <span class="red">*</span></label>
+			           	<input class="form-control" value="<%=Util.dateToString(area.getDataCadastro()) %>" type="text" readonly>
+			           	<input class="form-control" id="dataCadastro" name="dataCadastro" value="<%=area.getDataCadastro() %>" type="hidden" maxlength="12" readonly>
 		            </div>
                     
                     <hr>
