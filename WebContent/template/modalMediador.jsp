@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	  	$(this).find('.modal-title').text('Excluir mediador');
 	  	$(this).find('#modal-descricao').text('Você realmente deseja excluir o mediador (' + mediador + ')?');
 	  	
-	  	$('#formExcluir').attr('action', "main?acao=removeMediador&id_mediador=" + id);
+	  	$('#formExcluir').attr('action', "main?acao=removeMediador&id_mediador=" + id + "&nome="+ mediador);
 	});
 	
 	

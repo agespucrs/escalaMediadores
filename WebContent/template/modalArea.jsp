@@ -9,7 +9,7 @@ $( document ).ready(function() {
 	  	$(this).find('.modal-title').text('Excluir área');
 	  	$(this).find('#modal-descricao').text('Você realmente deseja excluir a area (' + area + ')?');
 	  	
-	  	$('#formExcluir').attr('action', "main?acao=removeArea&id_area=" + id);
+	  	$('#formExcluir').attr('action', "main?acao=removeArea&id_area=" + id + "&nome="+area);
 	});
 	
 	

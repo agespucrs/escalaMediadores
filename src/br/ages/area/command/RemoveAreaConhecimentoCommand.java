@@ -26,9 +26,10 @@ public class RemoveAreaConhecimentoCommand implements Command{
 			if( !usuario.getPerfilAcesso().equals(PerfilAcesso.ADMINISTRADOR) ) throw new NegocioException(MensagemContantes.MSG_INF_SEM_PERMISSAO);
 			
 			Integer idArea = Integer.parseInt(request.getParameter("id_area"));
+			String nomeArea = request.getParameter("nome");
 		
 			areaBO.removeArea(idArea);			
-			//request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_USUARIO.replace("?", idUsuario.toString()).concat("<br/>"));
+			request.setAttribute("msgSucesso", MensagemContantes.MSG_SUC_REMOVE_AREA.replace("?", nomeArea).concat("<br/>"));
 			
 		} catch (Exception e) {
 			request.setAttribute("msgErro", e.getMessage());

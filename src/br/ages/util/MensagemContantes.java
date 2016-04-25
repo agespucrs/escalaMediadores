@@ -117,6 +117,8 @@ public class MensagemContantes {
 	public static final String MSG_ERR_MEDIADOR_DADOS_INVALIDOS = "Dados do Mediador inv√°lidos ou inconsistentes!";
 	
 	public static final String MSG_SUC_EDICAO_MEDIADOR = "Mediador ? editado com sucesso!";
+	
+	public static final String MSG_SUC_REMOVE_MEDIADOR= "Mediador ? removido com sucesso!";
 
 	//msgs de Areas
 	
@@ -133,4 +135,6 @@ public class MensagemContantes {
 	public static final String MSG_ERR_NUMERO_MIN_TURNO = "Selecionar ao menos um turno!";
 	
 	public static final String MSG_SUC_EDICAO_AREA = "Area ? editado com sucesso!";
+	
+	public static final String MSG_SUC_REMOVE_AREA= "¡rea ? removida com sucesso!";
 }
