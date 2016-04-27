@@ -83,7 +83,12 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=tela&tela=escalaDia">Diária</a></li>
-				            	<li><a href="main?acao=tela&tela=">Mensal</a></li>
+				            	<li class="dropdown-submenu"><a tabindex="-1" href="#">Mensal</a>
+				            		<ul class="dropdown-menu">
+				            			<li><a tabindex="-1" href="main?acao=tela&tela=">Cadastrar Escala Mensal</a></li>
+						            	<li><a tabindex="-1" href="main?acao=tela&tela=">Listar Escala Mensal</a></li>
+				            		</ul>
+				            	</li>
 				            	
 				          	</ul>
         				</li>
@@ -116,5 +121,3 @@
 			      	
 		    	</div>
 			</nav>
-
-    		
