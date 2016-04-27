@@ -18,7 +18,7 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<sgbd.url>jdbc:mysql://localhost:3306/ages_e</sgbd.url>
+				<sgbd.url>jdbc:mysql://localhost:3306/escala_e</sgbd.url>
 				<sgbd.user>root</sgbd.user>
 				<sgbd.password>senha</sgbd.password>
 				<upload.path>c:\\uploadProjetos</upload.path>
