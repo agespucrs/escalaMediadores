@@ -57,7 +57,7 @@
 					</div>
 					<div class="col-sm-6">
 						<label class="form-label ages">Numero de Mediadores: <span class="red">*</span></label> 
-						<input class="form-control" id="numero_mediadores" name="numero_mediadores" value="1" type="number"  maxlength="2">
+						<input class="form-control" id="numero_mediadores" name="numero_mediadores" value="1" type="text"  maxlength="2">
 					</div>
 				</div>
 				<div class="row">					
