@@ -26,7 +26,7 @@
 							class="form-control" id="mediadorSelecionado">
 							<option disabled selected value default></option>
 							<option>Cássio</option>
-							<option disabled>Chanin</option>
+							<option>Chanin</option>
 							<option disabled>Alan</option>
 						</select>
 					</div>
@@ -35,13 +35,11 @@
 					<div class="col-sm-8">
 						<label class="form-label ages">Selecione o mês: </label> <select
 							class="form-control" id="mesSelecionado">
-							<option disabled selected value></option>
 						</select>
 					</div>
 					<div class="col-sm-4 pull-right">
 						<label class="form-label ages">Selecione o Ano: </label> <select
 							class="form-control" id="anoSelecionado">
-							<option disabled selected value></option>
 						</select>
 					</div>
 				</div>
@@ -83,9 +81,8 @@
 						<div class="col-sm-8">
 							<label class="form-label ages">Selecione as datas de
 								folga:</label>
-							<div class="checkbox">
-								<label><input type="checkbox" value="" id="feriasMed">O
-									mediador está de férias</label>
+							<div class="col-sm-offset-2">
+								<input type="button" class="btn btn-primary btn-sm" value="Marcar todo o mês" id="feriasMed">
 							</div>
 							<div class="datepicker"></div>
 						</div>
@@ -109,6 +106,12 @@
 <script>
 	$(document).ready(function() {
 		
+		// Variaveis Globais
+		var date = new Date();
+		var startDate;
+		var endDate;
+		
+		
 		// Função para listar anos
 		
 		function listYears(){
@@ -123,7 +126,8 @@
 		function listMonths(){
 			var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto",
 			                  "Setembro", "Outubro", "Novembro", "Dezembro"];
-			for(i = 0; i < monthNames.length; i++){
+			var actualMonth = date.getMonth();
+			for(i = actualMonth; i < monthNames.length; i++){
 				$('#mesSelecionado').append($('<option>', {
 					value: i,
 					text: monthNames[i]
@@ -135,29 +139,23 @@
 		// Inicializações
 		listMonths();
 		listYears();
-		var date = new Date();
-		var startDate;
-		var endDate;
 		
 		$('.userData').hide();
 		$('.gerarEscala').prop("disabled", true);
 		$('.gerarEscalaMensal').prop("disabled", true);
 		
 		// Validações para enable do botão
-		var habilitaBotao = {mediador: false, mes: false, ano: false};
+		var habilitaBotao = {mediador: false};
 		
 		$('#mediadorSelecionado').change(function(){
+			$('.userData').hide();
+			$('.gerarEscalaMensal').show();
+			if($('.datepicker').data('datepicker') != null){
+				$('.datepicker').data('datepicker').remove();
+			}
+			$('#mesSelecionado').prop('disabled', false);
+			$('#anoSelecionado').prop('disabled', false);
 			habilitaBotao['mediador'] = true;
-			habilitaBotaoValida();
-		});
-		
-		$('#mesSelecionado').change(function(){
-			habilitaBotao['mes'] = true;
-			habilitaBotaoValida();
-		});
-		
-		$('#anoSelecionado').change(function(){
-			habilitaBotao['ano'] = true;
 			habilitaBotaoValida();
 		});
 		
@@ -191,8 +189,10 @@
 			$('.gerarEscalaMensal').click(function(){
 				$('.userData').show();
 				$('.gerarEscalaMensal').hide();
-				startDate = new Date(date.getFullYear(), parseInt($('#mesSelecionado').val()), 1);
-				endDate = new Date(date.getFullYear(), parseInt($('#mesSelecionado').val())+1, 0);
+				$('#mesSelecionado').prop('disabled', true);
+				$('#anoSelecionado').prop('disabled', true)
+				startDate = new Date(parseInt($('#anoSelecionado').val()), parseInt($('#mesSelecionado').val()), 1);
+				endDate = new Date(parseInt($('#anoSelecionado').val()), parseInt($('#mesSelecionado').val())+1, 0);
 				console.log(startDate);
 				console.log(endDate);
 				startDatePicker(startDate, endDate);
@@ -205,21 +205,17 @@
 			$('.gerarEscala').prop("disabled", false);
 		});
 		
-		$('#feriasMed').change(function(){
-			if($(this).prop('checked')){
-				$('.datepicker').data('datepicker').clearDates();
-				var arrayDates = [];
-				for(i = 0; i <= endDate.getDate(); i++){
-					var auxDate = new Date(startDate.getFullYear(), startDate.getMonth(), i);
-					if((auxDate.getDay() != 1)){
-						arrayDates.push(auxDate);
-					}
+		$('#feriasMed').click(function(){
+			$('.datepicker').data('datepicker').clearDates();
+			var arrayDates = [];
+			for(i = 0; i <= endDate.getDate(); i++){
+				var auxDate = new Date(startDate.getFullYear(), startDate.getMonth(), i);
+				if((auxDate.getDay() != 1)){
+					arrayDates.push(auxDate);
 				};
-				$('.datepicker').data('datepicker').setDates(arrayDates);
-			} else {
-				$('.datepicker').data('datepicker').destroy();
-				startDatePicker(startDate, endDate);
 			};
+				$('.datepicker').data('datepicker').setDates(arrayDates);
+			
 		});
 	});
 </script>
