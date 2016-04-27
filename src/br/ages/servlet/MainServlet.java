@@ -73,6 +73,9 @@ public class MainServlet extends HttpServlet {
 		comandos.put("editaArea", new EditAreaConhecimentoCommand());
 		comandos.put("listaArea", new ListAreaConhecimentoCommand());
 		comandos.put("removeArea", new RemoveAreaConhecimentoCommand());
+		
+		//COMANDOS DE ESCALA
+		
 	}
 
 	@Override
