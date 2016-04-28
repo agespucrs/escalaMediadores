@@ -106,6 +106,14 @@
 <script>
 	$(document).ready(function() {
 		
+		$.ajax({
+			dataType: "json",
+			url: this.href,
+			success: function(data){
+				alert("VAI POR FaVOR!");
+			}
+		});
+		
 		// Variaveis Globais
 		var date = new Date();
 		var startDate;

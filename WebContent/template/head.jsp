@@ -85,10 +85,10 @@
 				            	<li><a href="main?acao=tela&tela=escalaDia">Diária</a></li>
 				            	<li class="dropdown-submenu"><a tabindex="-1" href="#">Mensal</a>
 				            		<ul class="dropdown-menu">
-				            			<li><a tabindex="-1" href="main?acao=tela&tela=">Cadastrar Escala Mensal</a></li>
+				            			<li><a tabindex="-1" href="main?acao=escalaMensal">Cadastrar Escala Mensal</a></li>
 						            	<li><a tabindex="-1" href="main?acao=tela&tela=">Listar Escala Mensal</a></li>
 				            		</ul>
-				            	</li>
+				            	</li>	
 				            	
 				          	</ul>
         				</li>
