@@ -71,5 +71,14 @@ public class Mediador
 	public void  setDataCadastro( Date value){
 		 dataCadastro = value;
 	}
+
+	@Override
+	public String toString() {
+		return "[idMediador=" + idMediador + ", cpf=" + cpf + ", matricula=" + matricula + ", nome=" + nome
+				+ ", email=" + email + ", tipoMediador=" + tipoMediador + ", statusMediador=" + statusMediador
+				+ ", dataCadastro=" + dataCadastro + "]";
+	}
+	
+	
 }
 

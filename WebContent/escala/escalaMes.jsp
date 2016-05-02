@@ -3,6 +3,8 @@
 <%@page import="java.util.List"%>
 <%@page import="br.ages.model.Usuario"%>
 <%@page import="br.ages.model.TipoUsuario"%>
+<%@page import="org.json.JSONObject" %>
+<%@page import="br.ages.model.Mediador" %>
 <%@page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -12,7 +14,6 @@
 
 	<div class="panel-heading panel-heading-custom text-center">Cadastro
 		de Escala Mensal</div>
-
 
 	<div class="panel-body">
 
@@ -24,10 +25,8 @@
 					<div class="col-sm-12">
 						<label class="form-label ages">Selecione um Mediador: </label> <select
 							class="form-control" id="mediadorSelecionado">
-							<option disabled selected value default></option>
-							<option>Cássio</option>
-							<option>Chanin</option>
-							<option disabled>Alan</option>
+							<% 	List<Mediador> listaMediadores = (List<Mediador>) request.getAttribute("listaArrayMediador");
+							%>
 						</select>
 					</div>
 				</div>
@@ -106,22 +105,23 @@
 <script>
 	$(document).ready(function() {
 		
-		$.ajax({
-			dataType: "json",
-			url: this.href,
-			success: function(data){
-				alert("VAI POR FaVOR!");
-			}
-		});
+		var arrayWithMeds = new Array();
+		var auxFinal = <%= listaMediadores.size() %>
+		<% int aux = 0; %>
+		for(i = 0; i < auxFinal; i++){
+			arrayWithMeds[i] = <%= listaMediadores.get(aux).toString() %>;
+		   <% aux++; %>
+		}
+		
+		console.log(arrayWithMeds);
 		
 		// Variaveis Globais
 		var date = new Date();
 		var startDate;
 		var endDate;
 		
-		
+			
 		// Função para listar anos
-		
 		function listYears(){
 			for(i = 2016; i <= 2100; i++){
 				$('#anoSelecionado').append($('<option>', {

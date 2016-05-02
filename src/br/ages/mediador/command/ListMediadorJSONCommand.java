@@ -24,9 +24,11 @@ public class ListMediadorJSONCommand implements Command {
 		proxima = "/escala/escalaMes.jsp";
 
 		try {
-			JSONArray lista = convertToJson(mediadorBO.listarMediadores());
+			List<Mediador> listaMediador = mediadorBO.listarMediadores();
+			JSONArray lista = convertToJson(listaMediador);
 			System.out.print(lista.toString());
 			request.setAttribute("listaMediador", lista);
+			request.setAttribute("listaArrayMediador", listaMediador);
 		} catch (NegocioException se) {
 			se.printStackTrace();
 		}
