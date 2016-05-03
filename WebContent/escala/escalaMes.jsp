@@ -105,16 +105,10 @@
 <script>
 	$(document).ready(function() {
 		
-		var arrayWithMeds = new Array();
-		var auxFinal = <%= listaMediadores.size() %>
-		<% int aux = 0; %>
-		for(i = 0; i < auxFinal; i++){
-			arrayWithMeds[i] = <%= listaMediadores.get(aux).toString() %>;
-		   <% aux++; %>
-		}
+		var JSON = <%= request.getAttribute("listaMediador") %>
 		
-		console.log(arrayWithMeds);
-		
+		console.log(JSON);
+			
 		// Variaveis Globais
 		var date = new Date();
 		var startDate;
