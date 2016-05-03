@@ -25,7 +25,17 @@
 					<div class="col-sm-12">
 						<label class="form-label ages">Selecione um Mediador: </label> <select
 							class="form-control" id="mediadorSelecionado">
-							<% 	List<Mediador> listaMediadores = (List<Mediador>) request.getAttribute("listaArrayMediador");
+							<option disabled selected value=""></option>
+							<%
+								List<Mediador> lista = (List<Mediador>) request.getAttribute("arrayList");
+								int aux = 0;
+								for(Mediador med : lista) {
+							%>
+							<option value="<%=aux%>"><%= med.getNome() %></option>
+							<%
+							 		aux++;
+								}
+								aux = 0;
 							%>
 						</select>
 					</div>
@@ -54,24 +64,24 @@
 					<div class="row">
 						<div class="col-sm-8">
 							<label class="form-label ages">Nome:</label> <input
-								class="form-control" id="nomeMediador" value="Cássio Trindade"
+								class="form-control" id="nomeMediador"
 								type="text" readonly="readonly">
 						</div>
 						<div class="col-sm-4">
 							<label class="form-label ages">Matricula:</label> <input
-								class="form-control" id="matriculaMediador" value="15905044"
+								class="form-control" id="matriculaMediador"
 								type="text" readonly="readonly">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col-sm-6">
 							<label class="form-label ages">Data de Cadastro:</label> <input
-								class="form-control" id="dataCadastro" value="09/04/2016"
+								class="form-control" id="dataCadastro"
 								type="text" readonly="readonly">
 						</div>
 						<div class="col-sm-6">
 							<label class="form-label ages">CPF: </label> <input
-								class="form-control" name="cpf" value="026.208.158-90"
+								class="form-control" id="cpfMediador"
 								type="text" readonly="readonly">
 						</div>
 					</div>
@@ -107,8 +117,6 @@
 		
 		var JSON = <%= request.getAttribute("listaMediador") %>
 		
-		console.log(JSON);
-			
 		// Variaveis Globais
 		var date = new Date();
 		var startDate;
@@ -125,10 +133,11 @@
 			};
 		};
 		
-		function listMonths(){
+		function listMonths(month){
 			var monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho", "Julho", "Agosto",
 			                  "Setembro", "Outubro", "Novembro", "Dezembro"];
-			var actualMonth = date.getMonth();
+			$('#mesSelecionado').empty();
+			var actualMonth = month;
 			for(i = actualMonth; i < monthNames.length; i++){
 				$('#mesSelecionado').append($('<option>', {
 					value: i,
@@ -139,7 +148,7 @@
 		
 		
 		// Inicializações
-		listMonths();
+		listMonths(date.getMonth());
 		listYears();
 		
 		$('.userData').hide();
@@ -159,6 +168,15 @@
 			$('#anoSelecionado').prop('disabled', false);
 			habilitaBotao['mediador'] = true;
 			habilitaBotaoValida();
+		});
+		
+		$('#anoSelecionado').change(function(){
+			var auxAnoSelecionado = $('#anoSelecionado').val();
+			if(auxAnoSelecionado == date.getFullYear()){
+				listMonths(date.getMonth());
+			} else {
+				listMonths(0)
+			};
 		});
 		
 		function habilitaBotaoValida(){
@@ -192,7 +210,11 @@
 				$('.userData').show();
 				$('.gerarEscalaMensal').hide();
 				$('#mesSelecionado').prop('disabled', true);
-				$('#anoSelecionado').prop('disabled', true)
+				$('#anoSelecionado').prop('disabled', true);
+				$('#nomeMediador').val(JSON[$("#mediadorSelecionado").val()]["nome"]);
+				$('#matriculaMediador').val(JSON[$("#mediadorSelecionado").val()]["matricula"]);
+				$('#cpfMediador').val(JSON[$("#mediadorSelecionado").val()]["cpf"]);
+				$('#dataCadastro').val(JSON[$("#mediadorSelecionado").val()]["dataCadastro"]);
 				startDate = new Date(parseInt($('#anoSelecionado').val()), parseInt($('#mesSelecionado').val()), 1);
 				endDate = new Date(parseInt($('#anoSelecionado').val()), parseInt($('#mesSelecionado').val())+1, 0);
 				console.log(startDate);
@@ -200,7 +222,6 @@
 				startDatePicker(startDate, endDate);
 			});
 
-		
 		// EventHandler do Datepicker
 
 		$('.datepicker').on("changeDate", function() {

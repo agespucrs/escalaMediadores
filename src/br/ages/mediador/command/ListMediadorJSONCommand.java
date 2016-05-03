@@ -26,8 +26,8 @@ public class ListMediadorJSONCommand implements Command {
 		try {
 			List<Mediador> listaMediador = mediadorBO.listarMediadores();
 			JSONArray lista = convertToJson(listaMediador);
-			System.out.print(lista.toString());
-			request.setAttribute("listaMediador", lista.toString());
+			request.setAttribute("arrayList", listaMediador);
+			request.setAttribute("listaMediador", lista);
 		} catch (NegocioException se) {
 			se.printStackTrace();
 		}
