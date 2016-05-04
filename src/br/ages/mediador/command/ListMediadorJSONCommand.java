@@ -21,7 +21,7 @@ public class ListMediadorJSONCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 		mediadorBO = new MediadorBO();
-		proxima = "/escala/escalaMes.jsp";
+		proxima = "escala/escalaMes.jsp";
 
 		try {
 			List<Mediador> listaMediador = mediadorBO.listarMediadores();

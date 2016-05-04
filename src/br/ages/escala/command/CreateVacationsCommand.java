@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import br.ages.escala.bo.EscalaBO;
 import br.ages.exception.NegocioException;
 import br.ages.mediador.bo.MediadorBO;
+import br.ages.model.Mediador;
 import br.ages.usuario.command.Command;
 
 public class CreateVacationsCommand implements Command {
@@ -20,12 +21,15 @@ public class CreateVacationsCommand implements Command {
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 		escalaBO = new EscalaBO();
 		mediadorBO = new MediadorBO();
-		proxima = "escala/escalaMes.jsp";
-		
-		int id_mediador = mediadorBO.pesquisarMediadorPorNome(request.getParameter("nome")).getIdMediador();
-		String[] datas = request.getParameterValues("datas");
+		proxima = "main?acao=escalaMensal";
 		System.out.println("\f");
-		System.out.println(datas.length);
+		String teste = request.getParameter("nome");
+		System.out.println(teste);
+		try{
+			
+		} catch(Exception e){
+			e.printStackTrace();
+		}
 		
 		return proxima;
 	}

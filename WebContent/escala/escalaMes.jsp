@@ -19,7 +19,7 @@
 
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
-		<form method="post" action="#" id="feriasMensal">
+		<form method="post" action="main?acao=addFolga" id="feriasMensal">
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-12">
