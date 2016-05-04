@@ -19,7 +19,7 @@
 
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
-		<form method="post" action="#">
+		<form method="post" action="#" id="feriasMensal">
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-12">
@@ -64,7 +64,7 @@
 					<div class="row">
 						<div class="col-sm-8">
 							<label class="form-label ages">Nome:</label> <input
-								class="form-control" id="nomeMediador"
+								class="form-control" id="nomeMediador" value="${param.nome}"
 								type="text" readonly="readonly">
 						</div>
 						<div class="col-sm-4">
@@ -93,7 +93,9 @@
 							<div class="col-sm-offset-2">
 								<input type="button" class="btn btn-primary btn-sm" value="Marcar todo o mês" id="feriasMed">
 							</div>
-							<div class="datepicker"></div>
+							<div class="datepicker">
+								<input type="hidden" id="datas" value="${param.datas}">
+							</div>
 						</div>
 						<div class="col-sm-3 campoNoFinalDireita">
 							<div class="row">
@@ -221,6 +223,16 @@
 				console.log(endDate);
 				startDatePicker(startDate, endDate);
 			});
+		
+		$('#feriasMensal').submit(function(){
+			var arrayAux = $('.datepicker').data('datepicker').getDates();
+			var arrayMilliseconds = [];
+			for(i = 0; i < arrayAux.length; i++){
+				arrayMilliseconds.push(arrayAux[i].getTime());
+			}
+			$('#datas').val(arrayMilliseconds);
+			alert($('#datas').val());
+		});
 
 		// EventHandler do Datepicker
 
