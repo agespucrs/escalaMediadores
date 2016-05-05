@@ -8,6 +8,10 @@ public class Ferias {
 	private String ano;
 	private String tipoFolga;
 	
+	public Ferias(){
+		
+	}
+	
 	public Ferias(int idEscalaMes, int idMediador, String dia, String mes, String ano, String tipoFolga) {
 		this.idEscalaMes = idEscalaMes;
 		this.idMediador = idMediador;

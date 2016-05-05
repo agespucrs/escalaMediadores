@@ -1,6 +1,7 @@
 package br.ages.escala.bo;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import br.ages.escala.dao.EscalaDAO;
 import br.ages.exception.NegocioException;
@@ -25,4 +26,15 @@ public class EscalaBO {
 		return id;
 	}
 
+	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){
+		ArrayList<Ferias> ferias = null;
+		
+		try {
+			ferias = escalaDAO.listarEscalaMensalPorMediador(idMediador);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ferias;
+	}
 }
