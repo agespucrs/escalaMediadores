@@ -154,7 +154,7 @@ public class MediadorBO {
 		Mediador med = new Mediador();
 				
 		try{
-			med = mediadorDAO.pesquisarMediadorPorCpf(matricula);
+			med = mediadorDAO.pesquisarMediadorPorMatricula(matricula);
 		} catch(PersistenciaException | SQLException se){
 			se.printStackTrace();
 			throw new NegocioException(se);

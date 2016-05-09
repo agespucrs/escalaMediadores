@@ -80,7 +80,7 @@ CREATE TABLE `escala_e`.`tb_escala_mes` (
   `dia` VARCHAR(2) NOT NULL ,
   `mes` VARCHAR(2) NOT NULL  ,
   `ano` VARCHAR(4) NOT NULL  ,
-  `tipo_folga` VARCHAR(45) NOT NULL  ,
+  `tipo_folga` VARCHAR(45),
   PRIMARY KEY (`id_escala_mes`)   ,
   FOREIGN KEY (id_mediador) REFERENCES tb_mediador(id_mediador), 
   UNIQUE INDEX `id_escala_mes_UNIQUE` (`id_escala_mes` ASC));

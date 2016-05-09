@@ -28,14 +28,13 @@ public class EscalaDAO {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			
-			sql.append("insert into tb_escala_mes(id_mediador, dia, mes, ano, tipo_folga)");
-			sql.append("values(?, ?, ?, ?, ?)");
+			sql.append("insert into tb_escala_mes(id_mediador, dia, mes, ano)");
+			sql.append("values(?, ?, ?, ?)");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString(), Statement.RETURN_GENERATED_KEYS);
 			statement.setInt(1, folga.getIdMediador());
 			statement.setString(2, folga.getDia());
 			statement.setString(3, folga.getMes());
 			statement.setString(4, folga.getAno());
-			statement.setString(5, folga.getTipoFolga());
 
 			statement.executeUpdate();
 			ResultSet resultset = statement.getGeneratedKeys();
@@ -58,7 +57,7 @@ public class EscalaDAO {
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from tb_escala_mes where id_mediador = "+idMediador);
+			sql.append("select * from tb_escala_mes where id_mediador = ?");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idMediador);
@@ -82,6 +81,20 @@ public class EscalaDAO {
 		return ferias;
 	}
 	
+	public void deletarFeriasPorId(int id) throws SQLException{
+		Connection conexao = null;
+		
+		try{
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("delete from tb_escala_mes where id_mediador = ?");
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setInt(1, id);
+			statement.execute();
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 }
 
 

@@ -25,6 +25,14 @@ public class EscalaBO {
 		}
 		return id;
 	}
+	
+	public void deletarFeriasPorId(int id){
+		try{
+			escalaDAO.deletarFeriasPorId(id);
+		} catch(Exception e){
+			e.printStackTrace();
+		}
+	}
 
 	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){
 		ArrayList<Ferias> ferias = null;

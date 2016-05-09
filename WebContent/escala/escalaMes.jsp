@@ -231,7 +231,8 @@
 				arrayMilliseconds.push(arrayAux[i].getTime());
 			}
 			$('#datas').val(arrayMilliseconds);
-			alert($('#datas').val());
+			$('#feriasMensal').attr('action', "main?acao=addFolga&matricula=" + $('#matriculaMediador').val() +
+			"&datas=" + arrayMilliseconds);
 		});
 
 		// EventHandler do Datepicker
