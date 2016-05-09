@@ -1,10 +1,11 @@
 package br.ages.model;
 
+import java.sql.Date;
+
 public class EscalaMediador {
 	
-	public Mediador mediador;
-	public AreaConhecimento areaManha;
-	public AreaConhecimento areaAlmoco;
-	public AreaConhecimento areaTarde;
-
+ public Mediador mediador;
+ public AreaConhecimento area;
+ public Date data;
+ public Turno turno;
 }
