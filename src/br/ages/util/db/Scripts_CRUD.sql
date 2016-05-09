@@ -123,5 +123,13 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
 
-  
-  
+/*Turno das escalas*/  
+  CREATE TABLE `escala_e`.`tb_turno` (
+  `id_turno` INT NOT NULL AUTO_INCREMENT COMMENT '',
+  `nome` VARCHAR(45) NOT NULL COMMENT '',
+  PRIMARY KEY (`id_turno`)  COMMENT '');
+
+/*INSERTS turnos*/
+INSERT INTO tb_turno VALUES('1','MANHÃ');
+INSERT INTO tb_turno VALUES('2','ALMOÇO');
+INSERT INTO tb_turno VALUES('3','TARDE'); 
