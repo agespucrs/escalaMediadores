@@ -284,9 +284,13 @@ public class MediadorDAO {
         try{
             conexao = ConexaoUtil.getConexao();
             StringBuilder sql = new StringBuilder();
-            sql.append("select * from tb_mediador where status_mediador == 'ATIVO';");//ARRUMAR
-             
-             
+            sql.append("SELECT id_mediador AS id, cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador WHERE status_mediador = 'ATIVO'");//ARRUMAR
+//            SELECT id_mediador,cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador 
+//            WHERE status_mediador = "ATIVO"	
+//            AND id_mediador NOT IN(SELECT id_mediador FROM tb_escala_mes WHERE dia = '08' AND mes = '05' AND ano = '2016');
+//            usaremos caso necessario 
+            
+            
             PreparedStatement statement = conexao.prepareStatement(sql.toString());
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
