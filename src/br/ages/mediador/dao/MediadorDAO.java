@@ -286,35 +286,40 @@ public class MediadorDAO {
 	}
 
 	public List<Mediador> listaMediadoresAtivos() throws PersistenciaException, SQLException {
-		Connection conexao = null;
-		try {
-			conexao = ConexaoUtil.getConexao();
-			StringBuilder sql = new StringBuilder();
-			sql.append("select * from tb_mediador where status_mediador == 'ATIVO';");// ARRUMAR
-
-			PreparedStatement statement = conexao.prepareStatement(sql.toString());
-			ResultSet resultSet = statement.executeQuery();
-			while (resultSet.next()) {
-				Mediador med = new Mediador();
-				java.util.Date dataCadastro = new java.util.Date();
-				dataCadastro = resultSet.getDate("data_cadastro");
-				med.setIdMediador(resultSet.getInt("id_mediador"));
-				med.setCpf(resultSet.getString("cpf"));
-				med.setMatricula(resultSet.getString("matricula"));
-				med.setNome(resultSet.getString("nome"));
-				med.setEmail(resultSet.getString("email"));
-				med.setTipoMediador(Tipo.valueOf(resultSet.getString("tipo_mediador")));
-				med.setStatusMediador(Status.valueOf(resultSet.getString("status_mediador")));
-				med.setDataCadastro(dataCadastro);
-
-				listaResultado.add(med);
-			}
-		} catch (ClassNotFoundException | SQLException se) {
-			throw new PersistenciaException(se);
-		} finally {
-			conexao.close();
-		}
-
-		return listaResultado;
-	}
+        Connection conexao = null;
+        try{
+            conexao = ConexaoUtil.getConexao();
+            StringBuilder sql = new StringBuilder();
+            sql.append("SELECT id_mediador AS id, cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador WHERE status_mediador = 'ATIVO'");//ARRUMAR
+//            SELECT id_mediador,cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador 
+//            WHERE status_mediador = "ATIVO"	
+//            AND id_mediador NOT IN(SELECT id_mediador FROM tb_escala_mes WHERE dia = '08' AND mes = '05' AND ano = '2016');
+//            usaremos caso necessario 
+            
+            
+            PreparedStatement statement = conexao.prepareStatement(sql.toString());
+            ResultSet resultSet = statement.executeQuery();
+            while(resultSet.next()){
+                Mediador med = new Mediador();
+                java.util.Date dataCadastro = new java.util.Date();
+                dataCadastro = resultSet.getDate("data_cadastro");
+                med.setIdMediador(resultSet.getInt("id_mediador"));
+                med.setCpf(resultSet.getString("cpf"));
+                med.setMatricula(resultSet.getString("matricula"));
+                med.setNome(resultSet.getString("nome"));
+                med.setEmail(resultSet.getString("email"));
+                med.setTipoMediador(Tipo.valueOf(resultSet.getString("tipo_mediador")));
+                med.setStatusMediador(Status.valueOf(resultSet.getString("status_mediador")));
+                med.setDataCadastro(dataCadastro);
+                 
+                listaResultado.add(med);
+            }
+        } catch(ClassNotFoundException | SQLException se){
+            throw new PersistenciaException(se);
+        } finally{
+            conexao.close();
+        }
+         
+        return listaResultado;
+    }
 }
