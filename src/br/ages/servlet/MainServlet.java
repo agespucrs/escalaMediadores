@@ -18,6 +18,7 @@ import br.ages.area.command.EditAreaConhecimentoCommand;
 import br.ages.area.command.ListAreaConhecimentoCommand;
 import br.ages.area.command.RemoveAreaConhecimentoCommand;
 import br.ages.escala.command.CreateVacationsCommand;
+import br.ages.escala.command.ListarEscalaMensalCommand;
 import br.ages.mediador.command.AddMediadorCommand;
 import br.ages.mediador.command.CreateScreenCommand;
 import br.ages.mediador.command.CreateScreenMediadorCommand;
@@ -79,6 +80,7 @@ public class MainServlet extends HttpServlet {
 		
 		//COMANDOS DE ESCALA
 		comandos.put("addFolga", new CreateVacationsCommand());
+		comandos.put("listEscalaMensal", new ListarEscalaMensalCommand());
 	}
 
 	@Override

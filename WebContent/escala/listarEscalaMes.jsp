@@ -1,3 +1,4 @@
+<%@page import="br.ages.model.Ferias"%>
 <%@page import="br.ages.model.Mediador"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="java.util.Arrays"%>
@@ -8,7 +9,7 @@
 	pageEncoding="ISO-8859-1"%>
 
 <jsp:include page="../template/head.jsp"></jsp:include>
-<jsp:include page="../template/modalMediador.jsp"></jsp:include>
+<jsp:include page="../template/modalEscalaMes.jsp"></jsp:include>
 
 <div class="panel panel-default panel-addUser">
 
@@ -52,15 +53,49 @@
 		
 		            <thead>
 		                <tr>
-		                    <th style="text-align: center;">Mediador</th>
-							<th style="text-align: center;">Folgas</th>
+		                	<th style="text-align: center;">IdEscalaMes</th>
+		                	<th style="text-align: center;">IdMediador</th>
+		                	<th style="text-align: center;">Dia</th>
+		                    <th style="text-align: center;">Mes</th>
+							<th style="text-align: center;">Ano</th>
+							<th style="text-align: center;">TipoFolga</th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
 		                </tr>
 		            </thead>
 					
 					<tbody> 
-		            	
+		            	<%
+		            		List<Ferias> ferias = (List<Ferias>)request.getAttribute("listEscalaMes");
+		            		for(Ferias folga : ferias){		            			
+		            	%>
+		            	<tr>
+		            		<td align="center"><%=folga.getIdEscalaMes() %></td>
+		            		<td align="center"><%=folga.getIdMediador() %></td>
+		            		<td align="center"><%=folga.getDia() %></td>
+		            		<td align="center"><%=folga.getMes() %></td>
+		            		<td align="center"><%=folga.getAno() %></td>
+		            		<td align="center"><%=folga.getTipoFolga() %></td>
+		            		<td align="center">
+		            			<form action="" method="post">
+									<a href="" data-toggle="modal"
+										data-id="<%=folga.getIdEscalaMes() %>"										 
+										data-target="#modalEditar"
+										title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
+								</form>
+		            		
+		            		</td>
+		            		<td align="center">
+								<form action="" method="post">
+									<a href="" data-toggle="modal"
+										data-id="<%=folga.getIdEscalaMes()%>"										
+										title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
+								</form>
+							</td>
+		            	</tr>		            	
+		            	<%
+		            		}
+		            	%>
 					</tbody>
 		            
 		        </table> 
@@ -68,6 +103,7 @@
 			</div>
 		</div>	
 	</div>
+	<jsp:include page="../template/foot.jsp"></jsp:include>
 <script>
 	$(document).ready(function() {
 		
