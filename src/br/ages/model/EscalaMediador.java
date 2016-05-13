@@ -8,4 +8,5 @@ public class EscalaMediador {
  public AreaConhecimento area;
  public Date data;
  public Turno turno;
+ 
 }

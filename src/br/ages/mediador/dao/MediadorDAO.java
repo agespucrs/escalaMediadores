@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.ParseException;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -285,16 +286,18 @@ public class MediadorDAO {
 		return med;
 	}
 
-	public List<Mediador> listaMediadoresAtivos() throws PersistenciaException, SQLException {
+	public List<Mediador> listaMediadoresAtivos(LocalDate data) throws PersistenciaException, SQLException {
         Connection conexao = null;
         try{
             conexao = ConexaoUtil.getConexao();
             StringBuilder sql = new StringBuilder();
-            sql.append("SELECT id_mediador AS id, cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador WHERE status_mediador = 'ATIVO'");//ARRUMAR
-//            SELECT id_mediador,cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador 
-//            WHERE status_mediador = "ATIVO"	
-//            AND id_mediador NOT IN(SELECT id_mediador FROM tb_escala_mes WHERE dia = '08' AND mes = '05' AND ano = '2016');
-//            usaremos caso necessario 
+            String dia = String.valueOf(data.getDayOfMonth());
+            String mes =String.valueOf(data.getMonthValue());
+            String ano =String.valueOf(data.getYear());
+            sql.append("SELECT id_mediador,cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador"
+            		+ " WHERE status_mediador = 'ATIVO' AND id_mediador "
+            		+ "NOT IN(SELECT id_mediador FROM tb_escala_mes WHERE dia = '"+dia+"' AND mes = '"+mes+"' AND ano = '"+ano+"')");
+
             
             
             PreparedStatement statement = conexao.prepareStatement(sql.toString());
