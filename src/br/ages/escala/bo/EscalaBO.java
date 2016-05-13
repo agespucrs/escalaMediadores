@@ -49,6 +49,18 @@ public class EscalaBO {
 		}
 	}
 
+	public ArrayList<Ferias> listarEscalaMensal(){
+		ArrayList<Ferias> ferias = null;
+		
+		try {
+			ferias = escalaDAO.listarEscalaMensal();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return ferias;
+	}
+	
 	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){
 		ArrayList<Ferias> ferias = null;
 		

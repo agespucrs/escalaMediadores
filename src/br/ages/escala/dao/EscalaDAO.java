@@ -50,6 +50,45 @@ public class EscalaDAO {
 		return 0;
 	}
 
+	public ArrayList<Ferias> listarEscalaMensal(){
+		Ferias folga = new Ferias();
+		Connection conexao = null;
+		
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select  * from tb_escala_mes;");
+			
+			/* 
+			 *  SELECT id_mediador, GROUP_CONCAT(dia
+				SEPARATOR  ' - ' )
+				FROM  tb_escala_mes 
+				where mes = "4" and ano = "2016"
+				GROUP BY id_mediador;
+			 */
+			
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultSet = statement.executeQuery();
+			
+			while(resultSet.next()){
+				folga = new Ferias();
+				folga.setIdEscalaMes(resultSet.getInt("id_escala_mes"));
+				folga.setIdMediador(resultSet.getInt("id_mediador"));
+				folga.setDia(resultSet.getString("dia"));
+				folga.setMes(resultSet.getString("mes"));
+				folga.setAno(resultSet.getString("ano"));
+				folga.setTipoFolga(resultSet.getString("tipo_folga"));
+				
+				ferias.add(folga);
+			}
+			
+		} catch (ClassNotFoundException | SQLException se) {
+			se.printStackTrace();
+		}
+		
+		return ferias;
+	}
+	
 	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){
 		Ferias folga = new Ferias();
 		Connection conexao = null;
@@ -57,7 +96,7 @@ public class EscalaDAO {
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from tb_escala_mes where id_mediador = ?");
+			sql.append("select * from tb_escala_mes where id_mediador = ?;");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idMediador);
