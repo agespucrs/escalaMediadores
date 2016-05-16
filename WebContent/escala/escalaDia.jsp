@@ -11,11 +11,21 @@
 	<div class="panel-heading panel-heading-custom">Escala Dia</div>
    	<div class="panel-body" id="panelBody">
 		<div class="row">
-			<div class="col-sm-6">
-				<label class="form-label ages">Pavimentos</label> 
+		<div class="col-sm-6">
+			<div class="col-sm-12">
+				<label class="form-label ages col-sm-2">Pavimentos</label> 
 				<input class="btn" type="button" id="pavimento1" value="Primeiro" /> 
 				<input class="btn" type="button" id="pavimento2" value="Segundo" /> 
 				<input class="btn" type="button" id="pavimento3" value="Terceiro" />
+			</div>
+			<br class="clear">
+			<br>
+			<div class="col-sm-12">
+				<label class="form-label ages col-sm-2">Turnos</label> 
+				<input class="btn" type="button" id="manha" value="Manhã" />
+				<input class="btn" type="button" id="almoco" value="Almoço" />
+				<input class="btn" type="button" id="tarde" value="Tarde" /> 
+			</div>
 			</div>
 			<div class="col-sm-4">
 				<label>Data Escala: 01/07/2016</label><br> <label>Turno MANHÃ</label>
@@ -24,13 +34,14 @@
 		            data-target="#modalGerarEscala">Gerar Nova Escala</button>
 		        </form>
 			</div>
+			<!-- 
 			<div class="col-sm-2 pull-right">
 				<label class="form-label ages">Turno </label> <select id="turno" name="turno">
 					<option value="manha">Manhã</option>
 					<option value="tarde">Tarde</option>
 					<option value="almoco">Almoço</option>
 				</select>
-			</div>
+			</div>-->
 		</div>
 		<div id="pavimentos" class="pavimento"  >
    			<!-- imagem pavimento um -->
@@ -232,24 +243,7 @@
 				</table>
         	</div>
 		</div>
-		<div class="legenda" id="legenda">
-		<table>
-			<tr>
-				<td style="background-color: #ff8000;"> Sem Mediador </td>
-			</tr>
-			<tr>
-				<td style="background-color: #ffff00;"> Turno Manhã </td>
-			</tr>
-			<tr>
-				<td style="background-color: #fff9c8;">Turno Almoço</td>
-			</tr>
-			<tr>
-				<td style="background-color: #00ff00;">Turno Tarde</td>
-			</tr>
-		</table>
-		</div>
-		
-   	</div>
+ 	</div>
 </div>
 <div id="coords" style="background-color: #ff8000;"></div>
 <jsp:include page="../template/foot.jsp"></jsp:include>
@@ -300,10 +294,10 @@ $('#pavimento3').click(function() {
 // umPavimento panelEscala
 $image = $('#doisPavimento');
 imgPos = [
-    $image.offset().left,
-    $image.offset().top,
     $image.offset().left + $image.outerWidth(),
-    $image.offset().top + $image.outerHeight()
+    $image.offset().top + $image.outerHeight(),
+    $image.offset().left,
+    $image.offset().top
 ];
 
 $image.mousemove(function(e){
