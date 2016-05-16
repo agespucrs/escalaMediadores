@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.mysql.jdbc.Statement;
 
@@ -50,43 +52,37 @@ public class EscalaDAO {
 		return 0;
 	}
 
-	public ArrayList<Ferias> listarEscalaMensal(){
-		Ferias folga = new Ferias();
+	public ArrayList<Object> listarEscalaMensal(String mes, String ano){		
+		Map<String, Object> folga = new HashMap<>();
+		ArrayList<Object> folgas = new ArrayList<>();
+		
 		Connection conexao = null;
 		
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select  * from tb_escala_mes;");
-			
-			/* 
-			 *  SELECT id_mediador, GROUP_CONCAT(dia
-				SEPARATOR  ' - ' )
-				FROM  tb_escala_mes 
-				where mes = "4" and ano = "2016"
-				GROUP BY id_mediador;
-			 */
+			sql.append("SELECT id_mediador, GROUP_CONCAT(dia SEPARATOR  ' - ' ) "
+					+ "FROM  tb_escala_mes "
+					+ "where mes = ? and ano = ? GROUP BY id_mediador;");			
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			statement.setString(1, mes);
+			statement.setString(2, ano);
 			ResultSet resultSet = statement.executeQuery();
 			
-			while(resultSet.next()){
-				folga = new Ferias();
-				folga.setIdEscalaMes(resultSet.getInt("id_escala_mes"));
-				folga.setIdMediador(resultSet.getInt("id_mediador"));
-				folga.setDia(resultSet.getString("dia"));
-				folga.setMes(resultSet.getString("mes"));
-				folga.setAno(resultSet.getString("ano"));
-				folga.setTipoFolga(resultSet.getString("tipo_folga"));
+			while(resultSet.next()){	
+				folga.put("idEscalaMes", resultSet.getInt("id_escala_mes"));
+				folga.put("idMediador", resultSet.getInt("id_mediador"));
+				folga.put("diasFolga", resultSet.getString("dia"));
 				
-				ferias.add(folga);
+				folgas.add(folga);
 			}
 			
 		} catch (ClassNotFoundException | SQLException se) {
 			se.printStackTrace();
 		}
 		
-		return ferias;
+		return folgas;
 	}
 	
 	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){

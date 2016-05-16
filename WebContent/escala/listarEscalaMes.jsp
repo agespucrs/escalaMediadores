@@ -1,3 +1,6 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
 <%@page import="br.ages.model.Ferias"%>
 <%@page import="br.ages.model.Mediador"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,12 +28,12 @@
 				<div class="row">
 					<div class="col-sm-8">
 						<label class="form-label ages">Selecione o mês: </label> <select
-							class="form-control" id="mesSelecionado">
+							class="form-control" id="mesSelecionado" name="mesSelecionado">
 						</select>
 					</div>
 					<div class="col-sm-4 pull-right">
 						<label class="form-label ages">Selecione o Ano: </label> <select
-							class="form-control" id="anoSelecionado">
+							class="form-control" id="anoSelecionado" name="anoSelecionado">
 						</select>
 					</div>
 				</div>
@@ -53,12 +56,8 @@
 		
 		            <thead>
 		                <tr>
-		                	<th style="text-align: center;">IdEscalaMes</th>
 		                	<th style="text-align: center;">IdMediador</th>
-		                	<th style="text-align: center;">Dia</th>
-		                    <th style="text-align: center;">Mes</th>
-							<th style="text-align: center;">Ano</th>
-							<th style="text-align: center;">TipoFolga</th>
+		                	<th style="text-align: center;">Dias</th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
 		                </tr>
@@ -66,20 +65,17 @@
 					
 					<tbody> 
 		            	<%
-		            		List<Ferias> ferias = (List<Ferias>)request.getAttribute("listEscalaMes");
-		            		for(Ferias folga : ferias){		            			
+		            		//List<Ferias> ferias = (List<Ferias>)request.getAttribute("listEscalaMes");	
+			            	ArrayList<Object> folgas = (ArrayList<Object>)request.getAttribute("listEscalaMes");		            		
+		            		for(Object f : folgas){		            			
 		            	%>
 		            	<tr>
-		            		<td align="center"><%=folga.getIdEscalaMes() %></td>
-		            		<td align="center"><%=folga.getIdMediador() %></td>
-		            		<td align="center"><%=folga.getDia() %></td>
-		            		<td align="center"><%=folga.getMes() %></td>
-		            		<td align="center"><%=folga.getAno() %></td>
-		            		<td align="center"><%=folga.getTipoFolga() %></td>
+		            		<td align="center"><%=//f.get("idMediador") %></td>
+		            		<td align="center"><%=//f.get("diasFolga") %></td>
 		            		<td align="center">
 		            			<form action="" method="post">
 									<a href="" data-toggle="modal"
-										data-id="<%=folga.getIdEscalaMes() %>"										 
+										data-id="<%=//f.get("idEscalaMes") %>"										 
 										data-target="#modalEditar"
 										title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 								</form>
@@ -88,7 +84,7 @@
 		            		<td align="center">
 								<form action="" method="post">
 									<a href="" data-toggle="modal"
-										data-id="<%=folga.getIdEscalaMes()%>"										
+										data-id="<%=//f.get("idEscalaMes")%>"										
 										title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
 								</form>
 							</td>

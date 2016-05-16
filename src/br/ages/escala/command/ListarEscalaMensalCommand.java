@@ -1,13 +1,12 @@
 package br.ages.escala.command;
 
 import java.sql.SQLException;
-import java.util.List;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
 import br.ages.escala.bo.EscalaBO;
 import br.ages.exception.NegocioException;
-import br.ages.model.Ferias;
 import br.ages.usuario.command.Command;
 
 public class ListarEscalaMensalCommand implements Command {
@@ -21,7 +20,10 @@ public class ListarEscalaMensalCommand implements Command {
 		proxima = "escala/listarEscalaMes.jsp";
 		
 		try {
-			List<Ferias> lista = escalaBO.listarEscalaMensal();
+			String mes = request.getParameter("mesSelecionado");
+			String ano = request.getParameter("anoSelecionado");
+			
+			ArrayList<Object> lista = escalaBO.listarEscalaMensal(mes, ano);
 			request.setAttribute("listEscalaMes", lista);
 			
 		} catch(Exception se){

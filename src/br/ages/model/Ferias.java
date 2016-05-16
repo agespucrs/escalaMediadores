@@ -11,8 +11,9 @@ public class Ferias {
 	public Ferias(){
 		
 	}
-	
+
 	public Ferias(int idEscalaMes, int idMediador, String dia, String mes, String ano, String tipoFolga) {
+		super();
 		this.idEscalaMes = idEscalaMes;
 		this.idMediador = idMediador;
 		this.dia = dia;

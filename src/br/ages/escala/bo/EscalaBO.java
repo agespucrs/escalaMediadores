@@ -49,11 +49,11 @@ public class EscalaBO {
 		}
 	}
 
-	public ArrayList<Ferias> listarEscalaMensal(){
-		ArrayList<Ferias> ferias = null;
+	public ArrayList<Object> listarEscalaMensal(String mes, String ano){
+		ArrayList<Object> ferias = null;
 		
 		try {
-			ferias = escalaDAO.listarEscalaMensal();
+			ferias = escalaDAO.listarEscalaMensal(mes, ano);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
