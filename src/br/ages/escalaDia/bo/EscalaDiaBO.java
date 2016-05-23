@@ -32,16 +32,18 @@ public class EscalaDiaBO {
 		List<Mediador> mediadoresAtivos = mediadorDao.listaMediadoresAtivos(data); 
 		escalaMediadores = new EscalaDia[mediadoresAtivos.size()];
 		for (int i = 0; i < escalaMediadores.length; i++) {
-			escalaMediadores[i].mediador = mediadoresAtivos.get(i);
+			escalaMediadores[i].setMediador(mediadoresAtivos.get(i));
 		}
 	}
 	
 	public void gerarAreaManha(){
 		
 	}
+	
 	public void gerarAreaAlmoco(){
 		
 	}
+	
 	public void gerarAreaTarde(){
 		
 	}
