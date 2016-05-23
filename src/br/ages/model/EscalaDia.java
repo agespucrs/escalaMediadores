@@ -2,7 +2,7 @@ package br.ages.model;
 
 import java.sql.Date;
 
-public class EscalaMediador {
+public class EscalaDia {
 	
  public Mediador mediador;
  public AreaConhecimento area;

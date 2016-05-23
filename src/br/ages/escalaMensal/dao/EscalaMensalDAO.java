@@ -1,4 +1,4 @@
-package br.ages.escala.dao;
+package br.ages.escalaMensal.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -14,11 +14,11 @@ import br.ages.exception.PersistenciaException;
 import br.ages.model.Ferias;
 import br.ages.util.ConexaoUtil;
 
-public class EscalaDAO {
+public class EscalaMensalDAO {
 
 	ArrayList<Ferias> ferias;
 	
-	public EscalaDAO() {
+	public EscalaMensalDAO() {
 		ferias = new ArrayList<Ferias>();
 	}
 

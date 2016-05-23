@@ -1,4 +1,4 @@
-package br.ages.escala.command;
+package br.ages.escalaMensal.command;
 
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -6,7 +6,7 @@ import java.util.Date;
 
 import javax.servlet.http.HttpServletRequest;
 
-import br.ages.escala.bo.EscalaBO;
+import br.ages.escalaMensal.bo.EscalaMensalBO;
 import br.ages.exception.NegocioException;
 import br.ages.mediador.bo.MediadorBO;
 import br.ages.model.Ferias;
@@ -16,12 +16,12 @@ import br.ages.usuario.command.Command;
 public class CreateVacationsCommand implements Command {
 
 	private String proxima;
-	private EscalaBO escalaBO;
+	private EscalaMensalBO escalaBO;
 	private MediadorBO mediadorBO;
 
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
-		escalaBO = new EscalaBO();
+		escalaBO = new EscalaMensalBO();
 		mediadorBO = new MediadorBO();
 		proxima = "main?acao=escalaMensal";
 		Mediador mediador = mediadorBO.pesquisarMediadorPorMatricula(request.getParameter("matricula"));
