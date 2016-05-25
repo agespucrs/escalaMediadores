@@ -107,11 +107,10 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
   `id_mediador` INT NOT NULL COMMENT '',
   `id_area_conhecimento` INT NOT NULL COMMENT '',
   `data_escala_dia` DATE NOT NULL COMMENT '',
-  `turno` VARCHAR(1) NULL COMMENT '',
+  `turno` VARCHAR(10) NULL COMMENT '',
   PRIMARY KEY (`id_escala_dia`)  COMMENT '',
   UNIQUE INDEX `id_escala_dia_UNIQUE` (`id_escala_dia` ASC)  COMMENT '',
   UNIQUE INDEX `id_mediador_UNIQUE` (`id_mediador` ASC)  COMMENT '',
-  UNIQUE INDEX `id_area_conhecimento_UNIQUE` (`id_area_conhecimento` ASC)  COMMENT '',
   CONSTRAINT `id_mediador`
     FOREIGN KEY (`id_mediador`)
     REFERENCES `escala_e`.`tb_mediador` (`id_mediador`)
@@ -122,14 +121,3 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
     REFERENCES `escala_e`.`tb_area_conhecimento` (`id_area_conhecimento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION);
-
-/*Turno das escalas*/  
-  CREATE TABLE `escala_e`.`tb_turno` (
-  `id_turno` INT NOT NULL AUTO_INCREMENT COMMENT '',
-  `nome` VARCHAR(45) NOT NULL COMMENT '',
-  PRIMARY KEY (`id_turno`)  COMMENT '');
-
-/*INSERTS turnos*/
-INSERT INTO tb_turno VALUES('1','MANHÃ');
-INSERT INTO tb_turno VALUES('2','ALMOÇO');
-INSERT INTO tb_turno VALUES('3','TARDE'); 

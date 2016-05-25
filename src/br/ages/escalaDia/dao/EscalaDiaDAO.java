@@ -5,12 +5,10 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
-import com.mysql.jdbc.Statement;
+import java.sql.Statement;
 
 import br.ages.exception.PersistenciaException;
 import br.ages.model.EscalaDia;
-import br.ages.model.Ferias;
 import br.ages.util.ConexaoUtil;
 
 public class EscalaDiaDAO {
@@ -31,7 +29,7 @@ public class EscalaDiaDAO {
 			statement.setInt(1, escala.getMediador().getIdMediador());
 			statement.setInt(2, escala.getArea().getIdAreaConhecimento());
 			statement.setDate(3, data);
-//			statement.setString(4, escala.getTurno()); TODO
+			statement.setString(4, escala.getTurno().toString());
 
 			statement.executeUpdate();
 			ResultSet resultset = statement.getGeneratedKeys();
