@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import br.ages.escalaMensal.bo.EscalaMensalBO;
 import br.ages.exception.NegocioException;
+import br.ages.model.EscalaMensalDTO;
 import br.ages.usuario.command.Command;
 
 public class ListarEscalaMensalCommand implements Command {
@@ -21,9 +22,12 @@ public class ListarEscalaMensalCommand implements Command {
 		
 		try {
 			String mes = request.getParameter("mesSelecionado");
+			//int mesI = Integer.parseInt(mesS) + 1;
+			//String mes = String.valueOf(mesI);
+			
 			String ano = request.getParameter("anoSelecionado");
 			
-			ArrayList<Object> lista = escalaBO.listarEscalaMensal(mes, ano);
+			ArrayList<EscalaMensalDTO> lista = escalaBO.listarEscalaMensal(mes, ano);
 			request.setAttribute("listEscalaMes", lista);
 			
 		} catch(Exception se){

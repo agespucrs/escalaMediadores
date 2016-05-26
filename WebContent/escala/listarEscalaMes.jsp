@@ -1,3 +1,4 @@
+<%@page import="br.ages.model.EscalaMensalDTO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -65,17 +66,16 @@
 					
 					<tbody> 
 		            	<%
-		            		//List<Ferias> ferias = (List<Ferias>)request.getAttribute("listEscalaMes");	
-			            	ArrayList<Object> folgas = (ArrayList<Object>)request.getAttribute("listEscalaMes");		            		
-		            		for(Object f : folgas){		            			
+		            		List<EscalaMensalDTO> ferias = (List<EscalaMensalDTO>)request.getAttribute("listEscalaMes");			         
+		            		for(EscalaMensalDTO f : ferias){		            			
 		            	%>
 		            	<tr>
-		            		<td align="center"><%=//f.get("idMediador") %></td>
-		            		<td align="center"><%=//f.get("diasFolga") %></td>
+		            		<td align="center"><%=f.getIdMediador() %></td>
+		            		<td align="center"><%=f.getDiasFolga() %></td>
 		            		<td align="center">
 		            			<form action="" method="post">
 									<a href="" data-toggle="modal"
-										data-id="<%=//f.get("idEscalaMes") %>"										 
+										data-id="<%=f.getIdEscalaMes() %>"										 
 										data-target="#modalEditar"
 										title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 								</form>
@@ -84,7 +84,7 @@
 		            		<td align="center">
 								<form action="" method="post">
 									<a href="" data-toggle="modal"
-										data-id="<%=//f.get("idEscalaMes")%>"										
+										data-id="<%=f.getIdEscalaMes()%>"										
 										title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
 								</form>
 							</td>
