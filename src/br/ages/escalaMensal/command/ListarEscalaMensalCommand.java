@@ -1,7 +1,10 @@
 package br.ages.escalaMensal.command;
 
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -18,14 +21,23 @@ public class ListarEscalaMensalCommand implements Command {
 	@Override
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 		escalaBO = new EscalaMensalBO();
-		proxima = "escala/listarEscalaMes.jsp";
-		
+		proxima = "escala/listarEscalaMes.jsp";		
+	
 		try {
-			String mes = request.getParameter("mesSelecionado");
-			//int mesI = Integer.parseInt(mesS) + 1;
-			//String mes = String.valueOf(mesI);
 			
+			String mes = request.getParameter("mesSelecionado");			
 			String ano = request.getParameter("anoSelecionado");
+			
+			if(mes == null || ano == null){
+				
+				GregorianCalendar calendario = new GregorianCalendar();
+				
+				mes = String.valueOf(calendario.get(GregorianCalendar.MONTH));
+				ano = String.valueOf(calendario.get(GregorianCalendar.YEAR));
+			} else {
+				mes = request.getParameter("mesSelecionado");			
+				ano = request.getParameter("anoSelecionado");
+			}
 			
 			ArrayList<EscalaMensalDTO> lista = escalaBO.listarEscalaMensal(mes, ano);
 			request.setAttribute("listEscalaMes", lista);

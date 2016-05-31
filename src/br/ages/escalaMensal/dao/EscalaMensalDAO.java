@@ -70,7 +70,6 @@ public class EscalaMensalDAO {
 						
 			while(resultSet.next()){	
 				EscalaMensalDTO folga = new EscalaMensalDTO();
-				//folga.setIdEscalaMes(resultSet.getInt("id_escala_mes"));
 				folga.setIdMediador(resultSet.getInt("id_mediador"));				
 				folga.setDiasFolga(resultSet.getString("dia"));
 				
