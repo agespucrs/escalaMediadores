@@ -300,6 +300,7 @@ public class MediadorDAO {
 
             
             
+            
             PreparedStatement statement = conexao.prepareStatement(sql.toString());
             ResultSet resultSet = statement.executeQuery();
             while(resultSet.next()){
