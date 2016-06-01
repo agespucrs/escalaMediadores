@@ -85,17 +85,18 @@ public class EscalaMensalDAO {
 		return folgas;
 	}
 	
-	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){
+	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador, String mes){
 		Ferias folga = new Ferias();
 		Connection conexao = null;
 		
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from tb_escala_mes where id_mediador = ?;");
+			sql.append("select * from tb_escala_mes where id_mediador = ? and mes = ?;");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idMediador);
+			statement.setString(2, mes);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()){
@@ -116,15 +117,16 @@ public class EscalaMensalDAO {
 		return ferias;
 	}
 	
-	public void deletarFeriasPorId(int id) throws SQLException{
+	public void deletarFeriasPorIdMes(int id, String mes) throws SQLException{
 		Connection conexao = null;
 		
 		try{
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("delete from tb_escala_mes where id_mediador = ?");
+			sql.append("delete from tb_escala_mes where id_mediador = ? and mes = ?");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, id);
+			statement.setString(2, mes);
 			statement.execute();
 		} catch(Exception e){
 			e.printStackTrace();

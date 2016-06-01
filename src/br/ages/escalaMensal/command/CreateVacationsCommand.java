@@ -28,9 +28,13 @@ public class CreateVacationsCommand implements Command {
 		String datas = request.getParameter("datas");
 		String[] todasDatas = datas.split(",");
 
-		try {
-			if (!escalaBO.listarEscalaMensalPorMediador(mediador.getIdMediador()).isEmpty()) {
-				escalaBO.deletarFeriasPorId(mediador.getIdMediador());
+		try {			
+			java.util.Date getMes = new java.util.Date(Long.parseLong(todasDatas[0]));
+			Calendar calendario = Calendar.getInstance();
+			calendario.setTime(getMes);
+			String mes = Integer.toString(calendario.get(Calendar.MONTH));
+			if (!escalaBO.listarEscalaMensalPorMediador(mediador.getIdMediador(), mes).isEmpty()) {
+				escalaBO.deletarFeriasPorId(mediador.getIdMediador(), mes);
 			}
 			for (int i = 0; i < todasDatas.length; i++) {
 				Ferias f = new Ferias();
