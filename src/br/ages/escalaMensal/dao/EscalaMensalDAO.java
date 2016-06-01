@@ -59,9 +59,13 @@ public class EscalaMensalDAO {
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT id_mediador, GROUP_CONCAT(dia SEPARATOR  ' - ' ) dia "
-					+ "FROM  tb_escala_mes "
-					+ "where mes = ? and ano = ? GROUP BY id_mediador;");			
+			sql.append("SELECT med.id_mediador, med.nome, e.dia "
+					+ "FROM tb_mediador as med, "
+					+ "(SELECT id_mediador, GROUP_CONCAT(dia SEPARATOR  ' - ' ) dia "
+						+ "FROM  tb_escala_mes "
+						+ "WHERE mes = ? and ano = ? "
+						+ "GROUP BY id_mediador) as e "
+						+ "WHERE e.id_mediador = med.id_mediador;");			
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, mes);
@@ -70,7 +74,8 @@ public class EscalaMensalDAO {
 						
 			while(resultSet.next()){	
 				EscalaMensalDTO folga = new EscalaMensalDTO();
-				folga.setIdMediador(resultSet.getInt("id_mediador"));				
+				folga.setIdMediador(resultSet.getInt("id_mediador"));	
+				folga.setNome(resultSet.getString("nome"));
 				folga.setDiasFolga(resultSet.getString("dia"));
 				
 				folgas.add(folga);
