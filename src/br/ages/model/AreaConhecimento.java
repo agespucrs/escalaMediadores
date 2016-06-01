@@ -14,6 +14,9 @@ public class AreaConhecimento
 	private String observacao;
 	private Date dataCadastro;
 	
+	public AreaConhecimento(){		
+	}
+	
 	public AreaConhecimento(int idAreaConhecimento, int numero, String nome, Pavimento pavimento, Tipo tipoArea, Status statusArea, int numeroMediadores, String observacao, Date dataCadastro){
 		this.idAreaConhecimento = idAreaConhecimento;
 		this.numero = numero;
