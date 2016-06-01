@@ -35,9 +35,9 @@ public class EscalaMensalBO {
 		return id;
 	}
 	
-	public void deletarFeriasPorId(int id){
+	public void deletarFeriasPorId(int id, String mes){
 		try{
-			escalaDAO.deletarFeriasPorId(id);
+			escalaDAO.deletarFeriasPorIdMes(id, mes);
 		} catch(Exception e){
 			e.printStackTrace();
 		}
@@ -55,11 +55,11 @@ public class EscalaMensalBO {
 		return ferias;
 	}
 	
-	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){
+	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador, String mes){
 		ArrayList<Ferias> ferias = null;
 		
 		try {
-			ferias = escalaDAO.listarEscalaMensalPorMediador(idMediador);
+			ferias = escalaDAO.listarEscalaMensalPorMediador(idMediador, mes);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

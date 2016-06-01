@@ -23,14 +23,18 @@ public class CreateVacationsCommand implements Command {
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 		escalaBO = new EscalaMensalBO();
 		mediadorBO = new MediadorBO();
-		proxima = "main?acao=escalaMensal";
+		proxima = "main?acao=listEscalaMensal";
 		Mediador mediador = mediadorBO.pesquisarMediadorPorMatricula(request.getParameter("matricula"));
 		String datas = request.getParameter("datas");
 		String[] todasDatas = datas.split(",");
 
-		try {
-			if (!escalaBO.listarEscalaMensalPorMediador(mediador.getIdMediador()).isEmpty()) {
-				escalaBO.deletarFeriasPorId(mediador.getIdMediador());
+		try {			
+			java.util.Date getMes = new java.util.Date(Long.parseLong(todasDatas[0]));
+			Calendar calendario = Calendar.getInstance();
+			calendario.setTime(getMes);
+			String mes = Integer.toString(calendario.get(Calendar.MONTH));
+			if (!escalaBO.listarEscalaMensalPorMediador(mediador.getIdMediador(), mes).isEmpty()) {
+				escalaBO.deletarFeriasPorId(mediador.getIdMediador(), mes);
 			}
 			for (int i = 0; i < todasDatas.length; i++) {
 				Ferias f = new Ferias();

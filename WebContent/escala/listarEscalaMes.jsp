@@ -15,7 +15,7 @@
 <jsp:include page="../template/head.jsp"></jsp:include>
 <jsp:include page="../template/modalEscalaMes.jsp"></jsp:include>
 
-<div class="panel panel-default panel-addUser">
+<div class="panel panel-default">
 
 	<div class="panel-heading panel-heading-custom text-center">Lista
 		de Escala Mensal</div>
@@ -57,7 +57,8 @@
 		
 		            <thead>
 		                <tr>
-		                	<th style="text-align: center;">IdMediador</th>
+		                	<th style="text-align: center;">ID Mediador</th>
+		                	<th style="text-align: center;">Nome</th>
 		                	<th style="text-align: center;">Dias</th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
@@ -71,6 +72,7 @@
 		            	%>
 		            	<tr>
 		            		<td align="center"><%=f.getIdMediador() %></td>
+		            		<td align="center"><%=f.getNome() %></td>
 		            		<td align="center"><%=f.getDiasFolga() %></td>
 		            		<td align="center">
 		            			<form action="" method="post">
