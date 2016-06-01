@@ -13,6 +13,18 @@ public class AreaConhecimento
 	private int numeroMediadores;
 	private String observacao;
 	private Date dataCadastro;
+	
+	public AreaConhecimento(int idAreaConhecimento, int numero, String nome, Pavimento pavimento, Tipo tipoArea, Status statusArea, int numeroMediadores, String observacao, Date dataCadastro){
+		this.idAreaConhecimento = idAreaConhecimento;
+		this.numero = numero;
+		this.nome = nome;
+		this.pavimento = pavimento;
+		this.tipoArea = tipoArea;
+		this.statusArea = statusArea;
+		this.numeroMediadores = numeroMediadores;
+		this.observacao = observacao;
+		this.dataCadastro = dataCadastro;
+	}
 									
 	public int getIdAreaConhecimento(){
 		 return idAreaConhecimento;
