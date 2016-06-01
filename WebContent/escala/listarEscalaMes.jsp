@@ -1,3 +1,4 @@
+<%@page import="br.ages.model.EscalaMensalDTO"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
@@ -14,7 +15,7 @@
 <jsp:include page="../template/head.jsp"></jsp:include>
 <jsp:include page="../template/modalEscalaMes.jsp"></jsp:include>
 
-<div class="panel panel-default panel-addUser">
+<div class="panel panel-default">
 
 	<div class="panel-heading panel-heading-custom text-center">Lista
 		de Escala Mensal</div>
@@ -23,7 +24,7 @@
 
 		<jsp:include page="/template/msg.jsp"></jsp:include>
 
-		<form method="post" action="#">
+		<form method="post" action="main?acao=listEscalaMensal">
 			<div class="form-group">
 				<div class="row">
 					<div class="col-sm-8">
@@ -41,13 +42,13 @@
 					<div class="row">
 						<div class="text-center pull-right">
 						<br>
-							<input class="btn btn-primary gerarEscalaMensal" type="button" value="Listar">
+							<input class="btn btn-primary gerarEscalaMensal" type="submit" value="Listar">
 						</div>
 					</div>
 				</div>
 			</div>			
 			</form>
-			<div class="userData">
+			<div class="userData1">
 			<br><br><br>
 				<jsp:include page="/template/msg.jsp"></jsp:include>
 		        <div class="table-responsive">
@@ -56,7 +57,8 @@
 		
 		            <thead>
 		                <tr>
-		                	<th style="text-align: center;">IdMediador</th>
+		                	<th style="text-align: center;">ID Mediador</th>
+		                	<th style="text-align: center;">Nome</th>
 		                	<th style="text-align: center;">Dias</th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
 							<th data-sortable="false" style="text-align: center; width:10px"></th>
@@ -65,17 +67,17 @@
 					
 					<tbody> 
 		            	<%
-		            		//List<Ferias> ferias = (List<Ferias>)request.getAttribute("listEscalaMes");	
-			            	ArrayList<Object> folgas = (ArrayList<Object>)request.getAttribute("listEscalaMes");		            		
-		            		for(Object f : folgas){		            			
+		            		List<EscalaMensalDTO> ferias = (List<EscalaMensalDTO>)request.getAttribute("listEscalaMes");			         
+		            		for(EscalaMensalDTO f : ferias){		            			
 		            	%>
 		            	<tr>
-		            		<td align="center"><%=//f.get("idMediador") %></td>
-		            		<td align="center"><%=//f.get("diasFolga") %></td>
+		            		<td align="center"><%=f.getIdMediador() %></td>
+		            		<td align="center"><%=f.getNome() %></td>
+		            		<td align="center"><%=f.getDiasFolga() %></td>
 		            		<td align="center">
 		            			<form action="" method="post">
 									<a href="" data-toggle="modal"
-										data-id="<%=//f.get("idEscalaMes") %>"										 
+										data-id="<%=f.getIdMediador() %>"										 
 										data-target="#modalEditar"
 										title="Editar"> <i class="glyphicon glyphicon-pencil"></i></a>
 								</form>
@@ -84,7 +86,7 @@
 		            		<td align="center">
 								<form action="" method="post">
 									<a href="" data-toggle="modal"
-										data-id="<%=//f.get("idEscalaMes")%>"										
+										data-id="<%=f.getIdMediador()%>"										
 										title="Deletar"> <i class="glyphicon glyphicon-trash"></i></a>
 								</form>
 							</td>
@@ -170,7 +172,6 @@
 		
 		// EventHandler do Botao
 			$('.gerarEscalaMensal').click(function(){
-				$('.userData').show();
 				startDate = new Date(parseInt($('#anoSelecionado').val()), parseInt($('#mesSelecionado').val()), 1);
 				endDate = new Date(parseInt($('#anoSelecionado').val()), parseInt($('#mesSelecionado').val())+1, 0);
 				console.log(startDate);

@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
 
+import br.ages.area.dao.AreaConhecimentoDAO;
 import br.ages.escalaDia.dao.EscalaDiaDAO;
 import br.ages.exception.PersistenciaException;
 import br.ages.mediador.dao.MediadorDAO;
@@ -15,12 +16,15 @@ public class EscalaDiaBO {
 
 	LocalDate data;
 	EscalaDia[] escalaMediadores;
+	EscalaDia[] ultimaEscala;
 	AreaConhecimento[] area;
+	AreaConhecimentoDAO areaDao;
 	MediadorDAO mediadorDao;
 	EscalaDiaDAO escalaDiaDao;
 	
+
 	
-	public EscalaDia[] gerarEscala(LocalDate data) throws PersistenciaException, SQLException{
+	public EscalaDia[] gerarEscala(LocalDate data) throws PersistenciaException, SQLException, ClassNotFoundException{
 		this.data = data;
 		gerarEscalaMediador();
 		gerarAreaManha();
@@ -38,9 +42,12 @@ public class EscalaDiaBO {
 		}
 	}
 	
-	public void gerarAreaManha(){
+	public void gerarAreaManha() throws ClassNotFoundException, PersistenciaException, SQLException{
+		List<AreaConhecimento> areasDisponiveis = areaDao.listarAreasDisponiveis();
 		for (int i = 0; i < escalaMediadores.length; i++) {
-			//escalaMediadores[i].setArea(
+			//escalaMediadores[i].setArea(){}
+			
+			
 		}
 	}
 	

@@ -8,6 +8,7 @@ import br.ages.escalaMensal.dao.EscalaMensalDAO;
 import br.ages.exception.NegocioException;
 import br.ages.exception.PersistenciaException;
 import br.ages.mediador.dao.MediadorDAO;
+import br.ages.model.EscalaMensalDTO;
 import br.ages.model.Ferias;
 
 public class EscalaMensalBO {
@@ -42,8 +43,8 @@ public class EscalaMensalBO {
 		}
 	}
 
-	public ArrayList<Object> listarEscalaMensal(String mes, String ano){
-		ArrayList<Object> ferias = null;
+	public ArrayList<EscalaMensalDTO> listarEscalaMensal(String mes, String ano){
+		ArrayList<EscalaMensalDTO> ferias = null;
 		
 		try {
 			ferias = escalaDAO.listarEscalaMensal(mes, ano);

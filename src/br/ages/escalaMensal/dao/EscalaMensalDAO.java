@@ -5,12 +5,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import com.mysql.jdbc.Statement;
 
 import br.ages.exception.PersistenciaException;
+import br.ages.model.EscalaMensalDTO;
 import br.ages.model.Ferias;
 import br.ages.util.ConexaoUtil;
 
@@ -52,28 +51,32 @@ public class EscalaMensalDAO {
 		return 0;
 	}
 
-	public ArrayList<Object> listarEscalaMensal(String mes, String ano){		
-		Map<String, Object> folga = new HashMap<>();
-		ArrayList<Object> folgas = new ArrayList<>();
+	public ArrayList<EscalaMensalDTO> listarEscalaMensal(String mes, String ano){
+		ArrayList<EscalaMensalDTO> folgas = new ArrayList<>();
 		
 		Connection conexao = null;
 		
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT id_mediador, GROUP_CONCAT(dia SEPARATOR  ' - ' ) "
-					+ "FROM  tb_escala_mes "
-					+ "where mes = ? and ano = ? GROUP BY id_mediador;");			
+			sql.append("SELECT med.id_mediador, med.nome, e.dia "
+					+ "FROM tb_mediador as med, "
+					+ "(SELECT id_mediador, GROUP_CONCAT(dia SEPARATOR  ' - ' ) dia "
+						+ "FROM  tb_escala_mes "
+						+ "WHERE mes = ? and ano = ? "
+						+ "GROUP BY id_mediador) as e "
+						+ "WHERE e.id_mediador = med.id_mediador;");			
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, mes);
 			statement.setString(2, ano);
 			ResultSet resultSet = statement.executeQuery();
-			
+						
 			while(resultSet.next()){	
-				folga.put("idEscalaMes", resultSet.getInt("id_escala_mes"));
-				folga.put("idMediador", resultSet.getInt("id_mediador"));
-				folga.put("diasFolga", resultSet.getString("dia"));
+				EscalaMensalDTO folga = new EscalaMensalDTO();
+				folga.setIdMediador(resultSet.getInt("id_mediador"));	
+				folga.setNome(resultSet.getString("nome"));
+				folga.setDiasFolga(resultSet.getString("dia"));
 				
 				folgas.add(folga);
 			}
