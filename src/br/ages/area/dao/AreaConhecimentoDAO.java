@@ -139,6 +139,43 @@ public class AreaConhecimentoDAO {
 
 		return areas;
 	}
+	
+	
+	//test
+	public List<AreaConhecimento> listarAreasDisponiveis() throws ClassNotFoundException, PersistenciaException, SQLException {
+		Connection conexao = null;
+		try {
+			conexao = ConexaoUtil.getConexao();
+			StringBuilder sql = new StringBuilder();
+			sql.append("select * from tb_area_conhecimento where status_area = 'ATIVO';");
+
+			PreparedStatement statement = conexao.prepareStatement(sql.toString());
+			ResultSet resultSet = statement.executeQuery();
+
+			while (resultSet.next()) {
+				AreaConhecimento area = new AreaConhecimento();
+				java.util.Date dataCadastro = new java.util.Date();
+				dataCadastro = resultSet.getDate("data_cadastro");
+				area.setDataCadastro(dataCadastro);
+				area.setIdAreaConhecimento(resultSet.getInt("id_area_conhecimento"));
+				area.setNome(resultSet.getString("nome"));
+				area.setNumero(resultSet.getInt("numero"));
+				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
+				area.setObservacao(resultSet.getString("observacao"));
+				area.setStatusArea(Status.valueOf(resultSet.getString("status_area")));
+				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
+				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));				
+
+				areas.add(area);
+			}
+
+		} catch (ClassNotFoundException | SQLException se) {
+			se.printStackTrace();
+		}
+
+		return areas;
+	}
+	
 
 	public AreaConhecimento buscarPorNome(String nome) throws PersistenciaException, SQLException {
 		AreaConhecimento area = new AreaConhecimento();

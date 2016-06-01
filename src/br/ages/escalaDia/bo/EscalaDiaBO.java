@@ -48,8 +48,6 @@ public class EscalaDiaBO {
 			//escalaMediadores[i].setArea(){}
 			
 			
-			
-			
 		}
 	}
 	

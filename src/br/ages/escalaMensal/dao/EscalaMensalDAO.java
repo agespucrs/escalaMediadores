@@ -59,9 +59,13 @@ public class EscalaMensalDAO {
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("SELECT id_mediador, GROUP_CONCAT(dia SEPARATOR  ' - ' ) dia "
-					+ "FROM  tb_escala_mes "
-					+ "where mes = ? and ano = ? GROUP BY id_mediador;");			
+			sql.append("SELECT med.id_mediador, med.nome, e.dia "
+					+ "FROM tb_mediador as med, "
+					+ "(SELECT id_mediador, GROUP_CONCAT(dia SEPARATOR  ' - ' ) dia "
+						+ "FROM  tb_escala_mes "
+						+ "WHERE mes = ? and ano = ? "
+						+ "GROUP BY id_mediador) as e "
+						+ "WHERE e.id_mediador = med.id_mediador;");			
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setString(1, mes);
@@ -70,7 +74,8 @@ public class EscalaMensalDAO {
 						
 			while(resultSet.next()){	
 				EscalaMensalDTO folga = new EscalaMensalDTO();
-				folga.setIdMediador(resultSet.getInt("id_mediador"));				
+				folga.setIdMediador(resultSet.getInt("id_mediador"));	
+				folga.setNome(resultSet.getString("nome"));
 				folga.setDiasFolga(resultSet.getString("dia"));
 				
 				folgas.add(folga);
@@ -83,17 +88,18 @@ public class EscalaMensalDAO {
 		return folgas;
 	}
 	
-	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador){
+	public ArrayList<Ferias> listarEscalaMensalPorMediador(int idMediador, String mes){
 		Ferias folga = new Ferias();
 		Connection conexao = null;
 		
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from tb_escala_mes where id_mediador = ?;");
+			sql.append("select * from tb_escala_mes where id_mediador = ? and mes = ?;");
 			
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, idMediador);
+			statement.setString(2, mes);
 			ResultSet resultSet = statement.executeQuery();
 			
 			while(resultSet.next()){
@@ -114,15 +120,16 @@ public class EscalaMensalDAO {
 		return ferias;
 	}
 	
-	public void deletarFeriasPorId(int id) throws SQLException{
+	public void deletarFeriasPorIdMes(int id, String mes) throws SQLException{
 		Connection conexao = null;
 		
 		try{
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			sql.append("delete from tb_escala_mes where id_mediador = ?");
+			sql.append("delete from tb_escala_mes where id_mediador = ? and mes = ?");
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			statement.setInt(1, id);
+			statement.setString(2, mes);
 			statement.execute();
 		} catch(Exception e){
 			e.printStackTrace();
