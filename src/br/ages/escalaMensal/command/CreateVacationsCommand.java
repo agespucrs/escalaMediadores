@@ -23,7 +23,7 @@ public class CreateVacationsCommand implements Command {
 	public String execute(HttpServletRequest request) throws SQLException, NegocioException {
 		escalaBO = new EscalaMensalBO();
 		mediadorBO = new MediadorBO();
-		proxima = "main?acao=escalaMensal";
+		proxima = "main?acao=listEscalaMensal";
 		Mediador mediador = mediadorBO.pesquisarMediadorPorMatricula(request.getParameter("matricula"));
 		String datas = request.getParameter("datas");
 		String[] todasDatas = datas.split(",");
