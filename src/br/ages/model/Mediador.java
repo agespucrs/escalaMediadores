@@ -12,7 +12,25 @@ public class Mediador
 	private Tipo tipoMediador;
 	private Status statusMediador;
 	private Date dataCadastro;
-							
+	
+
+	public Mediador(){
+	}
+	
+	public Mediador(int idMediador, String cpf, String matricula, String nome, String email, Tipo tipoMediador,
+			Status statusMediador, Date dataCadastro) {
+		super();
+		this.idMediador = idMediador;
+		this.cpf = cpf;
+		this.matricula = matricula;
+		this.nome = nome;
+		this.email = email;
+		this.tipoMediador = tipoMediador;
+		this.statusMediador = statusMediador;
+		this.dataCadastro = dataCadastro;
+	}
+
+
 	public int getIdMediador(){
 		 return idMediador;
 	}
