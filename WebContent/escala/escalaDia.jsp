@@ -16,9 +16,10 @@
 					<div class="col-sm-2">
 						<label class="form-label ages col-sm-2">Pavimentos</label>
 					</div>
-					<input class="btn pavimentos" type="button" id="pavimento1"	value="Primeiro" /> 
-					<input class="btn pavimentos" type="button" id="pavimento2" value="Segundo" /> 
-					<input class="btn pavimentos" type="button" id="pavimento3" value="Terceiro" />
+					<input class="btn pavimentos" type="button" id="pavimento1"
+						value="Primeiro" /> <input class="btn pavimentos" type="button"
+						id="pavimento2" value="Segundo" /> <input class="btn pavimentos"
+						type="button" id="pavimento3" value="Terceiro" />
 				</div>
 				<br class="clear">
 				<div class="row">
@@ -37,7 +38,6 @@
 					<div class="col-sm-5 row">
 						<select class="form-control" id="escalaDate">
 							<option id="today" value=""></option>
-							<option id="tomorrow" value=""></option>
 						</select>
 					</div>
 				</div>
@@ -259,6 +259,7 @@
 					paging : false,
 					scrollY : 400
 				});
+				getTomorrowDay($("#escalaDate"))
 				$(".turnos").on(
 						"click",
 						function() {
@@ -290,6 +291,42 @@
 								table.columns(3).search(pavimento).draw();
 							}
 							$(this).toggleClass("selected");
-						})
+						});
+
+				function getTomorrowDay(element) {
+					// Valor em milisegundos para ser adicionado ao dia atual e gerar o proximo dia
+					var getTomorrow = 24 * 60 * 60 * 1000;
+					var tomorrow;
+					
+					// Pega o dia atual
+					var today = new Date();
+					// Pega o dia da semana do dia atual
+					var weekDay = today.getDay();
+					// Verifica se o dia da semana é Domingo pois o museu não abre domingo
+					if (weekDay == 0) {
+						// Se for domingo, ao inves de se adicionar um dia ao dia atual, se adiciona 2
+						getTomorrow = getTomorrow * 2;
+					}
+					// Define o proximo dia para ser o dia atual + os dias necessarios até o proximo dia a ser gerado
+					tomorrow = new Date(today.getTime() + getTomorrow);
+
+					// Cria o elemento option com o valor do proximo dia a ser gerada a escaça
+					var option = $("<option>").val(dataFormatada(tomorrow)).text(dataFormatada(tomorrow))
+
+					// Adiciona a option ao select
+					element.append(option)
+				}
+				
+				//Formata um objeto data em JS para que apareça como uma string dd/mm/yyyy
+				function dataFormatada(data){
+				    var dia = data.getDate();
+				    if (dia.toString().length == 1)
+				      dia = "0"+dia;
+				    var mes = data.getMonth()+1;
+				    if (mes.toString().length == 1)
+				      mes = "0"+mes;
+				    var ano = data.getFullYear();  
+				    return dia+"/"+mes+"/"+ano;
+				}
 			});
 </script>
