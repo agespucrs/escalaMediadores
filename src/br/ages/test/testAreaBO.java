@@ -48,7 +48,7 @@ public class testAreaBO {
 	
 	@Test
 	public void testCadastraArea() throws PersistenciaException, SQLException, NegocioException{
-		AreaConhecimento area = new AreaConhecimento(80, 70, "Taes3te", pavimento.MEZANINO, tipo.DOIS, status.ATIVO, 6, "Teste", hoje);
+		AreaConhecimento area = new AreaConhecimento(80, 70, "Taes3te", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
 		Mockito.when(areaMockDAO.criarArea(area)).thenReturn(80);
 		assertTrue(areaBO.cadastraAreaConhecimento(area) == area.getIdAreaConhecimento());
 				
@@ -57,7 +57,7 @@ public class testAreaBO {
 	
 	
 	public void testValidaArea() throws NegocioException, SQLException{
-		AreaConhecimento area = new AreaConhecimento(50, 40, "Teste", pavimento.MEZANINO, tipo.DOIS, status.ATIVO, 6, "Teste", hoje);
+		AreaConhecimento area = new AreaConhecimento(50, 40, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
 		Mockito.when(areaBO.validaArea(area)).thenReturn(true);
 		assertTrue(areaBO.validaArea(area));
 	}
