@@ -11,6 +11,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
 
 import com.mysql.fabric.xmlrpc.base.Data;
@@ -37,20 +38,24 @@ public class testAreaBO {
 	
 	
 	@Mock
-	private AreaConhecimentoBO areaBO;
-	private AreaConhecimentoDAO areaMockDAO;
+	AreaConhecimentoDAO areaMockDAO;
+	AreaConhecimentoBO areaBO;
 		
 	@Before
-	public void setUp(){	
-				areaBO = new AreaConhecimentoBO();
-				areaMockDAO = new AreaConhecimentoDAO();
+	public void setUp(){								
+		areaBO = new AreaConhecimentoBO();
+		areaBO.setAreaDAO(areaMockDAO);
 	}
 	
+	
+
 	@Test
 	public void testCadastraArea() throws PersistenciaException, SQLException, NegocioException{
-		AreaConhecimento area = new AreaConhecimento(80, 70, "Taes3te", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
+		area = new AreaConhecimento(80, 70, "Taes3te", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
 		Mockito.when(areaMockDAO.criarArea(area)).thenReturn(80);
-		assertTrue(areaBO.cadastraAreaConhecimento(area) == area.getIdAreaConhecimento());
+		int idAreaCriada = areaBO.cadastraAreaConhecimento(area);
+	
+		assertTrue(idAreaCriada == area.getIdAreaConhecimento());
 				
 	}
 	

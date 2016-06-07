@@ -13,6 +13,11 @@ import br.ages.util.MensagemContantes;
 public class AreaConhecimentoBO {
 	AreaConhecimentoDAO areaDAO = null;
 	
+	
+	public void setAreaDAO(AreaConhecimentoDAO areaDAO) {
+		this.areaDAO = areaDAO;
+	}
+
 	public AreaConhecimentoBO() {
 		areaDAO = new AreaConhecimentoDAO();
 	}
