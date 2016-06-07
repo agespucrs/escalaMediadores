@@ -24,31 +24,47 @@ public class EscalaDiaBO {
 	AreaConhecimentoDAO areaDao = new AreaConhecimentoDAO();
 	MediadorDAO mediadorDao = new MediadorDAO();
 	EscalaDiaDAO escalaDiaDao = new EscalaDiaDAO();
-	
+	List<Mediador> mediadoresAtivos;
 
 	
 	public EscalaDia[] gerarEscala(LocalDate data) throws PersistenciaException, SQLException, ClassNotFoundException{
 		this.data = data;
 		gerarEscalaMediador();
-		gerarAreaManha();
+		gerarAreaManha(mediadoresAtivos.size());
 		return escalaMediadores;
 	}
 	
 	public void gerarEscalaMediador() throws PersistenciaException, SQLException, ClassNotFoundException{
 		ultimaEscala = escalaDiaDao.ultimaEscala(data);
-		List<Mediador> mediadoresAtivos = mediadorDao.listaMediadoresAtivos(data); 
-		escalaMediadores = new EscalaDia[mediadoresAtivos.size()];
-		for (int i = 0; i < escalaMediadores.length; i++) {
+		mediadoresAtivos = mediadorDao.listaMediadoresAtivos(data);
+		escalaMediadores = new EscalaDia[mediadoresAtivos.size()*3];
+		int tam = mediadoresAtivos.size();
+		for (int i = 0; i <mediadoresAtivos.size(); i++) {
+			//declarando as escalas
 			escalaMediadores[i] = new EscalaDia();
+			escalaMediadores[i+tam] = new EscalaDia();
+			escalaMediadores[i+tam+tam] = new EscalaDia();
+			//adicionando mediador
 			escalaMediadores[i].setMediador(mediadoresAtivos.get(i));
+			escalaMediadores[i+tam].setMediador(mediadoresAtivos.get(i));
+			escalaMediadores[i+tam+tam].setMediador(mediadoresAtivos.get(i));
+			//adicionando turno
+			escalaMediadores[i].setTurno(Turno.MANHÃ);
+			escalaMediadores[i+tam].setTurno(Turno.TARDE);
+			escalaMediadores[i+tam+tam].setTurno(Turno.NOITE);
+			//adicionando data
+			escalaMediadores[i].setData(LocalDate.now());
+			escalaMediadores[i+tam].setData(LocalDate.now());
+			escalaMediadores[i+tam+tam].setData(LocalDate.now());
+			
 		}
 	}
 	
-	public void gerarAreaManha() throws ClassNotFoundException, PersistenciaException, SQLException{
+	public void gerarAreaManha(int tam) throws ClassNotFoundException, PersistenciaException, SQLException{
 		List<AreaConhecimento> areasDisponiveis = areaDao.listarAreasDisponiveis();
-		for (int i = 0; i < escalaMediadores.length; i++) {
-			AreaConhecimento ultimaArea = null;
-			for(int a = 0; a < ultimaEscala.size(); a ++){
+		for (int i = 0; i < tam; i++) {
+			AreaConhecimento ultimaArea = areasDisponiveis.get(0);
+			for(int a = 0; a < ultimaEscala.size(); a++){
 				if( (escalaMediadores[i].getMediador() == ultimaEscala.get(a).getMediador())){
 					ultimaArea = ultimaEscala.get(a).getArea();
 				}
@@ -60,10 +76,9 @@ public class EscalaDiaBO {
 				AreaConhecimento novaArea = areasDisponiveis.get((areasDisponiveis.indexOf(ultimaArea)+count)%areasDisponiveis.size());
 				if (novaArea.getNumeroMediadores() > 0) {
 					escalaMediadores[i].setArea(novaArea);
-					escalaMediadores[i].setTurno(Turno.MANHÃ);
 					novaArea.setNumeroMediadores(novaArea.getNumeroMediadores()-1);
 					ultimaArea = novaArea;
-					gerarAreaAlmoco(i,ultimaArea);
+					gerarAreaAlmoco((i+tam),ultimaArea , tam);
 					procurando = false;
 				}else{
 					count++;
@@ -77,7 +92,7 @@ public class EscalaDiaBO {
 	
 	
 	
-	public void gerarAreaAlmoco(int index, AreaConhecimento ultimaArea) throws ClassNotFoundException, PersistenciaException, SQLException{
+	public void gerarAreaAlmoco(int index, AreaConhecimento ultimaArea, int tam) throws ClassNotFoundException, PersistenciaException, SQLException{
 		List<AreaConhecimento> areasDisponiveis = areaDao.listarAreasDisponiveis();
 		boolean procurando = true;
 		int count = 1;
@@ -85,10 +100,9 @@ public class EscalaDiaBO {
 			AreaConhecimento novaArea = areasDisponiveis.get((areasDisponiveis.indexOf(ultimaArea)+count)%areasDisponiveis.size());
 			if (novaArea.getNumeroMediadores() > 0) {
 				escalaMediadores[index].setArea(novaArea);
-				escalaMediadores[index].setTurno(Turno.TARDE);
 				novaArea.setNumeroMediadores(novaArea.getNumeroMediadores()-1);
 				ultimaArea = novaArea;
-				gerarAreaTarde(index,ultimaArea);
+				gerarAreaTarde((index+tam),ultimaArea);
 				procurando = false;
 			}else{
 				count++;
@@ -105,9 +119,7 @@ public class EscalaDiaBO {
 			AreaConhecimento novaArea = areasDisponiveis.get((areasDisponiveis.indexOf(ultimaArea)+count)%areasDisponiveis.size());
 			if (novaArea.getNumeroMediadores() > 0) {
 				escalaMediadores[index].setArea(novaArea);
-				escalaMediadores[index].setTurno(Turno.TARDE);
 				novaArea.setNumeroMediadores(novaArea.getNumeroMediadores()-1);
-				ultimaArea = novaArea;
 				procurando = false;
 			}else{
 				count++;

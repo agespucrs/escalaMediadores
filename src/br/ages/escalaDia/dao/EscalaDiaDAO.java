@@ -38,7 +38,8 @@ public class EscalaDiaDAO {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			
-			Date data = Date.valueOf(escala.getData());
+			LocalDate localDate =  escala.getData();
+			Date data = Date.valueOf(localDate);
 			
 			sql.append("insert into tb_escala_dia(id_mediador, id_area_conhecimento, data_escala_dia, turno)");
 			sql.append("values(?, ?, ?, ?)");
