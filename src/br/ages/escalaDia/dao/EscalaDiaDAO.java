@@ -69,14 +69,14 @@ public class EscalaDiaDAO {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
 			Date date = Date.valueOf(data);
-			sql.append("select m.id_mediador, m.cpf, m.matricula, m.nome, m.email, m.tipo_mediador, m.status_mediador, m.data_cadastro,"+
-						"e.id_escala_dia, e.id_mediador as mediador_id, e.id_area_conhecimento as area_id, e.data_escala_dia, e.turno,"+
+			sql.append("select m.id_mediador, m.cpf, m.matricula, m.nome, m.email, m.tipo_mediador, m.status_mediador, m.data_cadastro, "+
+						"e.id_escala_dia, e.id_mediador as mediador_id, e.id_area_conhecimento as area_id, e.data_escala_dia, e.turno, "+
 						"a.id_area_conhecimento as id_area, a.numero, a.nome as nome_area, a.pavimento, a.tipo_area, a.status_area, "+
-						"a.numero_mediadores, a.observacao, a.data_cadastro as cadastro_area"+
-						"from tb_mediador m"+
-						"join tb_escala_dia e on e.id_mediador = m.id_mediador"+
-						"join tb_area_conhecimento a on a.id_area_conhecimento =  e.id_area_conhecimento"+
-						"where e.data_escala_dia = = '"+date+"'");
+						"a.numero_mediadores, a.observacao, a.data_cadastro as cadastro_area "+
+						"from tb_mediador m "+
+						"join tb_escala_dia e on e.id_mediador = m.id_mediador "+
+						"join tb_area_conhecimento a on a.id_area_conhecimento =  e.id_area_conhecimento "+
+						"where e.data_escala_dia = '"+date+"' ");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultSet = statement.executeQuery();
@@ -85,7 +85,7 @@ public class EscalaDiaDAO {
 				Mediador mediador = new Mediador();
 				AreaConhecimento area = new AreaConhecimento();
 				EscalaDia ultimaEscala = new EscalaDia();
-				mediador.setNome(resultSet.getString("nome_mediador)"));
+				mediador.setNome(resultSet.getString("nome"));
 				mediador.setIdMediador(resultSet.getInt("id_mediador"));
 				mediador.setCpf(resultSet.getString("cpf"));
 				mediador.setMatricula(resultSet.getString("matricula"));
@@ -102,10 +102,10 @@ public class EscalaDiaDAO {
 				area.setPavimento(Pavimento.valueOf(resultSet.getString("pavimento")));
 				area.setTipoArea(Tipo.valueOf(resultSet.getString("tipo_area")));
 				area.setStatusArea(Status.valueOf(resultSet.getString("status_area")));
-				area.setNumeroMediadores(resultSet.getInt("numero_mediador"));
+				area.setNumeroMediadores(resultSet.getInt("numero_mediadores"));
 				area.setObservacao(resultSet.getString("observacao"));
 				java.util.Date cadastroData = new java.util.Date();
-				dataCadastro = resultSet.getDate("cadastro_data");
+				dataCadastro = resultSet.getDate("cadastro_area");
 				area.setDataCadastro(cadastroData);
 				
 				ultimaEscala.setMediador(mediador);

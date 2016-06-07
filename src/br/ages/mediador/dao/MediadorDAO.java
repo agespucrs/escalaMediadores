@@ -294,7 +294,7 @@ public class MediadorDAO {
             String dia = String.valueOf(data.getDayOfMonth());
             String mes =String.valueOf(data.getMonthValue());
             String ano =String.valueOf(data.getYear());
-            sql.append("SELECT id_mediador,cpf, matricula, nome, email, tipo_mediador AS tipo FROM tb_mediador"
+            sql.append("SELECT id_mediador,cpf, matricula, nome, data_cadastro, email, status_mediador, tipo_mediador FROM tb_mediador"
             		+ " WHERE status_mediador = 'ATIVO' AND id_mediador "
             		+ "NOT IN(SELECT id_mediador FROM tb_escala_mes WHERE dia = '"+dia+"' AND mes = '"+mes+"' AND ano = '"+ano+"')");
 
