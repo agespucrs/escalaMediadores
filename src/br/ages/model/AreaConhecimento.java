@@ -32,7 +32,10 @@ public class AreaConhecimento
 	public int getIdAreaConhecimento(){
 		 return idAreaConhecimento;
 	}
- 
+ 	
+
+	
+
 	public void  setIdAreaConhecimento( int value){
 		 idAreaConhecimento = value;
 	}
@@ -94,4 +97,6 @@ public class AreaConhecimento
 	public void  setDataCadastro( Date value){
 		 dataCadastro = value;
 	}
+	
+		
 }
