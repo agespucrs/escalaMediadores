@@ -67,9 +67,10 @@ public class AreaConhecimentoBO {
 		return id;
 	}
 	
-	public void editarAreaConhecimento(AreaConhecimento area) throws NegocioException{
+	public boolean editarAreaConhecimento(AreaConhecimento area) throws NegocioException{
 		try {
 			areaDAO.editaArea(area);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
