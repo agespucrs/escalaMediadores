@@ -24,11 +24,13 @@ import br.ages.model.AreaConhecimento;
 import br.ages.model.Pavimento;
 import br.ages.model.Status;
 import br.ages.model.Tipo;
+import br.ages.exception.NegocioException;
 import junit.framework.Assert;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class testAreaBO {
+	
 	
 	AreaConhecimento area = new AreaConhecimento();
 	Pavimento pavimento;
@@ -45,6 +47,7 @@ public class testAreaBO {
 	public void setUp(){								
 		areaBO = new AreaConhecimentoBO();
 		areaBO.setAreaDAO(areaMockDAO);
+		AreaConhecimento areaEdit = new AreaConhecimento(110, -5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
 	}
 	
 	
@@ -59,13 +62,33 @@ public class testAreaBO {
 				
 	}
 	
-	
-	
-	public void testValidaArea() throws NegocioException, SQLException{
+	@Test
+	public void testValidaArea() throws NegocioException {
 		AreaConhecimento area = new AreaConhecimento(50, 40, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
-		Mockito.when(areaBO.validaArea(area)).thenReturn(true);
 		assertTrue(areaBO.validaArea(area));
 	}
-		
+	
+	
+	@Test
+	public void testValidaAreaNeg() throws NegocioException {
+		AreaConhecimento area = new AreaConhecimento(60, -5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
+		try{			
+			areaBO.validaArea(area);
+			fail("NegocioException was expected");
+		} catch(NegocioException e) {			
+		}
+	}
+	
+	
+	@Test
+	public void testEditaArea() throws PersistenciaException, NegocioException{
+		AreaConhecimento area = new AreaConhecimento(73, 5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
+		Mockito.when(areaMockDAO.editaArea(area)).thenReturn(true);
+		assertTrue(areaBO.editarAreaConhecimento(area));		
+	}
+	
+	
+	
+	
 
 }
