@@ -27,7 +27,7 @@ public class TestAlgoritmo {
 		EscalaDiaDAO escalaDao = new EscalaDiaDAO();
 		for (int i = 0; i < dia.length; i++) {
 //			escalaDao.criarEscalaDia(dia[i]);
-			System.out.println(dia[i].getMediador().getNome()+" - "+dia[i].getArea().getNome()+" - "+dia[i].getTurno());
+			System.out.println(dia[i].getMediador().getNome()+" - "+dia[i].getArea().getNome()+" - "+dia[i].getTurno()+" - "+dia[i].getData().toString());
 		}
 		
 	}
