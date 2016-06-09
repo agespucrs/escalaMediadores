@@ -1,10 +1,8 @@
 package br.ages.escalaDia.bo;
 
-import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Random;
 
 import br.ages.area.dao.AreaConhecimentoDAO;
 import br.ages.escalaDia.dao.EscalaDiaDAO;
@@ -21,9 +19,7 @@ public class EscalaDiaBO {
 	EscalaDia[] escalaMediadores;
 	List<EscalaDia> ultimaEscala;
 	AreaConhecimento[] area;
-	AreaConhecimentoDAO areaManhaDao = new AreaConhecimentoDAO();
-	AreaConhecimentoDAO areaTardeDao = new AreaConhecimentoDAO();
-	AreaConhecimentoDAO areaNoiteDao = new AreaConhecimentoDAO();
+	AreaConhecimentoDAO areaDao = new AreaConhecimentoDAO();
 	MediadorDAO mediadorDao = new MediadorDAO();
 	EscalaDiaDAO escalaDiaDao = new EscalaDiaDAO();
 	List<Mediador> mediadoresAtivos;
@@ -38,8 +34,9 @@ public class EscalaDiaBO {
 		return escalaMediadores;
 	}
 	
-	public void gerarAreasDisponives() throws ClassNotFoundException, PersistenciaException, SQLException {
-		areasDisponiveis = areaManhaDao.listarAreasDisponiveis();
+	
+	private void gerarAreasDisponives() throws ClassNotFoundException, PersistenciaException, SQLException {
+		areasDisponiveis = areaDao.listarAreasDisponiveis();
 		indexAreas = new int[areasDisponiveis.size()*3];
 		int tam = areasDisponiveis.size();
 		for (int i = 0; i < tam; i++) {
@@ -49,7 +46,7 @@ public class EscalaDiaBO {
 		}
 	}
 	
-	public void gerarEscalaMediador() throws PersistenciaException, SQLException, ClassNotFoundException{
+	private void gerarEscalaMediador() throws PersistenciaException, SQLException, ClassNotFoundException{
 		ultimaEscala = escalaDiaDao.ultimaEscala(data);
 		mediadoresAtivos = mediadorDao.listaMediadoresAtivos(data);
 		escalaMediadores = new EscalaDia[mediadoresAtivos.size()*3];
@@ -75,10 +72,10 @@ public class EscalaDiaBO {
 		}
 	}
 	
-	public void gerarAreaManha(int tam) throws ClassNotFoundException, PersistenciaException, SQLException{
-		
+	private void gerarAreaManha(int tam) throws ClassNotFoundException, PersistenciaException, SQLException{
+		AreaConhecimento ultimaArea = areasDisponiveis.get(0);
 		for (int i = 0; i < tam; i++) {
-			AreaConhecimento ultimaArea = areasDisponiveis.get(0);
+			
 			for(int a = 0; a < ultimaEscala.size(); a++){
 				if( (escalaMediadores[i].getMediador() == ultimaEscala.get(a).getMediador())){
 					ultimaArea = ultimaEscala.get(a).getArea();
@@ -90,8 +87,8 @@ public class EscalaDiaBO {
 			int qtdMediadores;
 			while(procurando){
 				int proximoIndex = areasDisponiveis.indexOf(ultimaArea)+count;
-				if (proximoIndex == areasDisponiveis.size()) {
-					proximoIndex = 0;
+				if (proximoIndex >= areasDisponiveis.size()) {
+					proximoIndex = proximoIndex - areasDisponiveis.size();
 				}
 				qtdMediadores = proximoIndex;
 				AreaConhecimento novaArea = areasDisponiveis.get(proximoIndex);
@@ -105,24 +102,22 @@ public class EscalaDiaBO {
 					count++;
 					qtdMediadores++;
 				}
-				
 			}
-			
 		}
 	}
 	
 	
 	
 	
-	public void gerarAreaAlmoco(int index, AreaConhecimento ultimaArea, int tam) throws ClassNotFoundException, PersistenciaException, SQLException{
+	private void gerarAreaAlmoco(int index, AreaConhecimento ultimaArea, int tam) throws ClassNotFoundException, PersistenciaException, SQLException{
 		
 		boolean procurando = true;
 		int count = 1;
 		int qtdMediadores;
 		while(procurando){
 			int proximoIndex = areasDisponiveis.indexOf(ultimaArea)+count;
-			if (proximoIndex == areasDisponiveis.size()) {
-				proximoIndex = 0;
+			if (proximoIndex >= areasDisponiveis.size()) {
+				proximoIndex = proximoIndex - areasDisponiveis.size();;
 			}
 			qtdMediadores = proximoIndex + areasDisponiveis.size();
 			AreaConhecimento novaArea = areasDisponiveis.get(proximoIndex);
@@ -136,19 +131,18 @@ public class EscalaDiaBO {
 				count++;
 				qtdMediadores++;
 			}
-			
 		}
 	}
 	
-	public void gerarAreaTarde(int index, AreaConhecimento ultimaArea) throws ClassNotFoundException, PersistenciaException, SQLException{
+	private void gerarAreaTarde(int index, AreaConhecimento ultimaArea) throws ClassNotFoundException, PersistenciaException, SQLException{
 		
 		boolean procurando = true;
 		int count = 1;
 		int qtdMediadores;
 		while(procurando){
 			int proximoIndex = areasDisponiveis.indexOf(ultimaArea)+count;
-			if (proximoIndex == areasDisponiveis.size()) {
-				proximoIndex = 0;
+			if (proximoIndex >= areasDisponiveis.size()) {
+				proximoIndex = proximoIndex - areasDisponiveis.size();
 			}
 			qtdMediadores = proximoIndex + areasDisponiveis.size()*2;
 			AreaConhecimento novaArea = areasDisponiveis.get(proximoIndex);
@@ -160,7 +154,15 @@ public class EscalaDiaBO {
 				count++;
 				qtdMediadores++;
 			}
-			
+		}
+	}
+	
+	private void gerarSobras(){
+		int tam = mediadoresAtivos.size();
+		for (int i = 0; i < tam; i++) {
+			AreaConhecimento manha = escalaMediadores[i].getArea();
+			AreaConhecimento tarde = escalaMediadores[i+tam].getArea();
+			AreaConhecimento noite = escalaMediadores[i+tam+tam].getArea();
 		}
 	}
 }

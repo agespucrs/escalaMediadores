@@ -2,19 +2,11 @@ package br.ages.test;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
-import java.util.List;
 
-import org.mockito.cglib.core.Local;
-
-import br.ages.area.dao.AreaConhecimentoDAO;
 import br.ages.escalaDia.bo.EscalaDiaBO;
 import br.ages.escalaDia.dao.EscalaDiaDAO;
 import br.ages.exception.PersistenciaException;
-import br.ages.mediador.dao.MediadorDAO;
-import br.ages.model.AreaConhecimento;
 import br.ages.model.EscalaDia;
-import br.ages.model.Mediador;
-import br.ages.model.Turno;
 
 public class TestAlgoritmo {
 
