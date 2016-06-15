@@ -137,12 +137,14 @@ public class AreaConhecimentoBO {
 		return area;
 	}
 	
-	public void removeArea(int idArea) throws NegocioException{
+	public boolean removeArea(int idArea) throws NegocioException{
 		try {
 			areaDAO.removeArea(idArea);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new NegocioException(e);
+			throw new NegocioException(e);	
+			
 		}
 	}
 	
