@@ -15,11 +15,13 @@ $( document ).ready(function() {
 	$('#modalEditar').on('show.bs.modal', function (event) {
 	  	var botao = $(event.relatedTarget);
 		var id = botao.data('id');
+		var mes = $('#mesSelecionado').val();
+		var ano = $('#anoSelecionado').val();
 	  	
 	  	$(this).find('.modal-title').text('Editar escala mensal');
 	  	$(this).find('#modal-descricao').text('Você realmente deseja editar a escala?');
 	  	
-	  	$('#formEditar').attr('action', "main?acao=telaEscalaMensal&id_escala_mesal=" + id + "&isEdit=true");
+	  	$('#formEditar').attr('action', "main?acao=editEscalaMensal&id_mediador=" + id + "&mes=" + mes + "&ano=" + ano);
 	});
 });
 </script>
