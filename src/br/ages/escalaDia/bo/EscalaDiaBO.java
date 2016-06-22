@@ -34,7 +34,6 @@ public class EscalaDiaBO {
 		return escalaMediadores;
 	}
 	
-	
 	private void gerarAreasDisponives() throws ClassNotFoundException, PersistenciaException, SQLException {
 		areasDisponiveis = areaDao.listarAreasDisponiveis();
 		indexAreas = new int[areasDisponiveis.size()*3];
@@ -65,9 +64,9 @@ public class EscalaDiaBO {
 			escalaMediadores[i+tam].setTurno(Turno.TARDE);
 			escalaMediadores[i+tam+tam].setTurno(Turno.NOITE);
 			//adicionando data
-			escalaMediadores[i].setData(LocalDate.now());
-			escalaMediadores[i+tam].setData(LocalDate.now());
-			escalaMediadores[i+tam+tam].setData(LocalDate.now());
+			escalaMediadores[i].setData(data);
+			escalaMediadores[i+tam].setData(data);
+			escalaMediadores[i+tam+tam].setData(data);
 			
 		}
 	}
@@ -154,15 +153,6 @@ public class EscalaDiaBO {
 				count++;
 				qtdMediadores++;
 			}
-		}
-	}
-	
-	private void gerarSobras(){
-		int tam = mediadoresAtivos.size();
-		for (int i = 0; i < tam; i++) {
-			AreaConhecimento manha = escalaMediadores[i].getArea();
-			AreaConhecimento tarde = escalaMediadores[i+tam].getArea();
-			AreaConhecimento noite = escalaMediadores[i+tam+tam].getArea();
 		}
 	}
 }

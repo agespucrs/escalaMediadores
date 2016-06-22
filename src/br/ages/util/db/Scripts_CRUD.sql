@@ -135,7 +135,4 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
  INSERT INTO tb_turno VALUES('2','ALMOÇO');
  INSERT INTO tb_turno VALUES('3','TARDE'); 
  
- /*insere area */
- INSERT tb_area_conhecimento (numero, nome, pavimento, tipo_area, status_area, numero_mediadores , data_cadastro) 
- VALUES (-1,'PadrãoAreaInexistente','PRIMEIRO','UM','EXCLUÍDO',1,'2016-01-01');
-    
+ 
