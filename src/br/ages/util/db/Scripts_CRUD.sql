@@ -110,12 +110,9 @@ CREATE TABLE `escala_e`.`tb_area_conhecimento` (
   `turno` VARCHAR(10) NULL COMMENT '',
   PRIMARY KEY (`id_escala_dia`)  COMMENT '',
   UNIQUE INDEX `id_escala_dia_UNIQUE` (`id_escala_dia` ASC)  COMMENT '',
-  UNIQUE INDEX `id_mediador_UNIQUE` (`id_mediador` ASC)  COMMENT '',
   CONSTRAINT `id_mediador`
     FOREIGN KEY (`id_mediador`)
-    REFERENCES `escala_e`.`tb_mediador` (`id_mediador`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `escala_e`.`tb_mediador` (`id_mediador`),
   CONSTRAINT `id_area_conhecimento`
     FOREIGN KEY (`id_area_conhecimento`)
     REFERENCES `escala_e`.`tb_area_conhecimento` (`id_area_conhecimento`)

@@ -13,7 +13,7 @@ public class TestAlgoritmo {
 	
 	public static void main(String[] args) throws ClassNotFoundException, PersistenciaException, SQLException {
 		
-		LocalDate data = LocalDate.of(2016,05,30);
+		LocalDate data = LocalDate.now();
 		EscalaDiaBO escalaDia = new EscalaDiaBO();
 		EscalaDia[] dia = escalaDia.gerarEscala(data);
 		EscalaDiaDAO escalaDao = new EscalaDiaDAO();

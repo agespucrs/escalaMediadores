@@ -77,7 +77,7 @@ public class EscalaDiaDAO {
 						"from tb_mediador m "+
 						"join tb_escala_dia e on e.id_mediador = m.id_mediador "+
 						"join tb_area_conhecimento a on a.id_area_conhecimento =  e.id_area_conhecimento "+
-						"where e.data_escala_dia = '"+date+"' ");
+						"where e.data_escala_dia = (select max(data_escala_dia) from escala_e.tb_escala_dia)");
 
 			PreparedStatement statement = conexao.prepareStatement(sql.toString());
 			ResultSet resultSet = statement.executeQuery();
