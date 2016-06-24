@@ -63,13 +63,12 @@ public class EscalaDiaDAO {
 		return 0;
 	}
 	
-	public List<EscalaDia> ultimaEscala (LocalDate data) throws ClassNotFoundException, PersistenciaException, SQLException {
+	public List<EscalaDia> ultimaEscala () throws ClassNotFoundException, PersistenciaException, SQLException {
 		Connection conexao = null;
 
 		try {
 			conexao = ConexaoUtil.getConexao();
 			StringBuilder sql = new StringBuilder();
-			Date date = Date.valueOf(data);
 			sql.append("select m.id_mediador, m.cpf, m.matricula, m.nome, m.email, m.tipo_mediador, m.status_mediador, m.data_cadastro, "+
 						"e.id_escala_dia, e.id_mediador as mediador_id, e.id_area_conhecimento as area_id, e.data_escala_dia, e.turno, "+
 						"a.id_area_conhecimento as id_area, a.numero, a.nome as nome_area, a.pavimento, a.tipo_area, a.status_area, "+

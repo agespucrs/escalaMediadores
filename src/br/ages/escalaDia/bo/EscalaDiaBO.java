@@ -11,6 +11,7 @@ import br.ages.mediador.dao.MediadorDAO;
 import br.ages.model.AreaConhecimento;
 import br.ages.model.EscalaDia;
 import br.ages.model.Mediador;
+import br.ages.model.Tipo;
 import br.ages.model.Turno;
 
 public class EscalaDiaBO {
@@ -46,7 +47,7 @@ public class EscalaDiaBO {
 	}
 	
 	private void gerarEscalaMediador() throws PersistenciaException, SQLException, ClassNotFoundException{
-		ultimaEscala = escalaDiaDao.ultimaEscala(data);
+		ultimaEscala = escalaDiaDao.ultimaEscala();
 		mediadoresAtivos = mediadorDao.listaMediadoresAtivos(data);
 		escalaMediadores = new EscalaDia[mediadoresAtivos.size()*3];
 		int tam = mediadoresAtivos.size();
@@ -86,20 +87,35 @@ public class EscalaDiaBO {
 			int qtdMediadores;
 			while(procurando){
 				int proximoIndex = areasDisponiveis.indexOf(ultimaArea)+count;
-				if (proximoIndex >= areasDisponiveis.size()) {
-					proximoIndex = proximoIndex - areasDisponiveis.size();
-				}
+				
+				while(proximoIndex >= areasDisponiveis.size()){proximoIndex = proximoIndex - areasDisponiveis.size();}
+				
 				qtdMediadores = proximoIndex;
+				
 				AreaConhecimento novaArea = areasDisponiveis.get(proximoIndex);
-				if (indexAreas[qtdMediadores] > 0) {
+				if (indexAreas[qtdMediadores] > 0 &&
+						escalaMediadores[i].getMediador().getTipoMediador() == novaArea.getTipoArea() &&
+						novaArea != ultimaArea) {
+					escalaMediadores[i].setArea(novaArea);
+					indexAreas[qtdMediadores]--;
+					ultimaArea = novaArea;
+					gerarAreaAlmoco((i+tam),ultimaArea , tam);
+					procurando = false;
+					
+				}else if(indexAreas[qtdMediadores] > 0 &&
+						escalaMediadores[i].getMediador().getTipoMediador() == Tipo.DOIS && 
+						count > areasDisponiveis.size() ){
 					escalaMediadores[i].setArea(novaArea);
 					indexAreas[qtdMediadores]--;
 					ultimaArea = novaArea;
 					gerarAreaAlmoco((i+tam),ultimaArea , tam);
 					procurando = false;
 				}else{
-					count++;
 					qtdMediadores++;
+					if (count > areasDisponiveis.size()*2) {
+						procurando = false;
+					}
+					count++;
 				}
 			}
 		}
@@ -115,20 +131,33 @@ public class EscalaDiaBO {
 		int qtdMediadores;
 		while(procurando){
 			int proximoIndex = areasDisponiveis.indexOf(ultimaArea)+count;
-			if (proximoIndex >= areasDisponiveis.size()) {
-				proximoIndex = proximoIndex - areasDisponiveis.size();;
-			}
+			
+			while(proximoIndex >= areasDisponiveis.size()){proximoIndex = proximoIndex - areasDisponiveis.size();}
+			
 			qtdMediadores = proximoIndex + areasDisponiveis.size();
 			AreaConhecimento novaArea = areasDisponiveis.get(proximoIndex);
-			if (indexAreas[qtdMediadores] > 0) {
+			if (indexAreas[qtdMediadores] > 0 &&
+					escalaMediadores[index].getMediador().getTipoMediador() == novaArea.getTipoArea()&&
+					novaArea != ultimaArea)  {
 				indexAreas[qtdMediadores]--;
 				escalaMediadores[index].setArea(novaArea);
 				ultimaArea = novaArea;
 				gerarAreaTarde((index+tam),ultimaArea);
 				procurando = false;
+			}else if(indexAreas[qtdMediadores] > 0 &&
+					escalaMediadores[index].getMediador().getTipoMediador() == Tipo.DOIS && 
+					count > areasDisponiveis.size()){
+				escalaMediadores[index].setArea(novaArea);
+				indexAreas[qtdMediadores]--;
+				ultimaArea = novaArea;
+				gerarAreaTarde((index+tam),ultimaArea);
+				procurando = false;
 			}else{
-				count++;
 				qtdMediadores++;
+				if (count > areasDisponiveis.size()*2) {
+					procurando = false;
+				}
+				count++;
 			}
 		}
 	}
@@ -140,18 +169,30 @@ public class EscalaDiaBO {
 		int qtdMediadores;
 		while(procurando){
 			int proximoIndex = areasDisponiveis.indexOf(ultimaArea)+count;
-			if (proximoIndex >= areasDisponiveis.size()) {
-				proximoIndex = proximoIndex - areasDisponiveis.size();
-			}
+			
+				while(proximoIndex >= areasDisponiveis.size()){proximoIndex = proximoIndex - areasDisponiveis.size();}
+			
 			qtdMediadores = proximoIndex + areasDisponiveis.size()*2;
 			AreaConhecimento novaArea = areasDisponiveis.get(proximoIndex);
-			if (indexAreas[qtdMediadores] > 0) {
+			if ((indexAreas[qtdMediadores] > 0 &&
+					escalaMediadores[index].getMediador().getTipoMediador() == novaArea.getTipoArea()) &&
+					novaArea != ultimaArea) {
 				indexAreas[qtdMediadores]--;
 				escalaMediadores[index].setArea(novaArea);
 				procurando = false;
+			}else if(indexAreas[qtdMediadores] > 0 &&
+					escalaMediadores[index].getMediador().getTipoMediador() == Tipo.DOIS && 
+					count > areasDisponiveis.size()){
+				escalaMediadores[index].setArea(novaArea);
+				indexAreas[qtdMediadores]--;
+				ultimaArea = novaArea;
+				procurando = false;
 			}else{
-				count++;
 				qtdMediadores++;
+				if (count >areasDisponiveis.size()*2) {
+					procurando = false;
+				}
+				count++;
 			}
 		}
 	}
