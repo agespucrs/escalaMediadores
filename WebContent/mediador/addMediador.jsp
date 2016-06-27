@@ -9,6 +9,7 @@
 <jsp:include page="../template/head.jsp"></jsp:include>
 
 <script src="js/mediador.js" type="text/javascript"></script>
+<script src="js/validations.js" type="text/javascript"></script>
 
 <div class="panel panel-default panel-addUser">
 	<div class="panel-heading panel-heading-custom ">Cadastro de Mediador</div>

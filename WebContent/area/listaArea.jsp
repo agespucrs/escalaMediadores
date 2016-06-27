@@ -25,6 +25,7 @@
 						<th style="text-align: center;">Pavimento</th>
 						<th style="text-align: center;">Nº Mediadores</th>
 						<th style="text-align: center;">Status</th>
+						<th style="text-align: center;">Tipo</th>
 						<th data-sortable="false" style="text-align: center; width: 10px"></th>
 						<th data-sortable="false" style="text-align: center; width: 10px"></th>
 					</tr>
@@ -41,6 +42,7 @@
 						<td align="center"><%=area.getPavimento().name()%></td>
 						<td align="center"><%=area.getNumeroMediadores()%></td>
 						<td align="center"><%=area.getStatusArea()%></td>
+						<td align="center"><%=area.getTipoArea()%></td>
 						<td align="center">
 							<form action="" method="post">
 								<a href="" data-toggle="modal"

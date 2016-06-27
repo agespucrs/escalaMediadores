@@ -51,7 +51,7 @@
 		            </div>
 		            
 		            <div class="form-group">
-			           	<label class="form-label ages">Status: <span class="red">*</span></label>
+			           	<label class="form-label ages">Tipo: <span class="red">*</span></label>
 			           	<select class="form-control" id="tipoArea" name="tipoArea" required>
                             <option value="UM" <%= "UM".equals(area.getTipoArea().name()) ? "selected" : "" %>>Um</option>
 			           		<option value="DOIS" <%= "DOIS".equals(area.getTipoArea().name()) ? "selected" : "" %>>Dois</option>			           		
