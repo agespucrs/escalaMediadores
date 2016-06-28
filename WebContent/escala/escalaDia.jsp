@@ -1,6 +1,8 @@
 <%@page import="br.ages.model.Usuario"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Date"%>
+<%@page import="br.ages.model.EscalaDia"%>
+
 
 <jsp:include page="../template/head.jsp"></jsp:include>
 
@@ -43,7 +45,7 @@
 				</div>
 				<br class="clear">
 				<div class="col-sm-12">
-					<form action="" method="post">
+					<form action="" method="post" id="gerarEscala">
 						<button id="btnGera" name="btnGera" class="btn "
 							data-toggle="modal" data-id="1" data-escala="01/07/2015"
 							data-target="#modalGerarEscala">Gerar Nova Escala</button>
@@ -63,165 +65,21 @@
 <script>
 	$(document).ready(
 			function() {
-				var data = [ {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 1,
-					"Pavimento" : 1
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 2",
-					"Turno" : 2,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 2",
-					"Turno" : 2,
-					"Pavimento" : 1
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 2",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-
-					"Mediador" : "Zézinho",
-					"Area" : "Area 6",
-					"Turno" : 2,
-					"Pavimento" : 3
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 1",
-					"Turno" : 3,
-					"Pavimento" : 2
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 5",
-					"Turno" : 1,
-					"Pavimento" : 1
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 4",
-					"Turno" : 1,
-					"Pavimento" : 3
-				}, {
-					"Mediador" : "Zézinho",
-					"Area" : "Area 3",
-					"Turno" : 1,
-					"Pavimento" : 1
-				} ]
-
-				var table = $('#tabelaEscala').DataTable({
+				var data = [];
+				<%if (request.getAttribute("listEscala") != null) {
+				EscalaDia[] listaEscala = (EscalaDia[]) request.getAttribute("listEscala");
+				for (EscalaDia e : listaEscala) {%>
+			var line = {
+					"Mediador": <%e.getMediador();%>,
+					"Área": <%e.getArea();%>,
+					"Turno": <%e.getTurno();%>,
+					"Pavimento": <%e.getArea().getPavimento();%>
+				}
+				data.push(line);
+				<%}
+			}%>
+		console.log(data);
+	var table = $('#tabelaEscala').DataTable({
 					dom : "t",
 					data : data,
 					columns : [ {
@@ -297,7 +155,7 @@
 					// Valor em milisegundos para ser adicionado ao dia atual e gerar o proximo dia
 					var getTomorrow = 24 * 60 * 60 * 1000;
 					var tomorrow;
-					
+
 					// Pega o dia atual
 					var today = new Date();
 					// Pega o dia da semana do dia atual
@@ -311,22 +169,39 @@
 					tomorrow = new Date(today.getTime() + getTomorrow);
 
 					// Cria o elemento option com o valor do proximo dia a ser gerada a escaça
-					var option = $("<option>").val(dataFormatada(tomorrow)).text(dataFormatada(tomorrow))
+					var option = $("<option>").val(dataFormatada(tomorrow))
+							.text(dataFormatada(tomorrow))
 
 					// Adiciona a option ao select
 					element.append(option)
 				}
-				
+
 				//Formata um objeto data em JS para que apareça como uma string dd/mm/yyyy
-				function dataFormatada(data){
-				    var dia = data.getDate();
-				    if (dia.toString().length == 1)
-				      dia = "0"+dia;
-				    var mes = data.getMonth()+1;
-				    if (mes.toString().length == 1)
-				      mes = "0"+mes;
-				    var ano = data.getFullYear();  
-				    return dia+"/"+mes+"/"+ano;
+				function dataFormatada(data) {
+					var dia = data.getDate();
+					if (dia.toString().length == 1)
+						dia = "0" + dia;
+					var mes = data.getMonth() + 1;
+					if (mes.toString().length == 1)
+						mes = "0" + mes;
+					var ano = data.getFullYear();
+					return dia + "/" + mes + "/" + ano;
 				}
-			});
+				$("#gerarEscala").submit(function(){
+					var data = $("#escalaDate").val();
+					$("#gerarEscala").attr('action', "main?acao=gerarEscalaDia&date="+data);
+				});
+				//$("#gerarEscala").on("submit", function(){
+				//var data = $("#escalaDate").val();
+				//console.log(data);
+				//salvar a data como atributo pra enviar pra action, por ajax não deu.
+				//var url = "main?acao=gerarEscalaDia";
+				//$.ajax({
+				//		url: url,
+				//		type: 'POST'
+				//	})
+				//			return false;
+				//		})
+
+					});
 </script>
