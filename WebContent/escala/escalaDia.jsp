@@ -187,8 +187,13 @@
 					var ano = data.getFullYear();
 					return dia + "/" + mes + "/" + ano;
 				}
+				
 				$("#gerarEscala").submit(function(){
-					var data = $("#escalaDate").val();
+					var data = $("#escalaDate").val(),
+						aux = [];
+					aux = data.split("/");
+					data = new Date(aux[2], parseInt(aux[1])-1, aux[0]);
+					data = data.getTime();
 					$("#gerarEscala").attr('action', "main?acao=gerarEscalaDia&date="+data);
 				});
 				//$("#gerarEscala").on("submit", function(){

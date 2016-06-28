@@ -2,7 +2,9 @@ package br.ages.escalaDia.command;
 
 import java.sql.SQLException;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,12 +28,11 @@ public class ListEscalaDiaCommand implements Command {
 		proxima = "escala/escalaDia.jsp";
 		
 		try{
-			String data = request.getParameter("date");
-			DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MMM/yyyy");
-			// falta formatar a data direitinho
-			
-			LocalDate dataFormat = LocalDate.parse(data,dtf);
-			EscalaDia[] lista = escalaDiaBO.gerarEscala(dataFormat);
+			String requestDate = request.getParameter("date");
+
+			java.util.Date date = new java.util.Date(Long.parseLong(requestDate));
+			LocalDate n = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+			EscalaDia[] lista = escalaDiaBO.gerarEscala(n);
 			request.setAttribute("listEscala", lista);
 		} catch(ClassNotFoundException | PersistenciaException se){
 			se.printStackTrace();
