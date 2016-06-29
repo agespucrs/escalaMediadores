@@ -68,14 +68,19 @@
 				var data = [];
 				<%if (request.getAttribute("listEscala") != null) {
 				EscalaDia[] listaEscala = (EscalaDia[]) request.getAttribute("listEscala");
-				for (EscalaDia e : listaEscala) {%>
-			var line = {
-					"Mediador": <%e.getMediador();%>,
-					"Área": <%e.getArea();%>,
-					"Turno": <%e.getTurno();%>,
-					"Pavimento": <%e.getArea().getPavimento();%>
-				}
-				data.push(line);
+				for (EscalaDia e : listaEscala) {
+					String nomeMediador = e.getMediador().getNome();
+					String nomeArea = e.getArea().getNome();
+					String nomeTurno = e.getTurno().toString();
+					String nomePavimento = e.getArea().getPavimento().toString();
+					%>
+					var line = {
+							"Mediador": "<%= nomeMediador %>",
+							"Area": "<%=nomeArea%>",
+							"Turno":"<%=nomeTurno%>",
+							"Pavimento":"<%=nomePavimento%>"
+						};
+					data.push(line);
 				<%}
 			}%>
 		console.log(data);
@@ -87,8 +92,8 @@
 						title : "Mediador",
 						data : "Mediador",
 					}, {
-						name : "Área",
-						title : "Área",
+						name : "Area",
+						title : "Area",
 						data : "Area",
 					}, {
 						name : "Turno",
