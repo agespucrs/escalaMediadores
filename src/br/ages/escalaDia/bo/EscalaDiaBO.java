@@ -121,9 +121,6 @@ public class EscalaDiaBO {
 		}
 	}
 	
-	
-	
-	
 	private void gerarAreaAlmoco(int index, AreaConhecimento ultimaArea, int tam) throws ClassNotFoundException, PersistenciaException, SQLException{
 		
 		boolean procurando = true;

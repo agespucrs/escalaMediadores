@@ -3,6 +3,7 @@ $(document).ready(function(){
 	$("#cpf").mask("999.999.999-99");
 	
 	function TestaCPF(strCPF) {		
+		$("#cpf").unmask();
 		var Soma; 
 		var Resto; 
 		Soma = 0; 
