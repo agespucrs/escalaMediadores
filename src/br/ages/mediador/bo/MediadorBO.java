@@ -22,6 +22,13 @@ public class MediadorBO {
 		cpfValidator = new CPFValidator();
 	}
 
+
+	public void setMediadorDAO(MediadorDAO mediadorDAO) {
+		this.mediadorDAO = mediadorDAO;
+	}
+
+
+
 	public boolean validaMediador(Mediador mediador) throws NegocioException{
 		boolean isValido = true;
 		StringBuilder msg = new StringBuilder();

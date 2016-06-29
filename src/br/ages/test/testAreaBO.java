@@ -1,20 +1,17 @@
 package br.ages.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.sql.Date;
 import java.sql.SQLException;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.runners.MockitoJUnitRunner;
-
-import com.mysql.fabric.xmlrpc.base.Data;
 
 import br.ages.area.bo.AreaConhecimentoBO;
 import br.ages.area.dao.AreaConhecimentoDAO;
@@ -24,13 +21,10 @@ import br.ages.model.AreaConhecimento;
 import br.ages.model.Pavimento;
 import br.ages.model.Status;
 import br.ages.model.Tipo;
-import br.ages.exception.NegocioException;
-import junit.framework.Assert;
 
 
 @RunWith(MockitoJUnitRunner.class)
 public class testAreaBO {
-	
 	
 	AreaConhecimento area = new AreaConhecimento();
 	Pavimento pavimento;
@@ -47,6 +41,7 @@ public class testAreaBO {
 	public void setUp(){								
 		areaBO = new AreaConhecimentoBO();
 		areaBO.setAreaDAO(areaMockDAO);
+		@SuppressWarnings("unused")
 		AreaConhecimento areaEdit = new AreaConhecimento(110, -5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
 	}
 	
@@ -88,6 +83,7 @@ public class testAreaBO {
 		assertTrue(areaBO.editarAreaConhecimento(area));		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testEditaAreaNeg() throws PersistenciaException, SQLException, ClassNotFoundException, NegocioException {
 		AreaConhecimento area = new AreaConhecimento(73, 5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
@@ -111,6 +107,7 @@ public class testAreaBO {
 		assertTrue(area == areaBO.pesquisarAreaPorNome(area.getNome()));
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testPesquisaAreaNomeNeg() throws PersistenciaException, SQLException, ClassNotFoundException, NegocioException {
 		AreaConhecimento area = new AreaConhecimento(73, 5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
@@ -129,6 +126,7 @@ public class testAreaBO {
 		assertTrue(area == areaBO.pesquisarAreaPorPavimento(area.getPavimento()));
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testPesquisaAreaPavimentoNeg() throws PersistenciaException, SQLException, ClassNotFoundException, NegocioException {
 		AreaConhecimento area = new AreaConhecimento(73, 5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
@@ -147,6 +145,7 @@ public class testAreaBO {
 		assertTrue(area == areaBO.pesquisarAreaPorNumero(area.getNumero()));
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testPesquisaAreaNumeroNeg() throws PersistenciaException, SQLException, ClassNotFoundException, NegocioException {
 		AreaConhecimento area = new AreaConhecimento(73, 5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
@@ -166,6 +165,7 @@ public class testAreaBO {
 		assertTrue(area == areaBO.pesquisarAreaPorId(area.getIdAreaConhecimento()));
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Test	
 	public void testPesquisaAreaIdNeg() throws PersistenciaException, SQLException, ClassNotFoundException, NegocioException {
 		AreaConhecimento area = new AreaConhecimento(73, 5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
@@ -185,6 +185,7 @@ public class testAreaBO {
 
 	}
 		
+	@SuppressWarnings("unchecked")
 	@Test
 	public void testRemoveAreaNeg() throws PersistenciaException, SQLException, NegocioException {
 		AreaConhecimento area = new AreaConhecimento(73, 5, "Teste", Pavimento.MEZANINO, Tipo.DOIS, Status.ATIVO, 6, "Teste", hoje);
