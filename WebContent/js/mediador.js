@@ -1,9 +1,22 @@
+var errors = {matriculaError: false, emailError: false, cpfError: false, nomeError: false};
+
 $(document).ready(function(){
 	
 	$("#cpf").mask("999.999.999-99");
 	
-	function TestaCPF(strCPF) {		
-		$("#cpf").unmask();
+	function mostraMensagem(){
+		for(var s in errors){
+			if(errors[s] == true){
+				$('.erro-msg').show();
+				return true;
+			};
+		};
+		
+		$('.erro-msg').hide();
+	};
+	
+	function TestaCPF(strCPF) {
+		
 		var Soma; 
 		var Resto; 
 		Soma = 0; 
@@ -22,49 +35,70 @@ $(document).ready(function(){
 	}
 	
 	$("#matricula").focusout(function(){
+		$(this).popover('hide');
 		if(!($(this).val().length >= 5 && $(this).val().length <= 9)){
+			errors['matriculaError'] = true;
 			$(this).addClass("erroCampos");
-			$(".erro-msg").show();
-			validaMatricula = false;
+			mostraMensagem();
 		}
 	});
 	
 	$("#matricula").focus(function(){
+		$(this).popover('show');
+		errors['matriculaError'] = false;
 		$(this).removeClass("erroCampos");
-		$(".erro-msg").hide();
-		validaMatricula = true;
+		mostraMensagem();
+	});
+	
+	$("#form").submit(function() {
+		//$("#cpf").unmask();
+		$("#cpf").mask("99999999999");
+		
 	});
 	
 	$("#cpf").focusout(function(){
 		var strCPF = $("#cpf").val().replace(/\./g,'').replace('-','');
 		if(!TestaCPF(strCPF)){
-			$(this).addClass("erroCampos");
-			$(".erro-msg").show();
-			validaCPF = false;
-		}	
+			errors['cpfError'] = true;
+			$(this).addClass("erroCampos");	
+			mostraMensagem();
+		}
 	});
 	
-	$("#cpf").focus(function(){	
+	$("#cpf").focus(function(){
+		errors['cpfError'] = false;
 		$(this).removeClass("erroCampos");
-		$(".erro-msg").hide();
-		validaCPF = true;
+		mostraMensagem();
+	});
+	
+	$('#nome').focusout(function(){
+		if($(this).val().length <= 2){	
+			errors['nomeError'] = true;
+			$(this).addClass("erroCampos");
+			mostraMensagem();
+		};
+	});
+	
+	$('#nome').focus(function(){
+		errors['nomeError'] = false;
+		$(this).removeClass("erroCampos");
+		mostraMensagem();
 	});
 	
 	$("#email").focusout(function(){
 		var filtro = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
 		var email = $("#email").val();
-		
 		if(!filtro.test(email)){
+			errors['emailError'] = true;
 			$(this).addClass("erroCampos");
-			$(".erro-msg").show();
-			validaEmail = false;
-		}		
+			mostraMensagem();
+		}
 	});
 	
 	$("#email").focus(function(){
+		errors['emailError'] = false;
 		$(this).removeClass("erroCampos");
-		$(".erro-msg").hide();
-		validaEmail = true;
+		mostraMensagem();
 	});
 	
 });

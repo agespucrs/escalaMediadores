@@ -3,6 +3,7 @@
 .project
 /WebContent/lixo.html
 .jsdtscope
+target/
 .class
 /target/
 /pom.xml

@@ -35,6 +35,7 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/locales/bootstrap-datepicker.pt-BR.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker.min.css">
+		<script src="js/masked.js" type="text/javascript"></script>
 		
 		
 		
@@ -83,7 +84,12 @@
 			          		</a>
 				          	<ul class="dropdown-menu">
 				            	<li><a href="main?acao=tela&tela=escalaDia">Diária</a></li>
-				            	<li><a href="main?acao=tela&tela=">Mensal</a></li>
+				            	<li class="dropdown-submenu"><a tabindex="-1" href="#">Mensal</a>
+				            		<ul class="dropdown-menu">
+				            			<li><a tabindex="-1" href="main?acao=escalaMensal">Cadastrar Escala Mensal</a></li>
+						            	<li><a tabindex="-1" href="main?acao=listEscalaMensal">Listar Escala Mensal</a></li>
+				            		</ul>
+				            	</li>	
 				            	
 				          	</ul>
         				</li>
@@ -116,5 +122,3 @@
 			      	
 		    	</div>
 			</nav>
-
-    		

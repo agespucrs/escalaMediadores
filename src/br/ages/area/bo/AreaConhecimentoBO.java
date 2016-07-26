@@ -13,6 +13,11 @@ import br.ages.util.MensagemContantes;
 public class AreaConhecimentoBO {
 	AreaConhecimentoDAO areaDAO = null;
 	
+	
+	public void setAreaDAO(AreaConhecimentoDAO areaDAO) {
+		this.areaDAO = areaDAO;
+	}
+
 	public AreaConhecimentoBO() {
 		areaDAO = new AreaConhecimentoDAO();
 	}
@@ -62,9 +67,10 @@ public class AreaConhecimentoBO {
 		return id;
 	}
 	
-	public void editarAreaConhecimento(AreaConhecimento area) throws NegocioException{
+	public boolean editarAreaConhecimento(AreaConhecimento area) throws NegocioException{
 		try {
 			areaDAO.editaArea(area);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw new NegocioException(e);
@@ -131,12 +137,14 @@ public class AreaConhecimentoBO {
 		return area;
 	}
 	
-	public void removeArea(int idArea) throws NegocioException{
+	public boolean removeArea(int idArea) throws NegocioException{
 		try {
 			areaDAO.removeArea(idArea);
+			return true;
 		} catch (Exception e) {
 			e.printStackTrace();
-			throw new NegocioException(e);
+			throw new NegocioException(e);	
+			
 		}
 	}
 	

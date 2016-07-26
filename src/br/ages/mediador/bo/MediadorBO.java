@@ -22,6 +22,13 @@ public class MediadorBO {
 		cpfValidator = new CPFValidator();
 	}
 
+
+	public void setMediadorDAO(MediadorDAO mediadorDAO) {
+		this.mediadorDAO = mediadorDAO;
+	}
+
+
+
 	public boolean validaMediador(Mediador mediador) throws NegocioException{
 		boolean isValido = true;
 		StringBuilder msg = new StringBuilder();
@@ -154,7 +161,7 @@ public class MediadorBO {
 		Mediador med = new Mediador();
 				
 		try{
-			med = mediadorDAO.pesquisarMediadorPorCpf(matricula);
+			med = mediadorDAO.pesquisarMediadorPorMatricula(matricula);
 		} catch(PersistenciaException | SQLException se){
 			se.printStackTrace();
 			throw new NegocioException(se);

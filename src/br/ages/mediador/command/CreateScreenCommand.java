@@ -24,7 +24,9 @@ public class CreateScreenCommand implements Command {
 			case "escalaDia":
 				this.proxima = "escala/escalaDia.jsp";
 				break;
-			
+			case "listarEscalaMensal":
+				this.proxima = "escala/listarEscalaMes.jsp";
+				break;
 			default:
 				this.proxima = "escala/escalaMes.jsp";
 				break;

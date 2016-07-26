@@ -17,11 +17,16 @@ import br.ages.area.command.CreateScreenAreaConhecimentoCommand;
 import br.ages.area.command.EditAreaConhecimentoCommand;
 import br.ages.area.command.ListAreaConhecimentoCommand;
 import br.ages.area.command.RemoveAreaConhecimentoCommand;
+import br.ages.escalaDia.command.ListEscalaDiaCommand;
+import br.ages.escalaMensal.command.CreateVacationsCommand;
+import br.ages.escalaMensal.command.EditarEscalaMensalCommand;
+import br.ages.escalaMensal.command.ListarEscalaMensalCommand;
 import br.ages.mediador.command.AddMediadorCommand;
 import br.ages.mediador.command.CreateScreenCommand;
 import br.ages.mediador.command.CreateScreenMediadorCommand;
 import br.ages.mediador.command.EditMediadorCommand;
 import br.ages.mediador.command.ListMediadorCommand;
+import br.ages.mediador.command.ListMediadorJSONCommand;
 import br.ages.mediador.command.RemoveMediadorCommand;
 import br.ages.model.Usuario;
 import br.ages.usuario.command.AddUserCommand;
@@ -66,6 +71,7 @@ public class MainServlet extends HttpServlet {
 		comandos.put("listaMediador", new ListMediadorCommand());	
 		comandos.put("editMediador", new EditMediadorCommand());
 		comandos.put("removeMediador", new RemoveMediadorCommand());
+		comandos.put("escalaMensal", new ListMediadorJSONCommand());
 		
 		// COMANDOS DE AREACONHECIMENTO
 		comandos.put("telaArea", new CreateScreenAreaConhecimentoCommand());
@@ -73,6 +79,14 @@ public class MainServlet extends HttpServlet {
 		comandos.put("editaArea", new EditAreaConhecimentoCommand());
 		comandos.put("listaArea", new ListAreaConhecimentoCommand());
 		comandos.put("removeArea", new RemoveAreaConhecimentoCommand());
+		
+		//COMANDOS DE ESCALA
+		comandos.put("addFolga", new CreateVacationsCommand());
+		comandos.put("listEscalaMensal", new ListarEscalaMensalCommand());
+		comandos.put("editEscalaMensal", new EditarEscalaMensalCommand());
+		
+		//ESCALA DIARIA
+		comandos.put("gerarEscalaDia", new ListEscalaDiaCommand());
 	}
 
 	@Override
@@ -106,5 +120,7 @@ public class MainServlet extends HttpServlet {
 		}
 		return comando;
 	}
+	
+	
 }
 

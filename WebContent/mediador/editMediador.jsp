@@ -8,7 +8,7 @@
 
 <jsp:include page="../template/head.jsp"></jsp:include>
 
-<script src="js/masked.js" type="text/javascript"></script>
+
 <script src="js/mediador.js" type="text/javascript"></script>
 	
 	<div class="panel panel-primary panel-addUser">
@@ -32,7 +32,7 @@
         	
         	<div class="table-responsive">
                 
-                <form method="post" action="main?acao=editMediador">
+                <form id="form" method="post" action="main?acao=editMediador">
                 	<input class="form-control" type="hidden" id="idMediador" name="idMediador" value="<%=mediador.getIdMediador()%>">
                		<div class="form-group">
 			           	<label class="form-label ages">Matrícula:</label>
